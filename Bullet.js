@@ -1,15 +1,22 @@
-// ==========
-// Bullet STUFF
-// ==========
+//=====================================================
+// Class: Enemy
+// Date : 28.October 2014
+// Programmed by: FutureDevs
+//=====================================================
 
-// Bullet STUFF
+
+/*----------------------
+        Constructor
+------------------------*/
 function Bullet(descr) {
     for (var property in descr) {
         this[property] = descr[property];
     }
 }
 
-// Instance variables
+/*----------------------
+    Instance Variables
+------------------------*/
 Bullet.prototype.radius = 10;
 Bullet.prototype.cx = 100;
 Bullet.prototype.cy = 150;
@@ -17,6 +24,11 @@ Bullet.prototype.vx = 5;
 Bullet.prototype.vy = 5;
 Bullet.prototype.isDead = false;
 
+
+
+/*----------------------
+        Update
+------------------------*/
 Bullet.prototype.update = function (du){
     // Remember my previous position
     var prevX = this.cx;
@@ -55,6 +67,9 @@ Bullet.prototype.reset = function () {
     this.vy = 4;
 };
 
+/*----------------------
+        Render
+------------------------*/
 Bullet.prototype.render = function (ctx) {
     fillCircle(ctx, this.cx, this.cy, this.radius);
 };
