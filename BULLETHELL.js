@@ -25,18 +25,15 @@ var g_ctx = g_canvas.getContext("2d");
 123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
 */
 
+var entityManager = new EntityManager();
+
 // ============
 // Player STUFF
 // ============
 
 // Player 1
 
-var KEY_W = 'W'.charCodeAt(0);
-var KEY_S = 'S'.charCodeAt(0);
-var KEY_A = 'A'.charCodeAt(0);
-var KEY_D = 'D'.charCodeAt(0);
-
-var g_player1 = new Player({
+var mainPlayer = new Player({
     cx : 250,
     cy : 500,
     
@@ -46,6 +43,7 @@ var g_player1 = new Player({
     GO_DOWN : KEY_S
 });
 
+entityManager.setPlayer(mainPlayer);
 
 // Player 2
 
@@ -98,7 +96,7 @@ function updateSimulation(du) {
     
     g_bullet.update(du);
     
-    g_player1.update(du);
+    entityManager.update(du);
     g_player2.update(du);
 }
 
@@ -121,7 +119,7 @@ function renderSimulation(ctx) {
 
     g_bullet.render(ctx);
     
-    g_player1.render(ctx);
+    entityManager.render(ctx);
     g_player2.render(ctx);
 }
 

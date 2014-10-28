@@ -21,6 +21,7 @@ EntityManager.prototype.player = null;
 EntityManager.prototype.bullets = [];
 EntityManager.prototype.enemies = [];
 EntityManager.prototype.boss = null;
+EntityManager.prototype.timer = 0;
 
 
 /*----------------------
@@ -50,7 +51,7 @@ EntityManager.prototype.addEnemy = function(enemy)
 ------------------------*/
 EntityManager.prototype.updateTime = function(du)
 {
-	timer += du;
+	this.timer += du;
 }
 
 EntityManager.prototype.update = function(du)
