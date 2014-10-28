@@ -10,10 +10,13 @@ function Player(descr) {
 
 Player.prototype.halfWidth = 20;
 Player.prototype.halfHeight = 20;
+
+// Variables for keys on the keyboard
 Player.prototype.GO_UP = 8;
 Player.prototype.GO_DOWN = 8;
 Player.prototype.GO_LEFT = 8;
 Player.prototype.GO_RIGHT = 8;
+Player.prototype.SHOOT = 32;
 
 Player.prototype.update = function (du) {
     if (g_keys[this.GO_UP]) {

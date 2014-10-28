@@ -62,6 +62,15 @@ var g_player2 = new Player({
     GO_DOWN : KEY_K
 });
 
+var g_bullet = new Bullet({
+    cx: 50,
+    cy: 200,
+    radius: 10,
+
+    vx: 5,
+    vy: 5
+})
+
 // =============
 // GATHER INPUTS
 // =============
@@ -87,7 +96,7 @@ function gatherInputs() {
 
 function updateSimulation(du) {
     
-    g_ball.update(du);
+    g_bullet.update(du);
     
     g_player1.update(du);
     g_player2.update(du);
@@ -110,7 +119,7 @@ function updateSimulation(du) {
 
 function renderSimulation(ctx) {
 
-    g_ball.render(ctx);
+    g_bullet.render(ctx);
     
     g_player1.render(ctx);
     g_player2.render(ctx);

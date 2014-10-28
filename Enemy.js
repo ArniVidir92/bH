@@ -10,13 +10,17 @@ function Enemy(descr) {
 
 Enemy.prototype.halfWidth = 25;
 Enemy.prototype.halfHeight = 25;
+Enemy.prototype.isDead = false;
+Enemy.prototype.cx = 0;
+Enemy.prototype.cy = g_canvas.height * 0.8;
+Enemy.prototype.vx = 3;
+Enemy.prototype.vy = 0;
+
+
 
 Enemy.prototype.update = function (du) {
-    if (g_keys[this.GO_UP]) {
-        this.cy -= 5 * du;
-    } else if (g_keys[this.GO_DOWN]) {
-        this.cy += 5 * du;
-    }
+    this.cx += this.vx * du;
+    this.cy += this.vy * du;
 };
 
 Enemy.prototype.render = function (ctx) {
