@@ -17,16 +17,27 @@ Player.prototype.GO_DOWN = 8;
 Player.prototype.GO_LEFT = 8;
 Player.prototype.GO_RIGHT = 8;
 Player.prototype.SHOOT = 32;
+Player.prototype.GO_SLOW = 8;
+
+Player.prototype.getSpeed = function()
+{
+    if(g_keys[this.GO_SLOW])
+        return SLOW_SPEED;
+    return BASE_SPEED;
+}
 
 Player.prototype.update = function (du) {
+
+    var speed = this.getSpeed();
+
     if (g_keys[this.GO_UP]) {
-        this.cy -= 5 * du;
+        this.cy -= speed * du;
     } if (g_keys[this.GO_DOWN]) {
-        this.cy += 5 * du;
+        this.cy += speed * du;
     } if (g_keys[this.GO_LEFT]) {
-        this.cx -= 5 * du;
+        this.cx -= speed * du;
     } if (g_keys[this.GO_RIGHT]) {
-        this.cx += 5 * du;
+        this.cx += speed * du;
     }
 };
 
