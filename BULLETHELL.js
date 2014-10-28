@@ -36,7 +36,6 @@ var KEY_S = 'S'.charCodeAt(0);
 var KEY_A = 'A'.charCodeAt(0);
 var KEY_D = 'D'.charCodeAt(0);
 
-
 var g_player1 = new Player({
     cx : 250,
     cy : 500,
@@ -46,6 +45,7 @@ var g_player1 = new Player({
     GO_LEFT : KEY_A,
     GO_DOWN : KEY_S
 });
+
 
 // Player 2
 
