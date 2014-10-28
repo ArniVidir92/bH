@@ -22,9 +22,9 @@ g_ball.update = function (du) {
     var nextX = prevX + this.xVel * du;
     var nextY = prevY + this.yVel * du;
 
-    // Bounce off the paddles
-    if (g_paddle1.collidesWith(prevX, prevY, nextX, nextY, this.radius) ||
-        g_paddle2.collidesWith(prevX, prevY, nextX, nextY, this.radius))
+    // Bounce off the Players
+    if (g_player1.collidesWith(prevX, prevY, nextX, nextY, this.radius) ||
+        g_player2.collidesWith(prevX, prevY, nextX, nextY, this.radius))
     {
         this.xVel *= -1;
     }
