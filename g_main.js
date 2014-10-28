@@ -1,29 +1,16 @@
 // ========
 // MAINLOOP
 // ========
-/*
 
-The mainloop is one big object with a fairly small public interface
-(e.g. init, iter, gameOver), and a bunch of private internal helper methods.
-
-The "private" members are identified as such purely by the naming convention
-of having them begin with a leading underscore. A more robust form of privacy,
-with genuine name-hiding *is* possible in JavaScript (via closures), but I 
-haven't adopted it here.
-
-*/
-
-"use strict";
-
-/* jshint browser: true, devel: true, globalstrict: true */
-
-/*
-0        1         2         3         4         5         6         7         8
-12345678901234567890123456789012345678901234567890123456789012345678901234567890
-*/
-
-
-var main = {
+// The mainloop is one big object with a fairly small public interface
+// (e.g. init, iter, gameOver), and a bunch of private internal helper methods.
+//
+// The "private" members are identified as such purely by the naming convention
+// of having them begin with a leading underscore. A more robust form of privacy,
+// with genuine name-hiding *is* possible in JavaScript (via closures), but I 
+// haven't adopted it here.
+//
+var g_main = {
     
     // "Frame Time" is a (potentially high-precision) frame-clock for animations
     _frameTime_ms : null,
@@ -32,7 +19,7 @@ var main = {
 };
 
 // Perform one iteration of the mainloop
-main.iter = function (frameTime) {
+g_main.iter = function (frameTime) {
     
     // Use the given frameTime to update all of our game-clocks
     this._updateClocks(frameTime);
@@ -47,7 +34,7 @@ main.iter = function (frameTime) {
     if (!this._isGameOver) this._requestNextIteration();
 };
 
-main._updateClocks = function (frameTime) {
+g_main._updateClocks = function (frameTime) {
     
     // First-time initialisation
     if (this._frameTime_ms === null) this._frameTime_ms = frameTime;
@@ -57,7 +44,7 @@ main._updateClocks = function (frameTime) {
     this._frameTime_ms = frameTime;
 };
 
-main._iterCore = function (dt) {
+g_main._iterCore = function (dt) {
     
     // Handle QUIT
     if (requestedQuit()) {
@@ -70,9 +57,9 @@ main._iterCore = function (dt) {
     render(g_ctx);
 };
 
-main._isGameOver = false;
+g_main._isGameOver = false;
 
-main.gameOver = function () {
+g_main.gameOver = function () {
     this._isGameOver = true;
     console.log("gameOver: quitting...");
 };
@@ -81,21 +68,22 @@ main.gameOver = function () {
 //
 var KEY_QUIT = 'Q'.charCodeAt(0);
 function requestedQuit() {
-    return keys[KEY_QUIT];
+    return g_keys[KEY_QUIT];
 }
 
-// Annoying shim for Firefox and Safari
+// Annoying shim for cross-browser compat
 window.requestAnimationFrame = 
-    window.requestAnimationFrame ||        // Chrome
-    window.mozRequestAnimationFrame ||     // Firefox
-    window.webkitRequestAnimationFrame;    // Safari
+  window.requestAnimationFrame ||
+  window.mozRequestAnimationFrame ||
+  window.webkitRequestAnimationFrame ||
+  window.msRequestAnimationFrame;
 
 // This needs to be a "global" function, for the "window" APIs to callback to
 function mainIterFrame(frameTime) {
-    main.iter(frameTime);
+    g_main.iter(frameTime);
 }
 
-main._requestNextIteration = function () {
+g_main._requestNextIteration = function () {
     window.requestAnimationFrame(mainIterFrame);
 };
 
@@ -103,9 +91,9 @@ main._requestNextIteration = function () {
 
 var TOGGLE_TIMER_SHOW = 'T'.charCodeAt(0);
 
-main._doTimerShow = false;
+g_main._doTimerShow = false;
 
-main._debugRender = function (ctx) {
+g_main._debugRender = function (ctx) {
     
     if (eatKey(TOGGLE_TIMER_SHOW)) this._doTimerShow = !this._doTimerShow;
     
@@ -118,17 +106,12 @@ main._debugRender = function (ctx) {
     ctx.fillText('FrameSync ON', 50, y+40);
 };
 
-main.init = function () {
+g_main.init = function () {
     
     // Grabbing focus is good, but it sometimes screws up jsfiddle,
     // so it's a risky option during "development"
     //
     //window.focus(true);
-
-    // We'll be working on a black background here,
-    // so let's use a fillStyle which works against that...
-    //
-    g_ctx.fillStyle = "white";
 
     this._requestNextIteration();
 };

@@ -2,14 +2,14 @@
 // KEYBOARD HANDLING
 // =================
 
-var keys = [];
+var g_keys = [];
 
 function handleKeydown(evt) {
-    keys[evt.keyCode] = true;
+    g_keys[evt.keyCode] = true;
 }
 
 function handleKeyup(evt) {
-    keys[evt.keyCode] = false;
+    g_keys[evt.keyCode] = false;
 }
 
 // Inspects, and then clears, a key's state
@@ -18,14 +18,9 @@ function handleKeyup(evt) {
 // ..until the auto-repeat kicks in, that is.
 //
 function eatKey(keyCode) {
-    var isDown = keys[keyCode];
-    keys[keyCode] = false;
+    var isDown = g_keys[keyCode];
+    g_keys[keyCode] = false;
     return isDown;
-}
-
-// A tiny little convenience function
-function keyCode(keyChar) {
-    return keyChar.charCodeAt(0);
 }
 
 window.addEventListener("keydown", handleKeydown);
