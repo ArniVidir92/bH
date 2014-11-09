@@ -120,8 +120,12 @@ function renderSimulation(ctx) {
     g_bullet.render(ctx);
     
     entityManager.render(ctx);
-    g_player2.render(ctx);
 }
 
 // Kick it off
-g_main.init();
+function initMain()
+{
+   g_main.init(); 
+}
+
+preloadStuff_thenCall(initMain);

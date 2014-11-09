@@ -30,19 +30,20 @@ Player.prototype.update = function (du) {
 
     var speed = this.getSpeed();
 
-    if (g_keys[this.GO_UP]) {
+    if (g_keys[this.GO_UP]&&this.cy>this.halfHeight) {
         this.cy -= speed * du;
-    } if (g_keys[this.GO_DOWN]) {
+    } if (g_keys[this.GO_DOWN]&&this.cy<600-this.halfHeight) {
         this.cy += speed * du;
-    } if (g_keys[this.GO_LEFT]) {
+    } if (g_keys[this.GO_LEFT]&&this.cx>0+this.halfWidth) {
         this.cx -= speed * du;
-    } if (g_keys[this.GO_RIGHT]) {
+    } if (g_keys[this.GO_RIGHT]&&this.cx<520-this.halfWidth) {
         this.cx += speed * du;
     }
 };
 
 Player.prototype.render = function (ctx) {
     // (cx, cy) is the centre; must offset it for drawing
+    ctx.fillStyle="white";
     ctx.fillRect(this.cx - this.halfWidth,
                  this.cy - this.halfHeight,
                  this.halfWidth * 2,
