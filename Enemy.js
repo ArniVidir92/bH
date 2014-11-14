@@ -34,7 +34,16 @@ Enemy.prototype.type = "BlackKnight";
         Update
 ------------------------*/
 Enemy.prototype.update = function (du) {
-    /*this.timer += du;
+
+  
+
+    if(!isOnScreen(this)) {
+        this.isDead = true;
+        return;
+    }
+
+  
+/*
     this.vx = Math.cos(this.timer / c_fullCircle);
     this.vy = Math.sin(this.timer / c_fullCircle);
     this.cx += this.vx * du;

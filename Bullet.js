@@ -31,6 +31,12 @@ Bullet.prototype.bulletType = "normal";
         Update
 ------------------------*/
 Bullet.prototype.update = function (du){
+
+    if(!isOnScreen(this)) {
+        this.isDead = true;
+        return;
+    }
+
     // Remember my previous position
     var prevX = this.cx;
     var prevY = this.cy;

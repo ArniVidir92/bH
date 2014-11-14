@@ -30,3 +30,21 @@ function getLowestAvailable(array)
 			return i
 	return array.length;
 }
+
+function isOnScreen(object) {
+    var margin = 20;
+
+    var topY = object.cy + margin;
+    var bottomY = object.cy - margin;
+    var leftX = object.cx + margin;
+    var rightX = object.cx - margin;
+
+    if(topY < 0 ||
+        bottomY > g_canvas.height ||
+        leftX < 0 || 
+        rightX > g_canvas.width) {
+            return false;
+    }
+
+    return true;
+}
