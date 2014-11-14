@@ -17,7 +17,8 @@ Player.prototype.GO_DOWN = 8;
 Player.prototype.GO_LEFT = 8;
 Player.prototype.GO_RIGHT = 8;
 Player.prototype.SHOOT = 32;
-Player.prototype.GO_SLOW = 8;
+Player.prototype.GO_SLOW = 16;
+Player.prototype.radius = 2;
 
 Player.prototype.cooldown = 100 / NOMINAL_UPDATE_INTERVAL;
 Player.prototype.gun = "3way";
@@ -46,7 +47,6 @@ Player.prototype.shoot = function(){
     if(this.cooldown > 0) return;
 
     if(g_keys[this.SHOOT]){
-
         switch(this.gun) {
             case "normal" :
                 this.cooldown = Player.prototype.cooldown;
@@ -78,6 +78,7 @@ Player.prototype.shoot = function(){
                 break;
         }
     }
+    particleManager.addSParticle(this.cx,this.cy,"corruption",1);
 }
 
 Player.prototype.update = function (du) {
@@ -96,22 +97,9 @@ Player.prototype.render = function (ctx) {
                  this.cy - this.halfHeight,
                  this.halfWidth * 2,
                  this.halfHeight * 2);
+    fillCircle(ctx, this.cx, this.cy, this.radius);
 };
 
-Player.prototype.collidesWith = function (prevX, prevY, 
-                                          nextX, nextY, 
-                                          r) {
-    var PlayerEdge = this.cx;
-    // Check X coords
-    if ((nextX - r < PlayerEdge && prevX - r >= PlayerEdge) ||
-        (nextX + r > PlayerEdge && prevX + r <= PlayerEdge)) {
-        // Check Y coords
-        if (nextY + r >= this.cy - this.halfHeight &&
-            nextY - r <= this.cy + this.halfHeight) {
-            // It's a hit!
-            return true;
-        }
-    }
-    // It's a miss!
-    return false;
+Player.prototype.collidesWith = function (object) {
+    
 };

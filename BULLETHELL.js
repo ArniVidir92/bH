@@ -60,6 +60,20 @@ var g_player2 = new Player({
     GO_DOWN : KEY_K
 });
 
+var xCord = 0;
+for(var i = 0; i < 10; i++)
+{
+    var en = new Enemy({
+    cx : xCord,
+    cy : 100,
+    });
+    xCord += 20;
+    entityManager.addEnemy(en);
+
+}
+
+
+
 // =============
 // GATHER INPUTS
 // =============
@@ -86,6 +100,7 @@ function gatherInputs() {
 function updateSimulation(du) {
     
     entityManager.update(du);
+    particleManager.update(du);
     //g_player2.update(du);
 }
 
@@ -107,6 +122,7 @@ function updateSimulation(du) {
 function renderSimulation(ctx) {
     
     entityManager.render(ctx);
+    particleManager.render(ctx);
 }
 
 // Kick it off
