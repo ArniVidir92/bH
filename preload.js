@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 5;
+var numberOfPreloadedImages = 6;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt=0;
