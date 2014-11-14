@@ -134,7 +134,11 @@ Player.prototype.render = function (ctx) {
 
 Player.prototype.collidesWith = function (object) {
     if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
-        console.log("Daudur!!!");
+        if( Object.getPrototypeOf(object) === Powerup.prototype ){
+            this.xp += 10/this.level;
+            console.log("powerup");
+        }
+        else{console.log("Daudur!!!");}
         return true;
     }
     return false;
