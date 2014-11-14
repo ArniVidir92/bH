@@ -60,14 +60,16 @@ var g_player2 = new Player({
     GO_DOWN : KEY_K
 });
 
-var xCord = 0;
+var xCord = 20;
 for(var i = 0; i < 10; i++)
 {
     var en = new Enemy({
     cx : xCord,
     cy : 100,
     });
-    xCord += 20;
+
+    console.log(xCord);
+    xCord += 25;
     entityManager.addEnemy(en);
 
 }

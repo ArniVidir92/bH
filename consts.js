@@ -8,3 +8,5 @@ var SLOW_SPEED = 2;
 var ARENA_WIDTH = 520;
 var c_pi = Math.PI;
 var c_fullCircle = 2 * c_pi;
+
+var g_GameCanvas = 400;

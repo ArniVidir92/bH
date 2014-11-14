@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 4;
+var numberOfPreloadedImages = 5;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt=0;
@@ -41,6 +41,15 @@ function preloadStuff_thenCall(completionCallback) {
     };
     
     g_shipImage.src = "sprites/bhship.png";
+//preload the blackknight
+    var g_blackKnightImage = new Image();
+    
+    g_blackKnightImage.onload = function () { 
+        g_blackKnight = new Sprite(g_blackKnightImage) ;
+        isReady(++cnt,completionCallback);
+    };
+    
+    g_blackKnightImage.src = "sprites/blackknight.png";
 }
 
 function isReady(x,completionCallback)

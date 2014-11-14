@@ -80,13 +80,20 @@ EntityManager.prototype.checkCollisions = function(du){
 	var bullet, enemy;
 	for( var i = 0; i < this.bullets.length; i++){
 		bullet = this.bullets[i];
-		if( bullet.friendly ){
-			for( var j = 0; j < this.enemies.length; j++ ){
-				enemy = this.enemies[j];
-				enemy.collidesWith(bullet);
+		if( bullet.isDead ){}
+		else{
+			if( bullet.friendly ){
+				for( var j = 0; j < this.enemies.length; j++ ){
+					enemy = this.enemies[j];
+					if( !enemy.isDead && enemy.collidesWith(bullet) ){
+						this.bullets[i].isDead = true;
+					}
+				}
+			}else{
+				if( this.player.collidesWith(bullet) ){
+					this.bullets[i].isDead = true;
+				}
 			}
-		}else{
-			this.player.collidesWith(bullet);
 		}
 	}
 	for( var k = 0; k < this.enemies.length; k++){

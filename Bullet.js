@@ -32,6 +32,8 @@ Bullet.prototype.bulletType = "normal";
 ------------------------*/
 Bullet.prototype.update = function (du){
 
+    if( this.isDead ){return;}
+
     if(!isOnScreen(this)) {
         this.isDead = true;
         return;
@@ -78,5 +80,6 @@ Bullet.prototype.reset = function () {
         Render
 ------------------------*/
 Bullet.prototype.render = function (ctx) {
+    if( this.isDead ){return;}
     fillCircle(ctx, this.cx, this.cy, this.radius);
 };

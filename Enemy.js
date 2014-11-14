@@ -12,22 +12,32 @@ function Enemy(descr) {
     for (var property in descr) {
         this[property] = descr[property];
     }
+
+    this.rememberResets();
 }
 
 /*----------------------
     Instance Variables
 ------------------------*/
-Enemy.prototype.halfWidth = 25;
-Enemy.prototype.halfHeight = 25;
+Enemy.prototype.halfWidth = 10;
+Enemy.prototype.halfHeight = 10;
 Enemy.prototype.isDead = false;
-Enemy.prototype.cx = 0;
+Enemy.prototype.cx = 20;
 Enemy.prototype.cy = 0;
 Enemy.prototype.vx = 3;
-Enemy.prototype.vy = 0;
+Enemy.prototype.vy = 1;
+Enemy.prototype.rotation = 0;
+
 Enemy.prototype.timer = 0;
+Enemy.prototype.radius = 10;
+
 
 Enemy.prototype.type = "BlackKnight";
 
+Enemy.prototype.rememberResets = function () {
+    this.reset_cx = this.cx;
+    this.reset_cy = this.cy;
+};
 
 
 /*----------------------
@@ -35,7 +45,8 @@ Enemy.prototype.type = "BlackKnight";
 ------------------------*/
 Enemy.prototype.update = function (du) {
 
-  
+    if( this.isDead ){return;}
+
 
     if(!isOnScreen(this)) {
         this.isDead = true;
@@ -55,7 +66,11 @@ Enemy.prototype.update = function (du) {
 };
 
 Enemy.prototype.collidesWith = function (object) {
-    var EnemyEdge = this.cx;
+    if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
+        this.isDead = true;
+        return true;
+    }
+    return false;
 }
 Enemy.prototype.updateBlackKnight = function (du)
 {
@@ -63,26 +78,30 @@ Enemy.prototype.updateBlackKnight = function (du)
     {
         this.timer = 0;
         
-        var velX = Math.floor((Math.random() * 5) + 1);
         entityManager.addBullet(new Bullet({
             cx : this.cx,
             cy : this.cy,
             
-            vx   : velX,
-            vy   : 10,
-            friendly : true,
+            vx   : 0,
+            vy   : 2,
+            friendly : false,
             
         }));
     }
+
+    this.cy += this.vy * du;
+
 }
 
 /*----------------------
         Render
 ------------------------*/
 Enemy.prototype.render = function (ctx) {
+    if( this.isDead ){return;}
     // (cx, cy) is the centre; must offset it for drawing
-    ctx.fillRect(this.cx - this.halfWidth,
-                 this.cy - this.halfHeight,
-                 this.halfWidth * 2,
-                 this.halfHeight * 2);
+    ctx.save();
+
+    g_enemy1.drawCenteredAt(ctx,this.cx,this.cy,0);
+
+    ctx.restore();
 };
