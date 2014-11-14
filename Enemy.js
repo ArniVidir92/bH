@@ -131,8 +131,11 @@ Enemy.prototype.updateGrayKnight = function (du)
             
         }));
     }
-
+    console.log("First cy");
+    console.log(this.cy);
     this.cy += this.vy * du;
+    console.log("Secon cy");
+    console.log(this.cy);
 
 }
 

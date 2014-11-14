@@ -59,15 +59,16 @@ LevelManager.prototype.init = function()
 	}
 
 	/*-----------------------------
-		Creating Christmas Carols 
+		Creating Gray Knights  
 	------------------------------*/
 	for(var i = 0; i < 100; i++)
 	{
     	var en = new Enemy({
-    	cx : 0,
-    	cy : 15,
-    	vx : 4,
-    	vy : 0,
+    	cx : 470,
+    	cy : -5,
+    	vx : 0,
+    	vy : 1,
+    	type	:   "GrayKnight",
 
     	});
  
