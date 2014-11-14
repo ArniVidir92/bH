@@ -18,6 +18,7 @@ Player.prototype.GO_LEFT = 8;
 Player.prototype.GO_RIGHT = 8;
 Player.prototype.SHOOT = 32;
 Player.prototype.GO_SLOW = 16;
+Player.prototype.radius = 2;
 
 Player.prototype.getSpeed = function()
 {
@@ -70,11 +71,10 @@ Player.prototype.render = function (ctx) {
                  this.cy - this.halfHeight,
                  this.halfWidth * 2,
                  this.halfHeight * 2);
+    fillCircle(ctx, this.cx, this.cy, this.radius);
 };
 
-Player.prototype.collidesWith = function (prevX, prevY, 
-                                          nextX, nextY, 
-                                          r) {
+Player.prototype.collidesWith = function (object) {
     var PlayerEdge = this.cx;
     // Check X coords
     if ((nextX - r < PlayerEdge && prevX - r >= PlayerEdge) ||
