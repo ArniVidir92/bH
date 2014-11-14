@@ -59,7 +59,7 @@ function preloadStuff_thenCall(completionCallback) {
         isReady(++cnt,completionCallback);
     };
     
-    g_sideImage.src = "sprites/side.png";
+    g_sideImage.src = "sprites/sidebar.png";
 }
 
 function isReady(x,completionCallback)
