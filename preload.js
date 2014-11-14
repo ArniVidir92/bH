@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 6;
+var numberOfPreloadedImages = 7;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt=0;
@@ -64,7 +64,7 @@ function preloadStuff_thenCall(completionCallback) {
 //preload the powerup
     var g_powerupImage = new Image();
     
-    g_sideImage.onload = function () { 
+    g_powerupImage.onload = function () { 
         g_powerup = new Sprite(g_powerupImage) ;
         isReady(++cnt,completionCallback);
     };
