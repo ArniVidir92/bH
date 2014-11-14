@@ -106,6 +106,7 @@ function updateSimulation(du) {
     entityManager.update(du);
     particleManager.update(du);
     //g_player2.update(du);
+    sideBar.update(du);
 }
 
 
@@ -127,6 +128,7 @@ function renderSimulation(ctx) {
     
     entityManager.render(ctx);
     particleManager.render(ctx);
+    sideBar.render(ctx);
 
 }
 

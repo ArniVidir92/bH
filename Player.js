@@ -24,6 +24,7 @@ Player.prototype.goingSlow = false;
 Player.prototype.cooldown = 400 / NOMINAL_UPDATE_INTERVAL;
 Player.prototype.level = 2;
 Player.prototype.xp = 0;
+Player.prototype.xpMax = 100;
 
 Player.prototype.getSpeed = function(){
     if(g_keys[this.GO_SLOW])

@@ -68,6 +68,7 @@ Enemy.prototype.update = function (du) {
 Enemy.prototype.collidesWith = function (object) {
     if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
         this.isDead = true;
+        score += sideBar.enemyScore;
         return true;
     }
     return false;
