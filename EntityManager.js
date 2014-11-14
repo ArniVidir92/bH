@@ -58,28 +58,40 @@ EntityManager.prototype.update = function(du)
 {
 	if(this.player)
 		this.player.update(du);
-	for(var bullet in this.bullets)
-		bullet.update(du);
-	for (var enemy in this.enemies) 
-		enemy.update(du);
+
+	for(var i=0; i< this.bullets.length; i++){
+		this.bullets[i].update(du);
+	}
+	for (var j = 0; j < this.enemies.length; j++) 
+		this.enemies[j].update(du);
 	if(this.boss)
 		this.boss.update();
 
+	//console.log(this.bullets.length);
+
+	//this.checkCollisions(du);
+
 	this.updateTime(du)
 }
+
+/*----------------------
+		Collision Stuff
+------------------------*/
+
 
 
 /*----------------------
 		Render
 ------------------------*/
-EntityManager.prototype.render = function(du)
+EntityManager.prototype.render = function(ctx)
 {
 	if(this.player)
-		this.player.render(du);
-	for(var bullet in this.bullets)
-		bullet.render(du);
-	for (var enemy in this.enemies) 
-		enemy.render(du);
+		this.player.render(ctx);
+	for(var i = 0; i < this.bullets.length; i++){
+		this.bullets[i].render(ctx);
+	}
+	for (var j = 0; j < this.enemies.length; j++) 
+		this.enemies[j].render(ctx);
 	if(this.boss)
-		this.boss.render();
+		this.boss.render(ctx);
 }

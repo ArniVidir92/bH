@@ -26,9 +26,7 @@ Player.prototype.getSpeed = function()
     return BASE_SPEED;
 }
 
-Player.prototype.update = function (du) {
-
-    var speed = this.getSpeed();
+Player.prototype.updateDirection = function(du, speed){
 
     if (g_keys[this.GO_UP]&&this.cy>this.halfHeight) {
         this.cy -= speed * du;
@@ -39,6 +37,28 @@ Player.prototype.update = function (du) {
     } if (g_keys[this.GO_RIGHT]&&this.cx<520-this.halfWidth) {
         this.cx += speed * du;
     }
+}
+
+Player.prototype.shoot = function(){
+    if(g_keys[this.SHOOT]){
+        entityManager.addBullet(new Bullet({
+            cx : this.cx,
+            cy : this.cy,
+            
+            vx   : 0,
+            vy   : -7,
+            friendly : true,
+            
+        }));
+    }
+}
+
+Player.prototype.update = function (du) {
+
+    var speed = this.getSpeed();
+    this.updateDirection(du, speed);
+    this.shoot();
+
 };
 
 Player.prototype.render = function (ctx) {
