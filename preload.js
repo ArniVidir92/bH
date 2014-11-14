@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 5;
+var numberOfPreloadedImages = 6;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt=0;
@@ -50,6 +50,16 @@ function preloadStuff_thenCall(completionCallback) {
     };
     
     g_blackKnightImage.src = "sprites/blackknight.png";
+
+//preload the sidebar
+    var g_sideImage = new Image();
+    
+    g_sideImage.onload = function () { 
+        g_side = new Sprite(g_sideImage) ;
+        isReady(++cnt,completionCallback);
+    };
+    
+    g_sideImage.src = "sprites/side.png";
 }
 
 function isReady(x,completionCallback)
