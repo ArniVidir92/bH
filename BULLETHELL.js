@@ -125,6 +125,7 @@ function renderSimulation(ctx) {
     
     entityManager.render(ctx);
     particleManager.render(ctx);
+    
 }
 
 // Kick it off
