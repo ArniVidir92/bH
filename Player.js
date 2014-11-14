@@ -180,6 +180,7 @@ Player.prototype.collidesWith = function (object) {
     if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
         if( Object.getPrototypeOf(object) === Powerup.prototype ){
             this.xp += 10/this.level;
+            this.updateLevel();
             console.log("powerup");
         }
         else{console.log("Daudur!!!");}
@@ -187,3 +188,10 @@ Player.prototype.collidesWith = function (object) {
     }
     return false;
 };
+
+Player.prototype.updateLevel = function(){
+    if(this.xp > this.xpMax){
+        this.level += 1;
+        this.xp = 0;
+    }
+}

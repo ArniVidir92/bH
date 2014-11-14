@@ -18,7 +18,7 @@ function Powerup(descr) {
     Instance Variables
 ------------------------*/
 
-Powerup.prototype.radius = 10;
+Powerup.prototype.radius = 15;
 Powerup.prototype.cx = ARENA_WIDTH/2;
 Powerup.prototype.cy = 0;
 Powerup.prototype.vx = 0;
