@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 8;
+var numberOfPreloadedImages = 9;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt=0;
@@ -80,6 +80,15 @@ function preloadStuff_thenCall(completionCallback) {
     };
     
     g_powerup2Image.src = "sprites/powerup1.png";
+//9. preload the bullet2
+    var g_bullet2Image = new Image();
+    
+    g_bullet2Image.onload = function () { 
+        g_bullet2 = new Sprite(g_bullet2Image) ;
+        isReady(++cnt,completionCallback);
+    };
+    
+    g_bullet2Image.src = "sprites/bigbulletrad12.png";
 }
 
 function isReady(x,completionCallback)
