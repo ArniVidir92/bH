@@ -68,8 +68,15 @@ EntityManager.prototype.update = function(du)
 	for(var i=0; i< this.bullets.length; i++){
 		this.bullets[i].update(du);
 	}
-	for (var j = 0; j < this.enemies.length; j++) 
+
+	for (var j = 0; j < this.enemies.length; j++){
 		this.enemies[j].update(du);
+	}
+
+	for (var k = 0; k < this.powerups.length; k++) {
+		this.powerups[k].update(du);
+	}
+
 	if(this.boss)
 		this.boss.update();
 
@@ -83,7 +90,7 @@ EntityManager.prototype.update = function(du)
 ------------------------*/
 
 EntityManager.prototype.checkCollisions = function(du){
-	var bullet, enemy;
+	var bullet, enemy, powerup;
 	for( var i = 0; i < this.bullets.length; i++){
 		bullet = this.bullets[i];
 		if( bullet.isDead ){}
@@ -106,6 +113,15 @@ EntityManager.prototype.checkCollisions = function(du){
 		enemy = this.enemies[k];
 		this.player.collidesWith(enemy);
 	}
+
+	for(var h = 0; h < this.powerups.length; h++) {
+		powerup = this.powerups[h];
+		if(!powerup.isDead) {
+			if(this.player.collidesWith(powerup)) {
+				powerup.isDead = true;
+			}
+		}
+	}
 }
 
 /*----------------------
@@ -118,8 +134,15 @@ EntityManager.prototype.render = function(ctx)
 	for(var i = 0; i < this.bullets.length; i++){
 		this.bullets[i].render(ctx);
 	}
-	for (var j = 0; j < this.enemies.length; j++) 
+
+	for (var j = 0; j < this.enemies.length; j++){
 		this.enemies[j].render(ctx);
+	}
+
+	for (var k = 0; k < this.powerups.length; k++) {
+		this.powerups[k].render(ctx);
+	}
+
 	if(this.boss)
 		this.boss.render(ctx);
 }
