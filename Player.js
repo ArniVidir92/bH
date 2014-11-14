@@ -23,9 +23,7 @@ Player.prototype.goingSlow = false;
 Player.prototype.bulletSpeed = -5;
 
 Player.prototype.cooldown = 400 / NOMINAL_UPDATE_INTERVAL;
-
-Player.prototype.level = 5;
-
+Player.prototype.level = 1;
 Player.prototype.xp = 0;
 Player.prototype.xpMax = 100;
 
@@ -119,7 +117,53 @@ Player.prototype.shoot = function(){
                     this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed*1.2);
                     xVel += 3;
                 }
-                break;            
+                break;
+            case 8:
+                this.cooldown = Player.prototype.cooldown / 2.5;
+
+                var xVel = -6;
+                this.addBullet(this.cx, this.cy, 1, this.bulletSpeed);
+                this.addBullet(this.cx, this.cy, -1, this.bulletSpeed);
+                for (var i = 0; i < 5; i++) {
+                    this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed*1.2);
+                    xVel += 3;
+                }
+                break;
+            case 9:
+                this.cooldown = Player.prototype.cooldown / 2.5;
+
+                var xVel = -5;
+                this.addBullet(this.cx, this.cy, 1, this.bulletSpeed*1.4);
+                this.addBullet(this.cx, this.cy, -1, this.bulletSpeed*1.4);
+                for (var i = 0; i < 5; i++) {
+                    this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed*1.2);
+                    xVel += 2.5;
+                }
+                break;
+            case 10:
+                this.cooldown = Player.prototype.cooldown / 2.5;
+
+                var xVel = -4;
+                this.addBullet(this.cx, this.cy, 1, this.bulletSpeed*1.4);
+                this.addBullet(this.cx, this.cy, -1, this.bulletSpeed*1.4);
+                for (var i = 0; i < 5; i++) {
+                    this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed*1.6);
+                    xVel += 2;
+                }
+                break;
+            case 11:
+                this.cooldown = Player.prototype.cooldown / 2.5;
+
+                var xVel = -4;
+                this.addBullet(this.cx, this.cy, 1, this.bulletSpeed*1.4);
+                this.addBullet(this.cx, this.cy, -1, this.bulletSpeed*1.4);
+                this.addBullet(this.cx, this.cy, 0, this.bulletSpeed*1.2);
+                this.addBullet(this.cx, this.cy, 0, this.bulletSpeed);
+                for (var i = 0; i < 5; i++) {
+                    this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed*1.6);
+                    xVel += 2;
+                }
+                break;   
         }
     }
 }
