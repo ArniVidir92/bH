@@ -18,12 +18,17 @@ Player.prototype.GO_LEFT = 8;
 Player.prototype.GO_RIGHT = 8;
 Player.prototype.SHOOT = 32;
 Player.prototype.GO_SLOW = 16;
-Player.prototype.radius = 2;
+Player.prototype.radius = 4;
+Player.prototype.goingSlow = false;
 
 Player.prototype.getSpeed = function()
 {
     if(g_keys[this.GO_SLOW])
+    {
+        this.goingSlow=true;
         return SLOW_SPEED;
+    }
+    this.goingSlow=false;
     return BASE_SPEED;
 }
 
@@ -53,7 +58,6 @@ Player.prototype.shoot = function(){
         }));
 
     }
-    particleManager.addSParticle(this.cx,this.cy,"corruption",1);
 }
 
 Player.prototype.update = function (du) {
@@ -67,11 +71,13 @@ Player.prototype.update = function (du) {
 Player.prototype.render = function (ctx) {
     // (cx, cy) is the centre; must offset it for drawing
     ctx.fillStyle="white";
-    ctx.fillRect(this.cx - this.halfWidth,
+    /*ctx.fillRect(this.cx - this.halfWidth,
                  this.cy - this.halfHeight,
                  this.halfWidth * 2,
-                 this.halfHeight * 2);
-    fillCircle(ctx, this.cx, this.cy, this.radius);
+                 this.halfHeight * 2);*/
+    g_ship.drawCenteredAt(ctx,this.cx,this.cy,0);
+    if(this.goingSlow)
+    fillCircle(ctx, this.cx, this.cy, this.radius,"red");
 };
 
 Player.prototype.collidesWith = function (object) {
