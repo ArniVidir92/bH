@@ -20,6 +20,7 @@ function EntityManager(descr) {
 EntityManager.prototype.player = null;
 EntityManager.prototype.bullets = [];
 EntityManager.prototype.enemies = [];
+EntityManager.prototype.powerups = [];
 EntityManager.prototype.boss = null;
 EntityManager.prototype.timer = 0;
 
@@ -45,6 +46,11 @@ EntityManager.prototype.addEnemy = function(enemy)
 	this.enemies[low]=enemy;
 }
 
+EntityManager.prototype.addPowerup = function(powerup) 
+{
+	var low = getLowestAvailable(this.powerups);
+	this.powerups[low]=powerup;
+}
 
 /*----------------------
 		Update
