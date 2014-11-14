@@ -78,6 +78,7 @@ Enemy.prototype.update = function (du) {
 
 Enemy.prototype.collidesWith = function (object) {
     if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
+        score += 50;
         this.isDead = true;
         entityManager.addPowerup(new Powerup({
             cx : this.cx,
@@ -131,11 +132,8 @@ Enemy.prototype.updateGrayKnight = function (du)
             
         }));
     }
-    console.log("First cy");
-    console.log(this.cy);
+
     this.cy += this.vy * du;
-    console.log("Secon cy");
-    console.log(this.cy);
 
 }
 

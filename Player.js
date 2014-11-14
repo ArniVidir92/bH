@@ -23,7 +23,7 @@ Player.prototype.goingSlow = false;
 Player.prototype.bulletSpeed = -5;
 
 Player.prototype.cooldown = 400 / NOMINAL_UPDATE_INTERVAL;
-Player.prototype.level = 7;
+Player.prototype.level = 1;
 Player.prototype.xp = 0;
 Player.prototype.xpMax = 100;
 
@@ -117,7 +117,29 @@ Player.prototype.shoot = function(){
                     this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed*1.2);
                     xVel += 3;
                 }
-                break;            
+                break;
+            case 8:
+                this.cooldown = Player.prototype.cooldown / 2.5;
+
+                var xVel = -6;
+                this.addBullet(this.cx, this.cy, 1, this.bulletSpeed);
+                this.addBullet(this.cx, this.cy, -1, this.bulletSpeed);
+                for (var i = 0; i < 5; i++) {
+                    this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed*1.2);
+                    xVel += 3;
+                }
+                break;
+            case 9:
+                this.cooldown = Player.prototype.cooldown / 2.5;
+
+                var xVel = -5;
+                this.addBullet(this.cx, this.cy, 1, this.bulletSpeed*1.4);
+                this.addBullet(this.cx, this.cy, -1, this.bulletSpeed*1.4);
+                for (var i = 0; i < 5; i++) {
+                    this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed*1.2);
+                    xVel += 2.5;
+                }
+                break;         
         }
     }
 }
@@ -158,6 +180,7 @@ Player.prototype.collidesWith = function (object) {
     if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
         if( Object.getPrototypeOf(object) === Powerup.prototype ){
             this.xp += 10/this.level;
+            this.updateLevel();
             console.log("powerup");
         }
         else{console.log("Daudur!!!");}
@@ -165,3 +188,10 @@ Player.prototype.collidesWith = function (object) {
     }
     return false;
 };
+
+Player.prototype.updateLevel = function(){
+    if(this.xp > this.xpMax){
+        this.level += 1;
+        this.xp = 0;
+    }
+}
