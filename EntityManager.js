@@ -67,7 +67,6 @@ EntityManager.prototype.update = function(du)
 	if(this.boss)
 		this.boss.update();
 
-
 	this.checkCollisions(du);
 
 	this.updateTime(du)
@@ -89,6 +88,10 @@ EntityManager.prototype.checkCollisions = function(du){
 		}else{
 			this.player.collidesWith(bullet);
 		}
+	}
+	for( var k = 0; k < this.enemies.length; k++){
+		enemy = this.enemies[k];
+		this.player.collidesWith(enemy);
 	}
 }
 
