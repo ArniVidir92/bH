@@ -17,7 +17,7 @@ Player.prototype.GO_DOWN = 8;
 Player.prototype.GO_LEFT = 8;
 Player.prototype.GO_RIGHT = 8;
 Player.prototype.SHOOT = 32;
-Player.prototype.GO_SLOW = 8;
+Player.prototype.GO_SLOW = 16;
 
 Player.prototype.getSpeed = function()
 {
@@ -50,7 +50,9 @@ Player.prototype.shoot = function(){
             friendly : true,
             
         }));
+
     }
+    particleManager.addSParticle(this.cx,this.cy,"corruption",1);
 }
 
 Player.prototype.update = function (du) {
