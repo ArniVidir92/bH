@@ -68,7 +68,13 @@ Enemy.prototype.update = function (du) {
 Enemy.prototype.collidesWith = function (object) {
     if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
         this.isDead = true;
-        score += sideBar.enemyScore;
+        entityManager.addPowerup(new Powerup({
+            cx : this.cx,
+            cy : this.cy,
+
+            vx : 0,
+            vy : this.vy * 4,
+        }));
         return true;
     }
     return false;
