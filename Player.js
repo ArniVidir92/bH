@@ -21,8 +21,9 @@ Player.prototype.GO_SLOW = 16;
 Player.prototype.radius = 4;
 Player.prototype.goingSlow = false;
 
-Player.prototype.cooldown = 100 / NOMINAL_UPDATE_INTERVAL;
-Player.prototype.gun = "3way";
+Player.prototype.cooldown = 400 / NOMINAL_UPDATE_INTERVAL;
+Player.prototype.level = 3;
+Player.prototype.xp = 0;
 
 Player.prototype.getSpeed = function()
 {
@@ -39,11 +40,11 @@ Player.prototype.updateDirection = function(du, speed){
 
     if (g_keys[this.GO_UP]&&this.cy>this.halfHeight) {
         this.cy -= speed * du;
-    } if (g_keys[this.GO_DOWN]&&this.cy<600-this.halfHeight) {
+    } if (g_keys[this.GO_DOWN]&&this.cy<g_canvas.height-this.halfHeight) {
         this.cy += speed * du;
     } if (g_keys[this.GO_LEFT]&&this.cx>0+this.halfWidth) {
         this.cx -= speed * du;
-    } if (g_keys[this.GO_RIGHT]&&this.cx<520-this.halfWidth) {
+    } if (g_keys[this.GO_RIGHT]&&this.cx<ARENA_WIDTH-this.halfWidth) {
         this.cx += speed * du;
     }
 }
@@ -52,8 +53,8 @@ Player.prototype.shoot = function(){
     if(this.cooldown > 0) return;
 
     if(g_keys[this.SHOOT]){
-        switch(this.gun) {
-            case "normal" :
+        switch(this.level) {
+            case 1 :
                 this.cooldown = Player.prototype.cooldown;
 
                 entityManager.addBullet(new Bullet({
@@ -65,10 +66,25 @@ Player.prototype.shoot = function(){
                     friendly : true,           
                 }));
                 break;
-            case "3way": 
-                this.cooldown = Player.prototype.cooldown;
+
+            case 2: 
+                this.cooldown = Player.prototype.cooldown / 2;
+
+                entityManager.addBullet(new Bullet({
+                    cx : this.cx,
+                    cy : this.cy,
+                    
+                    vx   : 0,
+                    vy   : -7,
+                    friendly : true,           
+                }));
+                break;
+
+            case 3:
+                this.cooldown = Player.prototype.cooldown / 1.5;
 
                 var xVel = -4;
+
                 for(var i = 0; i < 3; i++) {
                     entityManager.addBullet(new Bullet({
                         cx : this.cx,
@@ -80,7 +96,6 @@ Player.prototype.shoot = function(){
                     }));
                     xVel += 4;
                 }
-                break;
         }
     }
 }
