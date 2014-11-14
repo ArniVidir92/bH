@@ -26,7 +26,10 @@ Enemy.prototype.cx = 20;
 Enemy.prototype.cy = 0;
 Enemy.prototype.vx = 3;
 Enemy.prototype.vy = 1;
+Enemy.prototype.rotation = 0;
+
 Enemy.prototype.timer = 0;
+
 
 Enemy.prototype.type = "BlackKnight";
 
@@ -40,8 +43,6 @@ Enemy.prototype.rememberResets = function () {
         Update
 ------------------------*/
 Enemy.prototype.update = function (du) {
-
-  
 
     if(!isOnScreen(this)) {
         this.isDead = true;
@@ -80,19 +81,7 @@ Enemy.prototype.updateBlackKnight = function (du)
         }));
     }
 
-    //this.cx += this.vx * du;
     this.cy += this.vy * du;
-
-   /* if(this.cx + 2*this.halfWidth > g_GameCanvas
-        || this.cx - 2*this.halfWidth < 0) 
-    {
-        this.vx = -this.vx;
-    }*/
-
-    if(this.cy > this.reset_cy + 10 || this.cy < this.reset_cy - 10)
-    {
-        this.vy = -this.vy;
-    }
 
 }
 
@@ -101,9 +90,9 @@ Enemy.prototype.updateBlackKnight = function (du)
 ------------------------*/
 Enemy.prototype.render = function (ctx) {
     // (cx, cy) is the centre; must offset it for drawing
-    ctx.fillStyle = "black";
-    ctx.fillRect(this.cx - this.halfWidth,
-                 this.cy - this.halfHeight,
-                 this.halfWidth * 2,
-                 this.halfHeight * 2);
+    ctx.save();
+
+    g_enemy1.drawCenteredAt(ctx,this.cx,this.cy,0);
+
+    ctx.restore();
 };
