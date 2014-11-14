@@ -38,10 +38,8 @@ Enemy.prototype.update = function (du) {
     this.cy += this.vy * du;
 };
 
-Enemy.prototype.collidesWith = function (prevX, prevY, 
-                                          nextX, nextY, 
-                                          r) {
-    var EnemyEdge = this.cx;
+Enemy.prototype.collidesWith = function (object) {
+    /*var EnemyEdge = this.cx;
     // Check X coords
     if ((nextX - r < EnemyEdge && prevX - r >= EnemyEdge) ||
         (nextX + r > EnemyEdge && prevX + r <= EnemyEdge)) {
@@ -53,7 +51,7 @@ Enemy.prototype.collidesWith = function (prevX, prevY,
         }
     }
     // It's a miss!
-    return false;
+    return false;*/
 };
 
 /*----------------------

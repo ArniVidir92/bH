@@ -11,8 +11,12 @@ function clearCanvas(ctx)
 function fillCircle(ctx, x, y, r) 
 {
     ctx.beginPath();
+    var oldStyle = ctx.fillstyle;
+    ctx.fillStyle = "#FF0000";
     ctx.arc(x, y, r, 0, Math.PI * 2);
     ctx.fill();
+    ctx.fillStyle = oldStyle;
+
 }
 
 function fillBox(ctx, x, y, w, h, style) 
