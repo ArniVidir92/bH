@@ -8,11 +8,12 @@ function clearCanvas(ctx)
     g_bg.drawCenteredAt(ctx,ctx.canvas.width/2,ctx.canvas.height/2,0);
 }
 
-function fillCircle(ctx, x, y, r) 
+function fillCircle(ctx, x, y, r,fillStyle) 
 {
     ctx.beginPath();
     var oldStyle = ctx.fillstyle;
-    ctx.fillStyle = "#FF0000";
+    if(fillStyle)
+        ctx.fillStyle = fillStyle;
     ctx.arc(x, y, r, 0, Math.PI * 2);
     ctx.fill();
     ctx.fillStyle = oldStyle;
