@@ -67,9 +67,7 @@ EntityManager.prototype.update = function(du)
 	if(this.boss)
 		this.boss.update();
 
-	//console.log(this.bullets.length);
-
-	//this.checkCollisions(du);
+	this.checkCollisions(du);
 
 	this.updateTime(du)
 }
@@ -78,7 +76,24 @@ EntityManager.prototype.update = function(du)
 		Collision Stuff
 ------------------------*/
 
-
+EntityManager.prototype.checkCollisions = function(du){
+	var bullet, enemy;
+	for( var i = 0; i < this.bullets.length; i++){
+		bullet = this.bullets[i];
+		if( bullet.friendly ){
+			for( var j = 0; j < this.enemies.length; j++ ){
+				enemy = this.enemies[j];
+				enemy.collidesWith(bullet);
+			}
+		}else{
+			this.player.collidesWith(bullet);
+		}
+	}
+	for( var k = 0; k < this.enemies.length; k++){
+		enemy = this.enemies[k];
+		this.player.collidesWith(enemy);
+	}
+}
 
 /*----------------------
 		Render
