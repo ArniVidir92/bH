@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 6;
+var numberOfPreloadedImages = 7;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt=0;
@@ -60,6 +60,16 @@ function preloadStuff_thenCall(completionCallback) {
     };
     
     g_sideImage.src = "sprites/sidebar.png";
+
+//preload the powerup
+    var g_powerupImage = new Image();
+    
+    g_powerupImage.onload = function () { 
+        g_powerup = new Sprite(g_powerupImage) ;
+        isReady(++cnt,completionCallback);
+    };
+    
+    g_powerupImage.src = "sprites/powerup2.png";
 }
 
 function isReady(x,completionCallback)
