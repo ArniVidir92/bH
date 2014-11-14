@@ -23,7 +23,8 @@ Bullet.prototype.cy = 150;
 Bullet.prototype.vx = 5;
 Bullet.prototype.vy = 5;
 Bullet.prototype.isDead = false;
-
+Bullet.prototype.friendly = false;
+Bullet.prototype.bulletType = "normal";
 
 
 /*----------------------
