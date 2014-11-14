@@ -31,6 +31,11 @@ Enemy.prototype.timer = 0;
         Update
 ------------------------*/
 Enemy.prototype.update = function (du) {
+    if(!isOnScreen(this)) {
+        this.isDead = true;
+        return;
+    }
+
     this.timer += du;
     this.vx = Math.cos(this.timer / c_fullCircle);
     this.vy = Math.sin(this.timer / c_fullCircle);
