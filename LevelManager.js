@@ -20,6 +20,7 @@ function LevelManager(descr) {
 	Instance Variables
 ------------------------*/
 LevelManager.prototype.timer = 1;
+LevelManager.prototype.atimers = [];
 
 LevelManager.prototype.blackKnights = {
     array 		: [],
@@ -74,6 +75,12 @@ LevelManager.prototype.init = function()
  
     	this.grayKnights.array.push(en);
 	}
+
+
+
+	//Putting enemy objects in array for easy timers
+	this.atimers[0] = this.blackKnights;
+	this.atimers[1] = this.grayKnights;
 }
 
 
@@ -119,7 +126,10 @@ LevelManager.prototype.update = function(du)
 LevelManager.prototype.updateTimers = function (du)
 {
 	this.timer += 0.016 * du;
-	this.blackKnights.spawnTimer += 0.016 * du;
-	this.grayKnights.spawnTimer += 0.016 * du;
+	for(var i = 0; i < this.atimers.length; i++)
+	{
+		this.atimers[i].spawnTimer += 0.016 * du;
+		console.log("hmm");
+	}
 
 }
