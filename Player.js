@@ -22,7 +22,7 @@ Player.prototype.radius = 4;
 Player.prototype.goingSlow = false;
 
 Player.prototype.cooldown = 400 / NOMINAL_UPDATE_INTERVAL;
-Player.prototype.level = 2;
+Player.prototype.level = 5;
 Player.prototype.xp = 0;
 Player.prototype.xpMax = 100;
 
@@ -97,6 +97,14 @@ Player.prototype.shoot = function(){
                 }
                 break;                
         }
+
+        entityManager.addPowerup(new Powerup({
+            cx : this.cx,
+            cy : this.cy - 50,
+
+            vx : 0,
+            vy : 0,
+        }));
     }
 }
 
@@ -136,6 +144,7 @@ Player.prototype.collidesWith = function (object) {
     if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
         if( Object.getPrototypeOf(object) === Powerup.prototype ){
             this.xp += 10/this.level;
+            this.updateLevel();
             console.log("powerup");
         }
         else{console.log("Daudur!!!");}
@@ -143,3 +152,10 @@ Player.prototype.collidesWith = function (object) {
     }
     return false;
 };
+
+Player.prototype.updateLevel = function(){
+    if(this.xp > this.xpMax){
+        this.level += 1;
+        this.xp = 0;
+    }
+}
