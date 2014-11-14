@@ -100,6 +100,7 @@ function gatherInputs() {
 function updateSimulation(du) {
     
     entityManager.update(du);
+    particleManager.update(du);
     //g_player2.update(du);
 }
 
@@ -121,6 +122,7 @@ function updateSimulation(du) {
 function renderSimulation(ctx) {
     
     entityManager.render(ctx);
+    particleManager.render(ctx);
 }
 
 // Kick it off

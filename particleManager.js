@@ -18,7 +18,7 @@ function Style(descr) {
 particleManager.createStyle = function(name,mv,Mv,mr,Mr,aShapes,aColors,fs,mrate,Mrate)
 {
 	this.aStyles[name] = new Style({
-		minVel: mv, 
+		minVel: mv, 	
 		maxVel: Mv, 
 		minRad: mr, 
 		maxRad: Mr, 
@@ -36,9 +36,9 @@ function Particle(descr) {
     }
 }
 
-particleManager.createStyle("fire", 0, 3, 4, 10, ["circle"], ["red","orange","yellow"], 1, 5, 10);
+particleManager.createStyle("fire", 0, 3, 4, 20, ["circle"], ["red","orange","yellow"], 1, 0.5, 1);
 particleManager.createStyle("dots", 0, 3, 8, 10, ["square"], ["red","green","yellow","blue"], 1, 5, 10);
-particleManager.createStyle("tireMarks", 0, 0, 4, 4, ["square"], ["black"], 2, 1, 1);
+particleManager.createStyle("corruption", 0, 3, 1, 5, ["square"], ["red","black"], 1, 0.5, 1);
 
 
 Particle.prototype.exists = true;
