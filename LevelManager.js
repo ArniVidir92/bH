@@ -53,8 +53,8 @@ LevelManager.prototype.init = function()
     	type 	: 	"BlackKnight"
     	});
 
-    	xCord += 25;
-    	if(xCord > (20+(25*10))) xCord = 20;
+    	xCord += 45;
+    	if(xCord > (20+(45*10))) xCord = 20;
  
     	this.blackKnights.array.push(en);
 	}
