@@ -36,7 +36,7 @@ function Particle(descr) {
     }
 }
 
-particleManager.createStyle("fire", 0, 3, 4, 20, ["circle"], ["red","orange","yellow"], 1, 0.5, 1);
+particleManager.createStyle("fire", 0, 3, 4, 15, ["circle"], ["red","orange","yellow"], 1, 3, 6);
 particleManager.createStyle("dots", 0, 3, 8, 10, ["square"], ["red","green","yellow","blue"], 1, 5, 10);
 particleManager.createStyle("corruption", 0, 3, 1, 5, ["square"], ["red","black"], 1, 0.5, 1);
 

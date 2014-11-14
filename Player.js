@@ -198,6 +198,7 @@ Player.prototype.render = function (ctx) {
     g_ship.drawCenteredAt(ctx,this.cx,this.cy,0);
     if(this.goingSlow)
     fillCircle(ctx, this.cx, this.cy, this.radius,"red");
+    ctx.fillStyle="white";
 };
 
 Player.prototype.collidesWith = function (object) {

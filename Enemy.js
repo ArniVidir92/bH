@@ -87,6 +87,7 @@ Enemy.prototype.collidesWith = function (object) {
             vx : 0,
             vy : this.vy * 4,
         }));
+        particleManager.addSParticle(this.cx,this.cy,"fire",30);
         return true;
     }
     return false;
