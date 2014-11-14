@@ -29,7 +29,13 @@ Enemy.prototype.vy = 1;
 Enemy.prototype.rotation = 0;
 
 Enemy.prototype.timer = 0;
+
 Enemy.prototype.radius = 20;
+
+
+
+
+//Possible types are: BlackKnight, ...
 
 Enemy.prototype.type = "BlackKnight";
 
@@ -67,18 +73,27 @@ Enemy.prototype.update = function (du) {
     this.timer += 0.016 * du;
 
     if(this.type === "BlackKnight") this.updateBlackKnight(du);
+    if(this.type === "GrayKnight") this.updateGrayKnight(du);
 };
 
 Enemy.prototype.collidesWith = function (object) {
     if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
         this.isDead = true;
+        entityManager.addPowerup(new Powerup({
+            cx : this.cx,
+            cy : this.cy,
+
+            vx : 0,
+            vy : this.vy * 4,
+        }));
         return true;
     }
     return false;
 }
+
 Enemy.prototype.updateBlackKnight = function (du)
 {
-    if(this.timer > 1)
+    if(this.timer > 1.5)
     {
         this.timer = 0;
         
@@ -97,8 +112,32 @@ Enemy.prototype.updateBlackKnight = function (du)
 
 }
 
+Enemy.prototype.updateGrayKnight = function (du)
+{
+    var length = Math.sqrt(Math.pow(this.cx-entityManager.player.cx,2)+Math.pow(this.cy-entityManager.player.cy,2));
+    var bvx = (-this.cx+entityManager.player.cx)/length;
+    var bvy = (-this.cy+entityManager.player.cy)/length;
+    if(this.timer > 2.5)
+    {
+        this.timer = 0;
+        
+        entityManager.addBullet(new Bullet({
+            cx : this.cx,
+            cy : this.cy,
+            
+            vx   : bvx*2,
+            vy   : bvy*2,
+            friendly : false,
+            
+        }));
+    }
+
+    this.cy += this.vy * du;
+
+}
+
 /*----------------------
-        Render
+        Renderw
 ------------------------*/
 Enemy.prototype.render = function (ctx) {
     if( this.isDead ){return;}
@@ -106,7 +145,12 @@ Enemy.prototype.render = function (ctx) {
     ctx.save();
 
 
-    if(this.type === "BlackKnight") g_blackKnight.drawCenteredAt(ctx,this.cx,this.cy,0);
+ 
+    if(this.type=="GrayKnight")
+    g_enemy1.drawCenteredAt(ctx,this.cx,this.cy,0);
+    if(this.type=="BlackKnight")
+    g_blackKnight.drawCenteredAt(ctx,this.cx,this.cy,0);
+
 
     ctx.restore();
 };

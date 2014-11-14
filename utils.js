@@ -47,7 +47,7 @@ function isOnScreen(object) {
     if(topY < 0 ||
         bottomY > g_canvas.height ||
         leftX < 0 || 
-        rightX > g_canvas.width) {
+        rightX > ARENA_WIDTH) {
             return false;
     }
 

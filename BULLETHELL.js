@@ -20,6 +20,8 @@ The "MAINLOOP" code, inside g_main, is much simplified as a result.
 var g_canvas = document.getElementById("myCanvas");
 var g_ctx = g_canvas.getContext("2d");
 
+var score = 0;
+
 /*
 0        1         2         3         4         5         6         7         8         9
 123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -94,6 +96,7 @@ function updateSimulation(du) {
     particleManager.update(du);
     levelManager.update(du);
     //g_player2.update(du);
+    sideBar.update(du);
 }
 
 
@@ -115,6 +118,8 @@ function renderSimulation(ctx) {
     
     entityManager.render(ctx);
     particleManager.render(ctx);
+    sideBar.render(ctx);
+
 }
 
 // Kick it off

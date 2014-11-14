@@ -1,5 +1,5 @@
 //=====================================================
-// Class: Enemy
+// Class: Powerup
 // Date : 28.October 2014
 // Programmed by: FutureDevs
 //=====================================================
@@ -8,7 +8,7 @@
 /*----------------------
         Constructor
 ------------------------*/
-function Bullet(descr) {
+function Powerup(descr) {
     for (var property in descr) {
         this[property] = descr[property];
     }
@@ -17,29 +17,27 @@ function Bullet(descr) {
 /*----------------------
     Instance Variables
 ------------------------*/
-Bullet.prototype.radius = 5;
-Bullet.prototype.cx = 100;
-Bullet.prototype.cy = 150;
-Bullet.prototype.vx = 5;
-Bullet.prototype.vy = 5;
-Bullet.prototype.isDead = false;
-Bullet.prototype.friendly = false;
-Bullet.prototype.bulletType = "normal";
 
+Powerup.prototype.radius = 10;
+Powerup.prototype.cx = ARENA_WIDTH/2;
+Powerup.prototype.cy = 0;
+Powerup.prototype.vx = 0;
+Powerup.prototype.vy = 5;
+Powerup.prototype.isDead = false;
 
 /*----------------------
         Update
 ------------------------*/
-Bullet.prototype.update = function (du){
 
-    if( this.isDead ){return;}
+Powerup.prototype.update = function(du) {
+	if(this.isDead) return;
 
-    if(!isOnScreen(this)) {
-        this.isDead = true;
-        return;
-    }
+	if(!isOnScreen(this)) {
+		this.isDead = true;
+		return;
+	}
 
-    // Remember my previous position
+	// Remember my previous position
     var prevX = this.cx;
     var prevY = this.cy;
     
@@ -69,18 +67,10 @@ Bullet.prototype.update = function (du){
     this.cy += this.vy * du;
 }
 
-Bullet.prototype.reset = function () {
-    this.cx = 300;
-    this.cy = 100;
-    this.vx = -5;
-    this.vy = 4;
-};
-
 /*----------------------
         Render
 ------------------------*/
-Bullet.prototype.render = function (ctx) {
-    if( this.isDead ){return;}
-    g_bullet.drawCenteredAt(ctx,this.cx,this.cy,0);
-    //fillCircle(ctx, this.cx, this.cy, this.radius);
-};
+Powerup.prototype.render = function(ctx) {
+	if(this.isDead) return;
+	g_powerup.drawCenteredAt(ctx, this.cx, this.cy, 0);
+}

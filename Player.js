@@ -21,11 +21,12 @@ Player.prototype.GO_SLOW = 16;
 Player.prototype.radius = 4;
 Player.prototype.goingSlow = false;
 
-Player.prototype.cooldown = 100 / NOMINAL_UPDATE_INTERVAL;
-Player.prototype.gun = "3way";
+Player.prototype.cooldown = 400 / NOMINAL_UPDATE_INTERVAL;
+Player.prototype.level = 2;
+Player.prototype.xp = 0;
+Player.prototype.xpMax = 100;
 
-Player.prototype.getSpeed = function()
-{
+Player.prototype.getSpeed = function(){
     if(g_keys[this.GO_SLOW])
     {
         this.goingSlow=true;
@@ -39,11 +40,11 @@ Player.prototype.updateDirection = function(du, speed){
 
     if (g_keys[this.GO_UP]&&this.cy>this.halfHeight) {
         this.cy -= speed * du;
-    } if (g_keys[this.GO_DOWN]&&this.cy<600-this.halfHeight) {
+    } if (g_keys[this.GO_DOWN]&&this.cy<g_canvas.height-this.halfHeight) {
         this.cy += speed * du;
     } if (g_keys[this.GO_LEFT]&&this.cx>0+this.halfWidth) {
         this.cx -= speed * du;
-    } if (g_keys[this.GO_RIGHT]&&this.cx<520-this.halfWidth) {
+    } if (g_keys[this.GO_RIGHT]&&this.cx<ARENA_WIDTH-this.halfWidth) {
         this.cx += speed * du;
     }
 }
@@ -52,37 +53,62 @@ Player.prototype.shoot = function(){
     if(this.cooldown > 0) return;
 
     if(g_keys[this.SHOOT]){
-        switch(this.gun) {
-            case "normal" :
+        switch(this.level) {
+            case 1 :
                 this.cooldown = Player.prototype.cooldown;
-
-                entityManager.addBullet(new Bullet({
-                    cx : this.cx,
-                    cy : this.cy,
-                    
-                    vx   : 0,
-                    vy   : -7,
-                    friendly : true,           
-                }));
+                this.addBullet(this.cx, this.cy, 0, -7);
                 break;
-            case "3way": 
-                this.cooldown = Player.prototype.cooldown;
+
+            case 2: 
+                this.cooldown = Player.prototype.cooldown / 2;
+                this.addBullet(this.cx, this.cy, 0, -7);
+                break;
+
+            case 3:
+                this.cooldown = Player.prototype.cooldown / 1.5;
 
                 var xVel = -4;
+
                 for(var i = 0; i < 3; i++) {
-                    entityManager.addBullet(new Bullet({
-                        cx : this.cx,
-                        cy : this.cy,
-                        
-                        vx   : xVel,
-                        vy   : -7,
-                        friendly : true,           
-                    }));
+                    this.addBullet(this.cx, this.cy, xVel, -7);
                     xVel += 4;
                 }
                 break;
+
+            case 4:
+                this.cooldown = Player.prototype.cooldown / 1.5;
+
+                var xVel = -6;
+
+                for (var i = 0; i < 5; i++) {
+                    this.addBullet(this.cx, this.cy, xVel, -7);
+                    xVel += 3;
+                }
+                break;
+
+            case 5:
+                this.cooldown = Player.prototype.cooldown / 2;
+
+                var xVel = -6;
+
+                for (var i = 0; i < 5; i++) {
+                    this.addBullet(this.cx, this.cy, xVel, -7);
+                    xVel += 3;
+                }
+                break;                
         }
     }
+}
+
+Player.prototype.addBullet = function(cx, cy, vx, vy) {
+    entityManager.addBullet(new Bullet({
+        cx : cx,
+        cy : cy,
+        
+        vx : vx,
+        vy : vy,
+        friendly : true,           
+    }));
 }
 
 Player.prototype.update = function (du) {
@@ -108,7 +134,11 @@ Player.prototype.render = function (ctx) {
 
 Player.prototype.collidesWith = function (object) {
     if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
-        console.log("Daudur!!!");
+        if( Object.getPrototypeOf(object) === Powerup.prototype ){
+            this.xp += 10/this.level;
+            console.log("powerup");
+        }
+        else{console.log("Daudur!!!");}
         return true;
     }
     return false;
