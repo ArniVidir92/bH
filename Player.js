@@ -22,11 +22,10 @@ Player.prototype.radius = 4;
 Player.prototype.goingSlow = false;
 
 Player.prototype.cooldown = 400 / NOMINAL_UPDATE_INTERVAL;
-Player.prototype.level = 3;
+Player.prototype.level = 2;
 Player.prototype.xp = 0;
 
-Player.prototype.getSpeed = function()
-{
+Player.prototype.getSpeed = function(){
     if(g_keys[this.GO_SLOW])
     {
         this.goingSlow=true;
@@ -56,28 +55,12 @@ Player.prototype.shoot = function(){
         switch(this.level) {
             case 1 :
                 this.cooldown = Player.prototype.cooldown;
-
-                entityManager.addBullet(new Bullet({
-                    cx : this.cx,
-                    cy : this.cy,
-                    
-                    vx   : 0,
-                    vy   : -7,
-                    friendly : true,           
-                }));
+                this.addBullet(this.cx, this.cy, 0, -7);
                 break;
 
             case 2: 
                 this.cooldown = Player.prototype.cooldown / 2;
-
-                entityManager.addBullet(new Bullet({
-                    cx : this.cx,
-                    cy : this.cy,
-                    
-                    vx   : 0,
-                    vy   : -7,
-                    friendly : true,           
-                }));
+                this.addBullet(this.cx, this.cy, 0, -7);
                 break;
 
             case 3:
@@ -86,18 +69,45 @@ Player.prototype.shoot = function(){
                 var xVel = -4;
 
                 for(var i = 0; i < 3; i++) {
-                    entityManager.addBullet(new Bullet({
-                        cx : this.cx,
-                        cy : this.cy,
-                        
-                        vx   : xVel,
-                        vy   : -7,
-                        friendly : true,           
-                    }));
+                    this.addBullet(this.cx, this.cy, xVel, -7);
                     xVel += 4;
                 }
+                break;
+
+            case 4:
+                this.cooldown = Player.prototype.cooldown / 1.5;
+
+                var xVel = -6;
+
+                for (var i = 0; i < 5; i++) {
+                    this.addBullet(this.cx, this.cy, xVel, -7);
+                    xVel += 3;
+                }
+                break;
+
+            case 5:
+                this.cooldown = Player.prototype.cooldown / 2;
+
+                var xVel = -6;
+
+                for (var i = 0; i < 5; i++) {
+                    this.addBullet(this.cx, this.cy, xVel, -7);
+                    xVel += 3;
+                }
+                break;                
         }
     }
+}
+
+Player.prototype.addBullet = function(cx, cy, vx, vy) {
+    entityManager.addBullet(new Bullet({
+        cx : cx,
+        cy : cy,
+        
+        vx : vx,
+        vy : vy,
+        friendly : true,           
+    }));
 }
 
 Player.prototype.update = function (du) {
