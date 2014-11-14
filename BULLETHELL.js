@@ -28,6 +28,7 @@ var score = 0;
 */
 
 var entityManager = new EntityManager();
+var levelManager = new LevelManager();
 
 // ============
 // Player STUFF
@@ -62,19 +63,7 @@ var g_player2 = new Player({
     GO_DOWN : KEY_K
 });
 
-var xCord = 20;
-for(var i = 0; i < 10; i++)
-{
-    var en = new Enemy({
-    cx : xCord,
-    cy : 100,
-    });
 
-    console.log(xCord);
-    xCord += 25;
-    entityManager.addEnemy(en);
-
-}
 
 
 
@@ -105,7 +94,9 @@ function updateSimulation(du) {
     
     entityManager.update(du);
     particleManager.update(du);
+    levelManager.update(du);
     //g_player2.update(du);
+    sideBar.update(du);
 }
 
 
@@ -127,6 +118,7 @@ function renderSimulation(ctx) {
     
     entityManager.render(ctx);
     particleManager.render(ctx);
+    sideBar.render(ctx);
 
 }
 

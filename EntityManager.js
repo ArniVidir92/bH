@@ -111,7 +111,9 @@ EntityManager.prototype.checkCollisions = function(du){
 	}
 	for( var k = 0; k < this.enemies.length; k++){
 		enemy = this.enemies[k];
-		this.player.collidesWith(enemy);
+		if( !enemy.isDead ){
+			this.player.collidesWith(enemy);
+		}
 	}
 
 	for(var h = 0; h < this.powerups.length; h++) {

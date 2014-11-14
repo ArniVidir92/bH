@@ -22,7 +22,7 @@ function preloadStuff_thenCall(completionCallback) {
     
     g_bulletImage.src = "sprites/bullet2.png";
     
-//3. preload the bullet  
+//3. preload the enemy1 
     var g_enemy1Image = new Image();
     
     g_enemy1Image.onload = function () { 

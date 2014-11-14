@@ -20,10 +20,12 @@ Player.prototype.SHOOT = 32;
 Player.prototype.GO_SLOW = 16;
 Player.prototype.radius = 4;
 Player.prototype.goingSlow = false;
+Player.prototype.bulletSpeed = -5;
 
 Player.prototype.cooldown = 400 / NOMINAL_UPDATE_INTERVAL;
-Player.prototype.level = 2;
+Player.prototype.level = 7;
 Player.prototype.xp = 0;
+Player.prototype.xpMax = 100;
 
 Player.prototype.getSpeed = function(){
     if(g_keys[this.GO_SLOW])
@@ -55,12 +57,12 @@ Player.prototype.shoot = function(){
         switch(this.level) {
             case 1 :
                 this.cooldown = Player.prototype.cooldown;
-                this.addBullet(this.cx, this.cy, 0, -7);
+                this.addBullet(this.cx, this.cy, 0, this.bulletSpeed);
                 break;
 
             case 2: 
                 this.cooldown = Player.prototype.cooldown / 2;
-                this.addBullet(this.cx, this.cy, 0, -7);
+                this.addBullet(this.cx, this.cy, 0, this.bulletSpeed);
                 break;
 
             case 3:
@@ -69,7 +71,7 @@ Player.prototype.shoot = function(){
                 var xVel = -4;
 
                 for(var i = 0; i < 3; i++) {
-                    this.addBullet(this.cx, this.cy, xVel, -7);
+                    this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed);
                     xVel += 4;
                 }
                 break;
@@ -77,24 +79,45 @@ Player.prototype.shoot = function(){
             case 4:
                 this.cooldown = Player.prototype.cooldown / 1.5;
 
-                var xVel = -6;
+                var xVel = -4;
 
-                for (var i = 0; i < 5; i++) {
-                    this.addBullet(this.cx, this.cy, xVel, -7);
-                    xVel += 3;
+                for(var i = 0; i < 3; i++) {
+                    this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed*1.2);
+                    xVel += 4;
                 }
                 break;
 
             case 5:
+                this.cooldown = Player.prototype.cooldown / 1.5;
+
+                var xVel = -6;
+
+                for (var i = 0; i < 5; i++) {
+                    this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed*1.2);
+                    xVel += 3;
+                }
+                break;
+
+            case 6:
                 this.cooldown = Player.prototype.cooldown / 2;
 
                 var xVel = -6;
 
                 for (var i = 0; i < 5; i++) {
-                    this.addBullet(this.cx, this.cy, xVel, -7);
+                    this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed*1.2);
                     xVel += 3;
                 }
-                break;                
+                break;
+            case 7:
+                this.cooldown = Player.prototype.cooldown / 2.5;
+
+                var xVel = -6;
+
+                for (var i = 0; i < 5; i++) {
+                    this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed*1.2);
+                    xVel += 3;
+                }
+                break;            
         }
     }
 }
@@ -133,7 +156,11 @@ Player.prototype.render = function (ctx) {
 
 Player.prototype.collidesWith = function (object) {
     if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
-        console.log("Daudur!!!");
+        if( Object.getPrototypeOf(object) === Powerup.prototype ){
+            this.xp += 10/this.level;
+            console.log("powerup");
+        }
+        else{console.log("Daudur!!!");}
         return true;
     }
     return false;
