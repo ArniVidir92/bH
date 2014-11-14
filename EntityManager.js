@@ -42,7 +42,7 @@ EntityManager.prototype.addBullet = function(bullet)
 EntityManager.prototype.addEnemy = function(enemy)
 {
 	var low = getLowestAvailable(this.enemies);
-	this.enemy[low]=enemy;
+	this.enemies[low]=enemy;
 }
 
 

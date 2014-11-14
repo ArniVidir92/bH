@@ -21,22 +21,48 @@ Enemy.prototype.halfWidth = 25;
 Enemy.prototype.halfHeight = 25;
 Enemy.prototype.isDead = false;
 Enemy.prototype.cx = 0;
-Enemy.prototype.cy = g_canvas.height * 0.8;
+Enemy.prototype.cy = 0;
 Enemy.prototype.vx = 3;
 Enemy.prototype.vy = 0;
 Enemy.prototype.timer = 0;
+
+Enemy.prototype.type = "BlackKnight";
+
 
 
 /*----------------------
         Update
 ------------------------*/
 Enemy.prototype.update = function (du) {
-    this.timer += du;
+    /*this.timer += du;
     this.vx = Math.cos(this.timer / c_fullCircle);
     this.vy = Math.sin(this.timer / c_fullCircle);
     this.cx += this.vx * du;
-    this.cy += this.vy * du;
+    this.cy += this.vy * du;*/
+
+    this.timer += 0.016 * du;
+
+    if(this.type === "BlackKnight") this.updateBlackKnight(du);
 };
+
+Enemy.prototype.updateBlackKnight = function (du)
+{
+    if(this.timer > 5)
+    {
+        this.timer = 0;
+        
+        var velX = Math.floor((Math.random() * 5) + 1);
+        entityManager.addBullet(new Bullet({
+            cx : this.cx,
+            cy : this.cy,
+            
+            vx   : velX,
+            vy   : 10,
+            friendly : true,
+            
+        }));
+    }
+}
 
 Enemy.prototype.collidesWith = function (prevX, prevY, 
                                           nextX, nextY, 
