@@ -36,5 +36,5 @@ sideBar.renderScore = function(ctx){
     var oldStyle = ctx.fillStyle;
     ctx.fillStyle
     ctx.font="bold 28px Arial";        
-    ctx.fillText("Score "+ score, 530, 50);
+    ctx.fillText("Score "+ score, 570, 50);
 }
