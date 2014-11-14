@@ -25,6 +25,7 @@ Enemy.prototype.cy = 0;
 Enemy.prototype.vx = 3;
 Enemy.prototype.vy = 0;
 Enemy.prototype.timer = 0;
+Enemy.prototype.radius = 10;
 
 Enemy.prototype.type = "BlackKnight";
 
@@ -35,7 +36,7 @@ Enemy.prototype.type = "BlackKnight";
 ------------------------*/
 Enemy.prototype.update = function (du) {
 
-  
+    if( this.isDead ){return;}
 
     if(!isOnScreen(this)) {
         this.isDead = true;
@@ -55,7 +56,11 @@ Enemy.prototype.update = function (du) {
 };
 
 Enemy.prototype.collidesWith = function (object) {
-    var EnemyEdge = this.cx;
+    if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
+        this.isDead = true;
+        return true;
+    }
+    return false;
 }
 Enemy.prototype.updateBlackKnight = function (du)
 {
@@ -69,8 +74,8 @@ Enemy.prototype.updateBlackKnight = function (du)
             cy : this.cy,
             
             vx   : velX,
-            vy   : 10,
-            friendly : true,
+            vy   : 2,
+            friendly : false,
             
         }));
     }
@@ -80,6 +85,7 @@ Enemy.prototype.updateBlackKnight = function (du)
         Render
 ------------------------*/
 Enemy.prototype.render = function (ctx) {
+    if( this.isDead ){return;}
     // (cx, cy) is the centre; must offset it for drawing
     ctx.fillRect(this.cx - this.halfWidth,
                  this.cy - this.halfHeight,
