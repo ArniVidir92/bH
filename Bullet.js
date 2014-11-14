@@ -17,7 +17,7 @@ function Bullet(descr) {
 /*----------------------
     Instance Variables
 ------------------------*/
-Bullet.prototype.radius = 10;
+Bullet.prototype.radius = 5;
 Bullet.prototype.cx = 100;
 Bullet.prototype.cy = 150;
 Bullet.prototype.vx = 5;
@@ -81,5 +81,6 @@ Bullet.prototype.reset = function () {
 ------------------------*/
 Bullet.prototype.render = function (ctx) {
     if( this.isDead ){return;}
-    fillCircle(ctx, this.cx, this.cy, this.radius);
+    g_bullet.drawCenteredAt(ctx,this.cx,this.cy,0);
+    //fillCircle(ctx, this.cx, this.cy, this.radius);
 };
