@@ -12,22 +12,28 @@ function Enemy(descr) {
     for (var property in descr) {
         this[property] = descr[property];
     }
+
+    this.rememberResets();
 }
 
 /*----------------------
     Instance Variables
 ------------------------*/
-Enemy.prototype.halfWidth = 25;
-Enemy.prototype.halfHeight = 25;
+Enemy.prototype.halfWidth = 10;
+Enemy.prototype.halfHeight = 10;
 Enemy.prototype.isDead = false;
-Enemy.prototype.cx = 0;
+Enemy.prototype.cx = 20;
 Enemy.prototype.cy = 0;
 Enemy.prototype.vx = 3;
-Enemy.prototype.vy = 0;
+Enemy.prototype.vy = 1;
 Enemy.prototype.timer = 0;
 
 Enemy.prototype.type = "BlackKnight";
 
+Enemy.prototype.rememberResets = function () {
+    this.reset_cx = this.cx;
+    this.reset_cy = this.cy;
+};
 
 
 /*----------------------
@@ -60,17 +66,31 @@ Enemy.prototype.updateBlackKnight = function (du)
     {
         this.timer = 0;
         
-        var velX = Math.floor((Math.random() * 5) + 1);
         entityManager.addBullet(new Bullet({
             cx : this.cx,
             cy : this.cy,
             
-            vx   : velX,
+            vx   : 0,
             vy   : 10,
             friendly : true,
             
         }));
     }
+
+    //this.cx += this.vx * du;
+    this.cy += this.vy * du;
+
+   /* if(this.cx + 2*this.halfWidth > g_GameCanvas
+        || this.cx - 2*this.halfWidth < 0) 
+    {
+        this.vx = -this.vx;
+    }*/
+
+    if(this.cy > this.reset_cy + 10 || this.cy < this.reset_cy - 10)
+    {
+        this.vy = -this.vy;
+    }
+
 }
 
 Enemy.prototype.collidesWith = function (prevX, prevY, 
@@ -96,6 +116,7 @@ Enemy.prototype.collidesWith = function (prevX, prevY,
 ------------------------*/
 Enemy.prototype.render = function (ctx) {
     // (cx, cy) is the centre; must offset it for drawing
+    ctx.fillStyle = "black";
     ctx.fillRect(this.cx - this.halfWidth,
                  this.cy - this.halfHeight,
                  this.halfWidth * 2,

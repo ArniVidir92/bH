@@ -7,3 +7,5 @@ var BASE_SPEED = 5;
 var SLOW_SPEED = 2;
 var c_pi = Math.PI;
 var c_fullCircle = 2 * c_pi;
+
+var g_GameCanvas = 400;
