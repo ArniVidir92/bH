@@ -29,9 +29,14 @@ Enemy.prototype.vy = 1;
 Enemy.prototype.rotation = 0;
 
 Enemy.prototype.timer = 0;
-Enemy.prototype.radius = 10;
+
+Enemy.prototype.radius = 20;
+
+
+
 
 //Possible types are: BlackKnight, ...
+
 Enemy.prototype.type = "BlackKnight";
 
 Enemy.prototype.rememberResets = function () {
@@ -39,7 +44,12 @@ Enemy.prototype.rememberResets = function () {
     this.reset_cy = this.cy;
 };
 
-
+Enemy.prototype.rememberResets = function () {
+ /*   if(this.type === "BlackKnight")
+    {
+        this.sprite = this.sprite || g_blackKnight;
+    }*/
+};
 /*----------------------
         Update
 ------------------------*/
@@ -93,7 +103,7 @@ Enemy.prototype.updateBlackKnight = function (du)
             cy : this.cy,
             
             vx   : 0,
-            vy   : 2,
+            vy   : 3,
             friendly : false,
             
         }));
@@ -122,8 +132,11 @@ Enemy.prototype.updateGrayKnight = function (du)
             
         }));
     }
-
+    console.log("First cy");
+    console.log(this.cy);
     this.cy += this.vy * du;
+    console.log("Secon cy");
+    console.log(this.cy);
 
 }
 
@@ -135,10 +148,13 @@ Enemy.prototype.render = function (ctx) {
     // (cx, cy) is the centre; must offset it for drawing
     ctx.save();
 
+
+ 
     if(this.type=="GrayKnight")
     g_enemy1.drawCenteredAt(ctx,this.cx,this.cy,0);
     if(this.type=="BlackKnight")
     g_blackKnight.drawCenteredAt(ctx,this.cx,this.cy,0);
+
 
     ctx.restore();
 };
