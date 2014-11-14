@@ -139,7 +139,31 @@ Player.prototype.shoot = function(){
                     this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed*1.2);
                     xVel += 2.5;
                 }
-                break;         
+                break;
+            case 10:
+                this.cooldown = Player.prototype.cooldown / 2.5;
+
+                var xVel = -4;
+                this.addBullet(this.cx, this.cy, 1, this.bulletSpeed*1.4);
+                this.addBullet(this.cx, this.cy, -1, this.bulletSpeed*1.4);
+                for (var i = 0; i < 5; i++) {
+                    this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed*1.6);
+                    xVel += 2;
+                }
+                break;
+            case 11:
+                this.cooldown = Player.prototype.cooldown / 2.5;
+
+                var xVel = -4;
+                this.addBullet(this.cx, this.cy, 1, this.bulletSpeed*1.4);
+                this.addBullet(this.cx, this.cy, -1, this.bulletSpeed*1.4);
+                this.addBullet(this.cx, this.cy, 0, this.bulletSpeed*1.2);
+                this.addBullet(this.cx, this.cy, 0, this.bulletSpeed);
+                for (var i = 0; i < 5; i++) {
+                    this.addBullet(this.cx, this.cy, xVel, this.bulletSpeed*1.6);
+                    xVel += 2;
+                }
+                break;   
         }
     }
 }
