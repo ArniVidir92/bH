@@ -73,17 +73,5 @@ Player.prototype.render = function (ctx) {
 };
 
 Player.prototype.collidesWith = function (object) {
-    var PlayerEdge = this.cx;
-    // Check X coords
-    if ((nextX - r < PlayerEdge && prevX - r >= PlayerEdge) ||
-        (nextX + r > PlayerEdge && prevX + r <= PlayerEdge)) {
-        // Check Y coords
-        if (nextY + r >= this.cy - this.halfHeight &&
-            nextY - r <= this.cy + this.halfHeight) {
-            // It's a hit!
-            return true;
-        }
-    }
-    // It's a miss!
-    return false;
+    
 };

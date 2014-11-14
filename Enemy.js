@@ -54,10 +54,9 @@ Enemy.prototype.update = function (du) {
     if(this.type === "BlackKnight") this.updateBlackKnight(du);
 };
 
-<<<<<<< HEAD
 Enemy.prototype.collidesWith = function (object) {
-    /*var EnemyEdge = this.cx;
-=======
+    var EnemyEdge = this.cx;
+}
 Enemy.prototype.updateBlackKnight = function (du)
 {
     if(this.timer > 5)
@@ -76,25 +75,6 @@ Enemy.prototype.updateBlackKnight = function (du)
         }));
     }
 }
-
-Enemy.prototype.collidesWith = function (prevX, prevY, 
-                                          nextX, nextY, 
-                                          r) {
-    var EnemyEdge = this.cx;
->>>>>>> f2f17c3daeb5be8c0d49a841ac2522673ab8465d
-    // Check X coords
-    if ((nextX - r < EnemyEdge && prevX - r >= EnemyEdge) ||
-        (nextX + r > EnemyEdge && prevX + r <= EnemyEdge)) {
-        // Check Y coords
-        if (nextY + r >= this.cy - this.halfHeight &&
-            nextY - r <= this.cy + this.halfHeight) {
-            // It's a hit!
-            return true;
-        }
-    }
-    // It's a miss!
-    return false;*/
-};
 
 /*----------------------
         Render
