@@ -129,7 +129,6 @@ LevelManager.prototype.updateTimers = function (du)
 	for(var i = 0; i < this.atimers.length; i++)
 	{
 		this.atimers[i].spawnTimer += 0.016 * du;
-		console.log("hmm");
 	}
 
 }
