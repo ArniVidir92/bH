@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 9;
+var numberOfPreloadedImages = 11;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt=0;
@@ -89,6 +89,26 @@ function preloadStuff_thenCall(completionCallback) {
     };
     
     g_bullet2Image.src = "sprites/bigbulletrad12.png";
+
+//10. preload the xpbar
+    var g_xpbarImage = new Image();
+    
+    g_xpbarImage.onload = function () { 
+        g_xpbar = new Sprite(g_xpbarImage) ;
+        isReady(++cnt,completionCallback);
+    };
+    
+    g_xpbarImage.src = "sprites/xpbar.png";
+
+//11. preload the xpbarbackground
+    var g_xpbarbgImage = new Image();
+    
+    g_xpbarbgImage.onload = function () { 
+        g_xpbarbg = new Sprite(g_xpbarbgImage) ;
+        isReady(++cnt,completionCallback);
+    };
+    
+    g_xpbarbgImage.src = "sprites/xpbarbackground.png";
 }
 
 function isReady(x,completionCallback)

@@ -7,7 +7,7 @@ var sideBar = {
     startY: 0,
     witdh: 280,
     enemyScore: 50,
-    xpHeight: 100
+    xpHeight: 180 
 };
 
 sideBar.update = function (du) {
@@ -26,10 +26,12 @@ sideBar.render = function (ctx) {
 
 sideBar.renderXp = function(ctx){
     var coef = entityManager.player.xp / entityManager.player.xpMax;
-    var w = 30, startX = 700, startY = 400;
+    var w = 48, startX = 700, startY = 400;
 
-    fillBox(ctx,startX ,startY , w, this.xpHeight, "blue")
-    fillBox(ctx, startX , startY + this.xpHeight, w, -coef * this.xpHeight, "red")
+    //fillBox(ctx,startX ,startY , w, this.xpHeight, "blue")
+    g_xpbarbg.drawCenteredAt(ctx,startX,startY,0);
+    fillBox(ctx, startX-24 , startY-90 + this.xpHeight, w, -coef * this.xpHeight, "red")
+    g_xpbar.drawCenteredAt(ctx,startX,startY,0);
 }
 
 sideBar.renderScore = function(ctx){
