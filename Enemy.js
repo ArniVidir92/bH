@@ -20,8 +20,8 @@ function Enemy(descr) {
 /*----------------------
     Instance Variables
 ------------------------*/
-Enemy.prototype.halfWidth = 10;
-Enemy.prototype.halfHeight = 10;
+Enemy.prototype.halfWidth = 50;
+Enemy.prototype.halfHeight = 40;
 Enemy.prototype.isDead = false;
 Enemy.prototype.hitPoints = 4;
 Enemy.prototype.cx = 20;

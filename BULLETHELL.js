@@ -48,6 +48,20 @@ var mainPlayer = new Player({
 
 entityManager.setPlayer(mainPlayer);
 
+/*
+-------------------------------------------------
+
+                HOW TO SPAWN BOSS
+
+------------------------------------------------
+var mainBoss = new Boss({
+    cx : 250,
+    cy : 100,
+});
+
+entityManager.setBoss(mainBoss);
+*/
+
 // Player 2
 
 var KEY_I = 'I'.charCodeAt(0);

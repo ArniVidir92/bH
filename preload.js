@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 13;
+var numberOfPreloadedImages = 14;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt=0;
@@ -129,6 +129,16 @@ function preloadStuff_thenCall(completionCallback) {
     };
     
     g_bullet3Image.src = "sprites/bullet3.png";
+
+//14. preload spider boss
+    var g_spiderImage = new Image();
+    
+    g_spiderImage.onload = function () { 
+        g_spider = new Sprite(g_spiderImage) ;
+        isReady(++cnt,completionCallback);
+    };
+    
+    g_spiderImage.src = "sprites/spiderBoss.png";
 }
 
 function isReady(x,completionCallback)

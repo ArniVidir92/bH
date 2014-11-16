@@ -12,6 +12,7 @@ function Bullet(descr) {
     for (var property in descr) {
         this[property] = descr[property];
     }
+    this.getPresets();
 }
 
 /*----------------------
@@ -22,11 +23,19 @@ Bullet.prototype.cx = 100;
 Bullet.prototype.cy = 150;
 Bullet.prototype.vx = 5;
 Bullet.prototype.vy = 5;
+Bullet.prototype.xAcc = 0;
 Bullet.prototype.damage = 5;
 Bullet.prototype.isDead = false;
 Bullet.prototype.friendly = false;
-Bullet.prototype.bulletType = "normal";
+Bullet.prototype.bulletType = "normal"; //normal, red, blue
 
+
+
+Bullet.prototype.getPresets = function()
+{
+    if(this.bulletType=="blue")
+        this.radius = 12;
+}
 
 /*----------------------
         Update
@@ -39,6 +48,8 @@ Bullet.prototype.update = function (du){
         this.isDead = true;
         return;
     }
+
+    this.vx += this.xAcc*du;
 
     // Remember my previous position
     var prevX = this.cx;
@@ -86,5 +97,7 @@ Bullet.prototype.render = function (ctx) {
     g_bullet3.drawCenteredAt(ctx,this.cx,this.cy,0);
     if(this.bulletType=="red")
     g_bullet.drawCenteredAt(ctx,this.cx,this.cy,0);
+    if(this.bulletType=="blue")
+    g_bullet2.drawCenteredAt(ctx,this.cx,this.cy,0);
     //fillCircle(ctx, this.cx, this.cy, this.radius);
 };
