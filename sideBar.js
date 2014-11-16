@@ -22,6 +22,7 @@ sideBar.render = function (ctx) {
     g_side.drawCenteredAt(ctx,this.startX + this.witdh/2,ctx.canvas.height/2,0);
     this.renderScore(ctx);
     this.renderXp(ctx);
+    this.renderPlayerHealth(ctx);
 };
 
 sideBar.renderXp = function(ctx){
@@ -39,4 +40,22 @@ sideBar.renderScore = function(ctx){
     ctx.fillStyle
     ctx.font="bold 28px Arial";        
     ctx.fillText("Score "+ score, 570, 50);
+}
+
+sideBar.renderPlayerHealth = function(ctx)
+{
+   
+    var health = entityManager.player.health;
+    var xCord = 550;
+    var yCord = ctx.canvas.height - 50;
+
+    for(var i = 0; i < health; i++)
+    {   ctx.save();
+        ctx.translate(xCord, yCord);
+        ctx.scale(0.75, 0.75);
+        ctx.translate(-xCord, -yCord);
+        g_ship.drawCenteredAt(ctx,xCord,yCord,0);
+        xCord += 20;
+        ctx.restore();
+    }
 }

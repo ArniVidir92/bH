@@ -22,6 +22,8 @@ Player.prototype.radius = 4;
 Player.prototype.goingSlow = false;
 Player.prototype.bulletSpeed = -5;
 
+Player.prototype.health = 10;
+Player.prototype.immuneCooldown = 4000 / NOMINAL_UPDATE_INTERVAL;
 Player.prototype.cooldown = 400 / NOMINAL_UPDATE_INTERVAL;
 Player.prototype.secondaryCooldown = 2000 / NOMINAL_UPDATE_INTERVAL;
 Player.prototype.level = 1;
@@ -188,27 +190,26 @@ Player.prototype.addBullet = function(cx, cy, vx, vy) {
 }
 
 Player.prototype.update = function (du) {
+    //FixMe  Just temporary for laughs
+    if(this.health < 1)
+    {
+        particleManager.addSParticle(this.cx,this.cy,"corruption",30);
+        return;
+    }
+
 
     var speed = this.getSpeed();
     this.updateDirection(du, speed);
     if(this.cooldown > 0) this.cooldown -= du;
     if(this.secondaryCooldown > 0) this.secondaryCooldown -= du;
+    if(this.immuneCooldown > 0) this.immuneCooldown -= du;
     this.shoot();
 
+
+
 };
 
-Player.prototype.render = function (ctx) {
-    // (cx, cy) is the centre; must offset it for drawing
-    ctx.fillStyle="white";
-    /*ctx.fillRect(this.cx - this.halfWidth,
-                 this.cy - this.halfHeight,
-                 this.halfWidth * 2,
-                 this.halfHeight * 2);*/
-    g_ship.drawCenteredAt(ctx,this.cx,this.cy,0);
-    if(this.goingSlow)
-    fillCircle(ctx, this.cx, this.cy, this.radius,"red");
-    ctx.fillStyle="white";
-};
+
 
 Player.prototype.collidesWith = function (object) {
     if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
@@ -217,7 +218,12 @@ Player.prototype.collidesWith = function (object) {
             this.updateLevel();
             console.log("powerup");
         }
-        else{console.log("Daudur!!!");}
+        else if(this.immuneCooldown <= 0)
+        {
+            this.immuneCooldown = Player.prototype.immuneCooldown;
+            console.log("Daudur!!!");
+            this.health -= 1;
+        }
         return true;
     }
     return false;
@@ -229,3 +235,26 @@ Player.prototype.updateLevel = function(){
         this.xp = 0;
     }
 }
+
+Player.prototype.render = function (ctx) {
+    // (cx, cy) is the centre; must offset it for drawing
+    ctx.fillStyle="white";
+    /*ctx.fillRect(this.cx - this.halfWidth,
+                 this.cy - this.halfHeight,
+                 this.halfWidth * 2,
+                 this.halfHeight * 2);*/
+    g_ship.drawCenteredAt(ctx,this.cx,this.cy,0);
+    
+    if(this.immuneCooldown > 0)
+    {
+        ctx.beginPath();
+        ctx.arc(this.cx,this.cy,7*this.radius,0,2*Math.PI);
+        ctx.strokeStyle = "green";
+        ctx.lineWidth="5";
+        ctx.stroke();
+    }
+
+    if(this.goingSlow)
+    fillCircle(ctx, this.cx, this.cy, this.radius,"red");
+    ctx.fillStyle="white";
+};

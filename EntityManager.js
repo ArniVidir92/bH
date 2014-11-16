@@ -104,7 +104,11 @@ EntityManager.prototype.checkCollisions = function(du){
 				}
 			}else{
 				if( this.player.collidesWith(bullet) ){
-					this.bullets[i].isDead = true;
+					if(this.player.immuneCooldown > 0){
+						this.bullets[i].vy = -this.bullets[i].vy;
+						this.bullets[i].friendly = true;
+					}
+					else {this.bullets[i].isDead = true;}
 				}
 			}
 		}

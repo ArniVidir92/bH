@@ -40,10 +40,10 @@ var mainPlayer = new Player({
     cx : 250,
     cy : 500,
     
-    GO_UP   : KEY_W,
-    GO_RIGHT: KEY_D,
-    GO_LEFT : KEY_A,
-    GO_DOWN : KEY_S
+    GO_UP   : 38,
+    GO_RIGHT: 39,
+    GO_LEFT : 37,
+    GO_DOWN : 40
 });
 
 entityManager.setPlayer(mainPlayer);
