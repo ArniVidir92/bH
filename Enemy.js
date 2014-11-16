@@ -123,7 +123,7 @@ Enemy.prototype.updateBlackKnight = function (du)
             vx   : 0,
             vy   : 3,
             friendly : false,
-            
+            bulletType : "red"
         }));
     }
 
@@ -147,7 +147,7 @@ Enemy.prototype.updateGrayKnight = function (du)
             vx   : bvx*2,
             vy   : bvy*2,
             friendly : false,
-            
+            bulletType : "red"
         }));
     }
 

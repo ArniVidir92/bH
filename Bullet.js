@@ -82,6 +82,9 @@ Bullet.prototype.reset = function () {
 ------------------------*/
 Bullet.prototype.render = function (ctx) {
     if( this.isDead ){return;}
+    if(this.bulletType=="normal")
+    g_bullet3.drawCenteredAt(ctx,this.cx,this.cy,0);
+    if(this.bulletType=="red")
     g_bullet.drawCenteredAt(ctx,this.cx,this.cy,0);
     //fillCircle(ctx, this.cx, this.cy, this.radius);
 };

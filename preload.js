@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 12;
+var numberOfPreloadedImages = 13;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt=0;
@@ -119,6 +119,16 @@ function preloadStuff_thenCall(completionCallback) {
     };
     
     g_cCarolImage.src = "sprites/christmasCarolShip.png";
+
+//13. preload bullet3
+    var g_bullet3Image = new Image();
+    
+    g_bullet3Image.onload = function () { 
+        g_bullet3 = new Sprite(g_bullet3Image) ;
+        isReady(++cnt,completionCallback);
+    };
+    
+    g_bullet3Image.src = "sprites/bullet3.png";
 }
 
 function isReady(x,completionCallback)
