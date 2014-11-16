@@ -31,7 +31,7 @@ LevelManager.prototype.blackKnights = {
 
 LevelManager.prototype.grayKnights = {
     array 		: [],
-    spawnNumber : 3,
+    spawnNumber : 1,
     spawnTime   : 2,
     spawnTimer  : 0, 
 };
@@ -89,7 +89,7 @@ LevelManager.prototype.spawnEnemies = function (Enemy)
 	if(Enemy.array.length >= Enemy.spawnNumber)
 	{
 		var i = 0;
-		while(i <= Enemy.spawnNumber)
+		while(i < Enemy.spawnNumber)
 		{
 			var bk = Enemy.array.pop();
 			entityManager.addEnemy(bk);
