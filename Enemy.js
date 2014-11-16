@@ -45,7 +45,12 @@ Enemy.prototype.type = "BlackKnight";
 Enemy.prototype.getPresets = function()
 {
     if(this.type=="ChristmasCarol")
+    {
         this.hitPoints=20;
+        this.score=249;
+    }
+    if(this.type=="GrayKnight")
+        this.score=125
 }
 
 Enemy.prototype.rememberResets = function () {
