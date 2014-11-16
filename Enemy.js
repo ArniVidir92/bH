@@ -13,6 +13,7 @@ function Enemy(descr) {
         this[property] = descr[property];
     }
 
+    this.getPresets();
     this.rememberResets();
 }
 
@@ -22,10 +23,12 @@ function Enemy(descr) {
 Enemy.prototype.halfWidth = 10;
 Enemy.prototype.halfHeight = 10;
 Enemy.prototype.isDead = false;
+Enemy.prototype.hitPoints = 4;
 Enemy.prototype.cx = 20;
 Enemy.prototype.cy = 0;
 Enemy.prototype.vx = 3;
 Enemy.prototype.vy = 1;
+Enemy.prototype.score = 50;
 Enemy.prototype.rotation = 0;
 
 Enemy.prototype.timer = 0;
@@ -35,9 +38,15 @@ Enemy.prototype.radius = 20;
 
 
 
-//Possible types are: BlackKnight, ...
+//Possible types are: BlackKnight, GrayKnight ...
 
 Enemy.prototype.type = "BlackKnight";
+
+Enemy.prototype.getPresets = function()
+{
+    if(this.type=="ChristmasCarol")
+        this.hitPoints=20;
+}
 
 Enemy.prototype.rememberResets = function () {
     this.reset_cx = this.cx;
@@ -74,11 +83,13 @@ Enemy.prototype.update = function (du) {
 
     if(this.type === "BlackKnight") this.updateBlackKnight(du);
     if(this.type === "GrayKnight") this.updateGrayKnight(du);
+    if(this.type === "ChristmasCarol") this.updateChristmasCarol(du);
 };
 
-Enemy.prototype.collidesWith = function (object) {
-    if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
-        score += 50;
+Enemy.prototype.getDead = function()
+{
+    if(this.hitPoints>0) return;
+        score += this.score;
         this.isDead = true;
         entityManager.addPowerup(new Powerup({
             cx : this.cx,
@@ -88,6 +99,12 @@ Enemy.prototype.collidesWith = function (object) {
             vy : this.vy * 4,
         }));
         particleManager.addSParticle(this.cx,this.cy,"fire",30);
+}
+
+Enemy.prototype.collidesWith = function (object) {
+    if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
+        this.hitPoints -= object.damage;
+        this.getDead();
         return true;
     }
     return false;
@@ -138,6 +155,30 @@ Enemy.prototype.updateGrayKnight = function (du)
 
 }
 
+Enemy.prototype.updateChristmasCarol = function (du)
+{
+    var length = Math.sqrt(Math.pow(this.cx-entityManager.player.cx,2)+Math.pow(this.cy-entityManager.player.cy,2));
+    var bvx = (-this.cx+entityManager.player.cx)/length;
+    var bvy = (-this.cy+entityManager.player.cy)/length;
+    if(this.timer > 4)
+    {
+        this.timer = 0;
+        
+        entityManager.addBullet(new Bullet({
+            cx : this.cx,
+            cy : this.cy,
+            
+            vx   : bvx*4,
+            vy   : bvy*4,
+            friendly : false,
+            
+        }));
+    }
+
+    this.cy += this.vy * du;
+
+}
+
 /*----------------------
         Renderw
 ------------------------*/
@@ -152,6 +193,8 @@ Enemy.prototype.render = function (ctx) {
     g_enemy1.drawCenteredAt(ctx,this.cx,this.cy,0);
     if(this.type=="BlackKnight")
     g_blackKnight.drawCenteredAt(ctx,this.cx,this.cy,0);
+    if(this.type=="ChristmasCarol")
+    g_cCarol.drawCenteredAt(ctx,this.cx,this.cy,0);
 
 
     ctx.restore();

@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 11;
+var numberOfPreloadedImages = 12;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt=0;
@@ -109,6 +109,16 @@ function preloadStuff_thenCall(completionCallback) {
     };
     
     g_xpbarbgImage.src = "sprites/xpbarbackground.png";
+
+//12. preload the chistmas carol enemy
+    var g_cCarolImage = new Image();
+    
+    g_cCarolImage.onload = function () { 
+        g_cCarol = new Sprite(g_cCarolImage) ;
+        isReady(++cnt,completionCallback);
+    };
+    
+    g_cCarolImage.src = "sprites/christmasCarolShip.png";
 }
 
 function isReady(x,completionCallback)
