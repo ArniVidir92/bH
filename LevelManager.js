@@ -20,7 +20,7 @@ function LevelManager(descr) {
 /*----------------------
 	Instance Variables
 ------------------------*/
-LevelManager.prototype.level = 4;
+LevelManager.prototype.level = 1;
 LevelManager.prototype.timer = 1;
 LevelManager.prototype.atimers = [];
 LevelManager.prototype.spiderBoss = new Boss({
