@@ -54,13 +54,17 @@ entityManager.setPlayer(mainPlayer);
                 HOW TO SPAWN BOSS
 
 ------------------------------------------------
+*/
+
+
 var mainBoss = new Boss({
     cx : 250,
     cy : 100,
+    type: "Flappy"
 });
 
 entityManager.setBoss(mainBoss);
-*/
+
 
 
 
