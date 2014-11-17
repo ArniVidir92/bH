@@ -63,7 +63,6 @@ Enemy.prototype.getPresets = function()
     }
     if(this.type === "BomberMan"){
         this.score = 200;
-        this.cx = 100;
         this.cy = -5;
         this.vy = 0.5;
         this.hitPoints = 25;
