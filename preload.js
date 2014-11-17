@@ -1,11 +1,11 @@
-var numberOfPreloadedImages = 14;
+var numberOfPreloadedImages = 17;
 
 function preloadStuff_thenCall(completionCallback) {
-	var cnt=0;
+	var cnt = 0;
 //1. preload the background	
     var g_bgImage = new Image();
     
-    g_bgImage.onload = function () { 
+    g_bgImage.onload = function () {
         g_bg = new Sprite(g_bgImage) ;
         isReady(++cnt,completionCallback);
     };
@@ -139,10 +139,41 @@ function preloadStuff_thenCall(completionCallback) {
     };
     
     g_spiderImage.src = "sprites/spiderBoss.png";
+
+//15. preload startscreen background 
+    var g_startScreenImage = new Image();
+
+    g_startScreenImage.onload = function() {
+        g_startScreen = new Sprite(g_startScreenImage);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_startScreenImage.src = "sprites/background.png";
+
+//16. preload startscreen button up
+    var g_startScreenButtonUpImage = new Image();
+
+    g_startScreenButtonUpImage.onload = function() {
+        g_startScreenButtonUp = new Sprite(g_startScreenButtonUpImage);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_startScreenButtonUpImage.src = "sprites/buttonup.png";
+
+//17. preload startscreen button down
+    var g_startScreenButtonDownImage = new Image();
+
+    g_startScreenButtonDownImage.onload = function() {
+        g_startScreenButtonDown = new Sprite(g_startScreenButtonDownImage);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_startScreenButtonDownImage.src = "sprites/buttondown.png";
 }
 
 function isReady(x,completionCallback)
 {
+    console.log(x);
     if(x>=numberOfPreloadedImages)
     {completionCallback();}
 }
