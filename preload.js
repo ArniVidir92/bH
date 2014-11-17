@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 17;
+var numberOfPreloadedImages = 19;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt = 0;
@@ -169,6 +169,26 @@ function preloadStuff_thenCall(completionCallback) {
     };
 
     g_startScreenButtonDownImage.src = "sprites/buttondown.png";
+
+//18. preload startscreen button down
+    var g_redEnemyImage = new Image();
+
+    g_redEnemyImage.onload = function() {
+        g_redEnemy = new Sprite(g_redEnemyImage);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_redEnemyImage.src = "sprites/redenemy.png";
+
+//19. preload startscreen button down
+    var g_flappyImage = new Image();
+
+    g_flappyImage.onload = function() {
+        g_flappy = new Sprite(g_flappyImage);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_flappyImage.src = "sprites/flappyBird.png";
 }
 
 function isReady(x,completionCallback)

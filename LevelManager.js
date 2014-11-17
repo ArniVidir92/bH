@@ -56,6 +56,10 @@ LevelManager.prototype.init = function()
 {
 	if(this.level === 1) this.initlevel1();
 	if(this.level === 2) this.initlevel2();
+	if(this.level === 3) this.initlevel3();
+
+
+	this.setTimers();
 };
 
 LevelManager.prototype.finishLevel = function()
@@ -63,9 +67,18 @@ LevelManager.prototype.finishLevel = function()
 	entityManager.player.health = 10;
 	this.level++;
 	this.atimers = [];
-	this.timer = 0;
-	this.init();
+	this.init();	
 }
+
+LevelManager.prototype.setTimers = function()
+{
+	this.timer = 0;
+	//Putting enemy objects in array for easy timers
+	this.atimers[0] = this.blackKnights;
+	this.atimers[1] = this.grayKnights;
+	this.atimers[2] = this.christmasCarols;
+}
+
 
 
 LevelManager.prototype.spawnEnemies = function (Enemy)
@@ -103,9 +116,9 @@ LevelManager.prototype.update = function(du)
 		}
 	}
 	
-	if(this.level === 1 && this.timer > 70) this.finishLevel();
+	if(this.level === 1 && this.timer > 60) this.finishLevel();
 	
-	if(this.level === 2 && this.timer > 60) entityManager.setBoss(this.mainBoss);
+	if(this.level === 2 && this.timer > 65) entityManager.setBoss(this.mainBoss);
 
 };
 
@@ -141,9 +154,6 @@ LevelManager.prototype.initlevel1 = function()
  
     	this.blackKnights.array.push(en);
 	}
-	this.atimers[0] = this.blackKnights;
-	this.atimers[1] = this.grayKnights;
-	this.atimers[2] = this.christmasCarols;
 }
 
 
@@ -204,10 +214,72 @@ LevelManager.prototype.initlevel2 = function()
     	else xCord = 30;
     	this.christmasCarols.array.push(en);
 	}
+};
 
 
-	//Putting enemy objects in array for easy timers
-	this.atimers[0] = this.blackKnights;
-	this.atimers[1] = this.grayKnights;
-	this.atimers[2] = this.christmasCarols;
+
+
+LevelManager.prototype.initlevel3 = function()
+{
+	/*--------------------------
+		Creating Gray Knights
+	---------------------------*/
+	this.grayKnights.spawnNumber = 5;
+	this.grayKnights.spawnTime = 3;
+
+	var xCord = 20;
+	for(var i = 0; i < 100; i++)
+	{
+    	var en = new Enemy({
+    	cx 		: 	xCord,
+    	cy 		: 	-5,
+    	vx 		: 	3,
+    	vy		:   1, 
+    	type 	: 	"GrayKnight"
+    	});
+
+    	xCord += 45;
+    	if(xCord > (20+(45*10))) xCord = 20;
+ 
+    	this.grayKnights.array.push(en);
+	}
+
+
+	/*-----------------------------
+		Creating Christmas Carols
+	------------------------------*/
+	
+	for(var i = 0; i < 30; i++)
+	{
+		xCord = Math.floor((Math.random() * 300) + 100);
+    	var en = new Enemy({
+    	cx 		: 	xCord,
+    	cy 		: 	-5,
+    	vx 		: 	0,
+    	vy 		: 	1,
+    	type	: 	"ChristmasCarol",
+
+    	});
+    	this.christmasCarols.array.push(en);
+	}
+
+	/*--------------------------
+		Creating Black Knights
+	---------------------------*/
+	var xCord = 20;
+	for(var i = 0; i < 100; i++)
+	{
+    	var en = new Enemy({
+    	cx 		: 	xCord,
+    	cy 		: 	-5,
+    	vx 		: 	3,
+    	vy		:   1, 
+    	type 	: 	"BlackKnight"
+    	});
+
+    	xCord += 45;
+    	if(xCord > (20+(45*10))) xCord = 20;
+ 
+    	this.blackKnights.array.push(en);
+	}
 };
