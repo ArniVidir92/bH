@@ -102,7 +102,9 @@ EntityManager.prototype.checkCollisions = function(du){
 						this.bullets[i].isDead = true;
 					}
 				}
-				if(!this.boss==null && !this.boss.isDead && this.boss.collidesWith(bullet)){this.bullets[i].isDead = true;}
+				if(!(this.boss===null) && !this.boss.isDead && this.boss.collidesWith(bullet)){
+					this.bullets[i].isDead = true;
+					}
 			}else{
 				if( this.player.collidesWith(bullet) ){
 					if(this.player.immuneCooldown > 0){

@@ -105,11 +105,12 @@ Boss.prototype.getDead = function()
             vy : this.vy * 4,
         }));
         particleManager.addSParticle(this.cx,this.cy,"fire",30);
+        levelManager.finishLevel();
 }
 
 Boss.prototype.collidesWith = function (object) {
     if( distance(this.cx, this.cy, object.cx, object.cy) < (object.radius + this.radius) * (object.radius + this.radius) ){
-        this.hitPoints -= object.damage;
+        this.hitPoints -= object.damage * 20;
         this.getDead();
         return true;
     }
