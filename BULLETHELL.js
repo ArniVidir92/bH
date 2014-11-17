@@ -75,7 +75,7 @@ entityManager.setBoss(mainBoss);
 /*
 var enemy = new Enemy({
     
-    type:"BomberMan",
+    type:"SpinningHell",
 });
 
 entityManager.addEnemy(enemy);

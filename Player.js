@@ -26,7 +26,7 @@ Player.prototype.health = 10;
 Player.prototype.immuneCooldown = 4000 / NOMINAL_UPDATE_INTERVAL;
 Player.prototype.cooldown = 400 / NOMINAL_UPDATE_INTERVAL;
 Player.prototype.secondaryCooldown = 2000 / NOMINAL_UPDATE_INTERVAL;
-Player.prototype.level = 3;
+Player.prototype.level = 1;
 Player.prototype.xp = 0;
 Player.prototype.xpMax = 100;
 
