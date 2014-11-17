@@ -56,7 +56,7 @@ entityManager.setPlayer(mainPlayer);
 ------------------------------------------------
 */
 
-
+/*
 var mainBoss = new Boss({
     cx : 250,
     cy : 100,
@@ -64,7 +64,7 @@ var mainBoss = new Boss({
 });
 
 entityManager.setBoss(mainBoss);
-
+*/
 
 
 
