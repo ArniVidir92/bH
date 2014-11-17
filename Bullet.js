@@ -24,6 +24,7 @@ Bullet.prototype.cy = 150;
 Bullet.prototype.vx = 5;
 Bullet.prototype.vy = 5;
 Bullet.prototype.xAcc = 0;
+Bullet.prototype.followSpeed = 0;
 Bullet.prototype.damage = 5;
 Bullet.prototype.isDead = false;
 Bullet.prototype.friendly = false;
@@ -50,6 +51,7 @@ Bullet.prototype.update = function (du){
     }
 
     this.vx += this.xAcc*du;
+    this.vx += this.followSpeed*du*sgn(entityManager.player.cx-this.cx);
 
     // Remember my previous position
     var prevX = this.cx;

@@ -36,6 +36,13 @@ function getLowestAvailable(array)
 	return array.length;
 }
 
+function sgn(x)
+{
+    if(x>0) return 1;
+    if(x<0) return -1;
+    return 0;
+}
+
 function isOnScreen(object) {
     var margin = 20;
 
