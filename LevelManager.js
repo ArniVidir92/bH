@@ -20,6 +20,7 @@ function LevelManager(descr) {
 /*----------------------
 	Instance Variables
 ------------------------*/
+LevelManager.prototype.level = 1;
 LevelManager.prototype.timer = 1;
 LevelManager.prototype.atimers = [];
 LevelManager.prototype.mainBoss = new Boss({
@@ -49,7 +50,100 @@ LevelManager.prototype.christmasCarols = {
 };
 
 
+
+
 LevelManager.prototype.init = function()
+{
+	if(this.level === 1) this.initlevel1();
+	if(this.level === 2) this.initlevel2();
+};
+
+LevelManager.prototype.finishLevel = function()
+{
+	entityManager.player.health = 10;
+	this.level++;
+	this.atimers = [];
+	this.timer = 0;
+	this.init();
+}
+
+
+LevelManager.prototype.spawnEnemies = function (Enemy)
+{
+	if(Enemy.array.length >= Enemy.spawnNumber)
+	{
+		var i = 0;
+		while(i < Enemy.spawnNumber)
+		{
+			var bk = Enemy.array.pop();
+			entityManager.addEnemy(bk);
+			i++
+		}
+	}		
+};
+
+/*-----------------------
+	Update loop
+	aka levelbuilder
+-----------------------*/
+LevelManager.prototype.update = function(du)
+{
+	
+	this.updateTimers(du);
+	for(var i = 0; i < this.atimers.length; i++)
+	{
+		if(this.atimers[i].spawnTimer > this.atimers[i].spawnTime)
+		{
+			this.atimers[i].spawnTimer = 0;
+			this.spawnEnemies(this.atimers[i]);
+		}
+	}
+	
+	if(this.level === 1 && this.timer > 70) this.finishLevel();
+	
+	if(this.level === 2 && this.timer > 60) entityManager.setBoss(this.mainBoss);
+
+};
+
+LevelManager.prototype.updateTimers = function (du)
+{
+	this.timer += 0.016 * du;
+	for(var i = 0; i < this.atimers.length; i++)
+	{
+		this.atimers[i].spawnTimer += 0.016 * du;
+	}
+
+};
+
+
+/*----------------------------------------------------------------------
+							Level Designer
+-----------------------------------------------------------------------*/
+LevelManager.prototype.initlevel1 = function()
+{
+	var xCord = 20;
+	for(var i = 0; i < 100; i++)
+	{
+    	var en = new Enemy({
+    	cx 		: 	xCord,
+    	cy 		: 	-5,
+    	vx 		: 	3,
+    	vy		:   1, 
+    	type 	: 	"BlackKnight"
+    	});
+
+    	xCord += 45;
+    	if(xCord > (20+(45*10))) xCord = 20;
+ 
+    	this.blackKnights.array.push(en);
+	}
+	this.atimers[0] = this.blackKnights;
+	this.atimers[1] = this.grayKnights;
+	this.atimers[2] = this.christmasCarols;
+}
+
+
+LevelManager.prototype.initlevel2 = function()
 {
 	/*--------------------------
 		Creating Black Knights
@@ -112,57 +206,4 @@ LevelManager.prototype.init = function()
 	this.atimers[0] = this.blackKnights;
 	this.atimers[1] = this.grayKnights;
 	this.atimers[2] = this.christmasCarols;
-}
-
-
-LevelManager.prototype.spawnEnemies = function (Enemy)
-{
-	if(Enemy.array.length >= Enemy.spawnNumber)
-	{
-		var i = 0;
-		while(i < Enemy.spawnNumber)
-		{
-			var bk = Enemy.array.pop();
-			entityManager.addEnemy(bk);
-			i++
-		}
-	}		
-}
-
-/*-----------------------
-	Update loop
-	aka levelbuilder
------------------------*/
-LevelManager.prototype.update = function(du)
-{
-	
-	this.updateTimers(du);
-	if(this.grayKnights.spawnTimer > this.grayKnights.spawnTime)
-	{
-		this.grayKnights.spawnTimer = 0;
-		this.spawnEnemies(this.grayKnights);	
-	}
-
-	if(this.blackKnights.spawnTimer >= this.blackKnights.spawnTime)
-	{	
-		this.blackKnights.spawnTimer = 0;
-		this.spawnEnemies(this.blackKnights);
-	}
-	if(this.christmasCarols.spawnTimer >= this.christmasCarols.spawnTime)
-	{	
-		this.christmasCarols.spawnTimer = 0;
-		this.spawnEnemies(this.christmasCarols);
-	}
-	if(this.timer > 60) entityManager.setBoss(this.mainBoss);
-
-}
-
-LevelManager.prototype.updateTimers = function (du)
-{
-	this.timer += 0.016 * du;
-	for(var i = 0; i < this.atimers.length; i++)
-	{
-		this.atimers[i].spawnTimer += 0.016 * du;
-	}
-
-}
+};
