@@ -20,8 +20,8 @@ function Boss(descr) {
 /*----------------------
     Instance Variables
 ------------------------*/
-Boss.prototype.halfWidth = 10;
-Boss.prototype.halfHeight = 10;
+Boss.prototype.halfWidth = 50;
+Boss.prototype.halfHeight = 50;
 Boss.prototype.isDead = false;
 Boss.prototype.hitPoints = 4;
 Boss.prototype.cx = 20;
@@ -189,11 +189,11 @@ Boss.prototype.updateSpider = function (du)
         }));
     }
     
-    this.cx += this.vx * du;
+    /*this.cx += this.vx * du;
     if(this.cx>this.ximit2)
         this.vx = -2;
     if(this.cx<this.ximit1)
-        this.vx = 2;
+        this.vx = 2;*/
 
 }
 
