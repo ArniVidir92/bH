@@ -358,7 +358,6 @@ Boss.prototype.render = function (ctx) {
     if(this.type=="Spider") {
         g_spider.drawCenteredAt(ctx,this.cx,this.cy,0);
         var bossLifeWidth = (sideBar.startX-20) * this.hitPoints / Boss.prototype.types.Spider.hitPoints;
-        console.log(bossLifeWidth);
         fillBox(ctx, 10, 10, bossLifeWidth, 10, "red");        
     }
 
