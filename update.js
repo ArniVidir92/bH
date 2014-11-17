@@ -17,8 +17,14 @@ var g_prevUpdateDu = null;
 //
 var g_isUpdateOdd = false;
 
+// False if we are still on the start screen, true if in-game
+//
+var g_isGameStarted = false;
+
 
 function update(dt) {
+
+    if(eatKey(KEY_START)) g_isGameStarted = true;
     
     // Get out if skipping (e.g. due to pause-mode)
     //
@@ -50,6 +56,7 @@ function update(dt) {
 
 // Togglable Pause Mode
 //
+var KEY_START = 13;
 var KEY_PAUSE = 'P'.charCodeAt(0);
 var KEY_STEP  = 'O'.charCodeAt(0);
 
