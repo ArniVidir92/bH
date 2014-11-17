@@ -125,7 +125,11 @@ function gatherInputs() {
 // GAME-SPECIFIC UPDATE LOGIC
 
 function updateSimulation(du) {
-    
+    if(startScreen.isVisible()) {
+        startScreen.update(du);
+        if(!g_isGameStarted) return;
+    }
+
     entityManager.update(du);
     particleManager.update(du);
     levelManager.update(du);
@@ -149,11 +153,18 @@ function updateSimulation(du) {
 // GAME-SPECIFIC RENDERING
 
 function renderSimulation(ctx) {
-    
-    entityManager.render(ctx);
-    particleManager.render(ctx);
-    sideBar.render(ctx);
+    if(g_isGameStarted) {
+        entityManager.render(ctx);
+        particleManager.render(ctx);
+        sideBar.render(ctx);
+    }
 
+    if(startScreen.isVisible()) {
+        ctx.save();
+        ctx.translate(0, startScreen.offsetY);
+        startScreen.render(ctx);
+        ctx.restore();
+    }
 }
 
 // Kick it off

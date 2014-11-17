@@ -36,6 +36,13 @@ function getLowestAvailable(array)
 	return array.length;
 }
 
+function sgn(x)
+{
+    if(x>0) return 1;
+    if(x<0) return -1;
+    return 0;
+}
+
 function isOnScreen(object) {
     var margin = 20;
 
@@ -56,4 +63,8 @@ function isOnScreen(object) {
 
 function distance( x1, y1, x2, y2 ){
     return (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2);
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
