@@ -4,7 +4,8 @@
 
 function clearCanvas(ctx) 
 { 
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); 
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    if
     g_bg.drawCenteredAt(ctx,ctx.canvas.width/2,ctx.canvas.height/2,0);
 }
 
