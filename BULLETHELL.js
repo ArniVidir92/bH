@@ -22,8 +22,6 @@ var g_ctx = g_canvas.getContext("2d");
 
 var score = 0;
 
-var g_isGameStarted = false;
-
 /*
 0        1         2         3         4         5         6         7         8         9
 123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -107,7 +105,10 @@ function gatherInputs() {
 // GAME-SPECIFIC UPDATE LOGIC
 
 function updateSimulation(du) {
-    if(!g_isGameStarted) return;
+    if(startScreen.isVisible()) {
+        startScreen.update(du);
+        if(!g_isGameStarted) return;
+    }
 
     entityManager.update(du);
     particleManager.update(du);
@@ -132,15 +133,18 @@ function updateSimulation(du) {
 // GAME-SPECIFIC RENDERING
 
 function renderSimulation(ctx) {
-    if(!g_isGameStarted) {
-        startScreen.render(ctx);
-        return;
+    if(g_isGameStarted) {
+        entityManager.render(ctx);
+        particleManager.render(ctx);
+        sideBar.render(ctx);
     }
-    
-    entityManager.render(ctx);
-    particleManager.render(ctx);
-    sideBar.render(ctx);
 
+    if(startScreen.isVisible()) {
+        ctx.save();
+        ctx.translate(0, startScreen.offsetY);
+        startScreen.render(ctx);
+        ctx.restore();
+    }
 }
 
 // Kick it off

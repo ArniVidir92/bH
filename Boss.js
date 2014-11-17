@@ -42,10 +42,17 @@ Boss.prototype.timer5 = 0;
 
 Boss.prototype.radius = 20;
 
-
-
-
 //Possible types are: Spider, Flappy ...
+
+Boss.prototype.types = {
+    "Spider" : {
+        "hitPoints" : 5000,
+    },
+
+    "Flappy" : {
+        "hitPoints" : 15000,
+    }
+}
 
 Boss.prototype.type = "Spider";
 
@@ -53,11 +60,11 @@ Boss.prototype.getPresets = function()
 {
     if(this.type=="Spider")
     {
-        this.hitPoints=5000;
+        this.hitPoints=Boss.prototype.types.Spider.hitPoints;
     }
     if(this.type=="Flappy")
     {
-        this.hitPoints=15000;
+        this.hitPoints=Boss.prototype.types.Flappy.hitPoints;
     }
     this.hitPointsMax = this.hitPoints;
 }
@@ -348,10 +355,18 @@ Boss.prototype.render = function (ctx) {
     // (cx, cy) is the centre; must offset it for drawing
     ctx.save();
 
-    if(this.type=="Spider")
-    g_spider.drawCenteredAt(ctx,this.cx,this.cy,0);
-    if(this.type=="Flappy")
-    g_flappy.drawCenteredAt(ctx,this.cx,this.cy,0);
+    if(this.type=="Spider") {
+        g_spider.drawCenteredAt(ctx,this.cx,this.cy,0);
+        var bossLifeWidth = (sideBar.startX-20) * this.hitPoints / Boss.prototype.types.Spider.hitPoints;
+        console.log(bossLifeWidth);
+        fillBox(ctx, 10, 10, bossLifeWidth, 10, "red");        
+    }
+
+    if(this.type=="Flappy") {
+        g_flappy.drawCenteredAt(ctx,this.cx,this.cy,0);
+        var bossLifeWidth = (sideBar.startX-20) * this.hitPoints / Boss.prototype.types.Flappy.hitPoints;
+        fillBox(ctx, 10, 10, bossLifeWidth, 10, "red");        
+    }
 
 
     ctx.restore();

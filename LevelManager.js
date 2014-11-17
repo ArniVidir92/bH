@@ -20,7 +20,7 @@ function LevelManager(descr) {
 /*----------------------
 	Instance Variables
 ------------------------*/
-LevelManager.prototype.level = 1;
+LevelManager.prototype.level = 2;
 LevelManager.prototype.timer = 1;
 LevelManager.prototype.atimers = [];
 LevelManager.prototype.mainBoss = new Boss({
@@ -94,6 +94,10 @@ LevelManager.prototype.spawnEnemies = function (Enemy)
 		}
 	}		
 };
+
+LevelManager.prototype.getLevel = function() {
+	return this.level;
+}
 
 /*-----------------------
 	Update loop
