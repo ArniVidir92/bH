@@ -42,7 +42,7 @@ Boss.prototype.timer5 = 0;
 
 Boss.prototype.radius = 20;
 
-//Possible types are: Spider, Flappy ...
+
 
 Boss.prototype.types = {
     "Spider" : {
@@ -53,6 +53,8 @@ Boss.prototype.types = {
         "hitPoints" : 15000,
     }
 }
+
+//Possible types are: Spider, Flappy ...
 
 Boss.prototype.type = "Spider";
 
@@ -241,7 +243,7 @@ Boss.prototype.updateSpider = function (du)
 
 Boss.prototype.updateFlappy = function (du)
 {
-    if(this.timer1 > 3.5)
+    if(this.hitPoints > 7500 && this.timer1 > 3.5)
     {
         this.timer1 = 0;
         for(var i=0; i<17; i++)
@@ -255,7 +257,7 @@ Boss.prototype.updateFlappy = function (du)
                 vy   : 3+(i%2==0)*2,
                 xAcc : -((i>8)-0.5)/10,
                 friendly : false,
-                bulletType : "blue"
+                bulletType : "bigpurple"
             }));
         }
     }
@@ -274,11 +276,26 @@ Boss.prototype.updateFlappy = function (du)
             vx   : bvx*1,
             vy   : bvy*1,
             friendly : false,
-            bulletType : "blue"
+            bulletType : "bigpurple"
         }));
     }
 
-    if(this.hitPoints < 7500 && this.timer2 > 0.2)
+    if(this.hitPoints < 1500 && this.timer4 > 0.3)
+    {
+        this.timer4 = 0;
+        
+        entityManager.addBullet(new Bullet({
+            cx : this.cx,
+            cy : this.cy,
+            
+            vx   : bvx*6,
+            vy   : bvy*6,
+            friendly : false,
+            bulletType : "bigpurple"
+        }));
+    }
+
+    if(this.hitPoints < 7500 && this.timer2 > 0.4)
     {
         this.timer2 = 0;
         
@@ -289,7 +306,7 @@ Boss.prototype.updateFlappy = function (du)
             vx   : bvx*4,
             vy   : bvy*4,
             friendly : false,
-            bulletType : "red"
+            bulletType : "bigred"
         }));
     }
 
@@ -307,7 +324,7 @@ Boss.prototype.updateFlappy = function (du)
             vx   : 4,
             vy   : 40*turnrad,
             friendly : false,
-            bulletType : "blue"
+            bulletType : "bigred"
         }));
 
         this.timer3 = 0;
@@ -319,9 +336,31 @@ Boss.prototype.updateFlappy = function (du)
             vx   : -4,
             vy   : 40*turnrad,
             friendly : false,
-            bulletType : "blue"
+            bulletType : "bigred"
         }));
     }
+
+
+    if(this.hitPoints < 7500 && this.timer1 > 3.5)
+    {
+        this.timer1 = 0;
+        for(var i=0; i<17; i++)
+        {
+            if(i!==8)
+            entityManager.addBullet(new Bullet({
+                cx : this.cx,
+                cy : this.cy,
+                
+                vx   : -4+0.5*i,
+                vy   : 3+(i%2==0)*2,
+                followSpeed : 0.1,
+                friendly : false,
+                bulletType : "bigred"
+            }));
+        }
+    }
+
+
     
     this.cx += this.vx * du;
     if(this.cx>this.ximit2)
@@ -358,7 +397,6 @@ Boss.prototype.render = function (ctx) {
     if(this.type=="Spider") {
         g_spider.drawCenteredAt(ctx,this.cx,this.cy,0);
         var bossLifeWidth = (sideBar.startX-20) * this.hitPoints / Boss.prototype.types.Spider.hitPoints;
-        console.log(bossLifeWidth);
         fillBox(ctx, 10, 10, bossLifeWidth, 10, "red");        
     }
 
@@ -367,7 +405,6 @@ Boss.prototype.render = function (ctx) {
         var bossLifeWidth = (sideBar.startX-20) * this.hitPoints / Boss.prototype.types.Flappy.hitPoints;
         fillBox(ctx, 10, 10, bossLifeWidth, 10, "red");        
     }
-
 
     ctx.restore();
 };

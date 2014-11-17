@@ -200,25 +200,25 @@ function preloadStuff_thenCall(completionCallback) {
 
     g_spinnerImage.src = "sprites/spinninghell.png";
 
-//21. preload the flappy boss
-    var g_purpleBulletImage = new Image();
+//21. preload goomba
+    var g_pbbImage = new Image();
 
-    g_purpleBulletImage.onload = function() {
-        g_purpleBullet = new Sprite(g_purpleBulletImage);
+    g_pbbImage.onload = function() {
+        g_pbb = new Sprite(g_pbbImage);
         isReady(++cnt,completionCallback);
     };
 
-    g_purpleBulletImage.src = "sprites/purplebulletbig.png";
+    g_pbbImage.src = "sprites/goomba.png";
 
-//22. preload spinner enemy
-    var g_redBulletImage = new Image();
+//20. preload goomba2
+    var g_rbbImage = new Image();
 
-    g_redBulletImage.onload = function() {
-        g_redBullet = new Sprite(g_redBulletImage);
+    g_rbbImage.onload = function() {
+        g_rbb = new Sprite(g_rbbImage);
         isReady(++cnt,completionCallback);
     };
 
-    g_redBulletImage.src = "sprites/redbulletbig.png";
+    g_rbbImage.src = "sprites/goomba2.png";
 
 }
 
