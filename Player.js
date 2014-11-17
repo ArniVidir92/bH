@@ -23,7 +23,7 @@ Player.prototype.goingSlow = false;
 Player.prototype.bulletSpeed = -5;
 
 Player.prototype.health = 10;
-Player.prototype.immuneCooldown = 4000 / NOMINAL_UPDATE_INTERVAL;
+Player.prototype.immuneCooldown = 2000 / NOMINAL_UPDATE_INTERVAL;
 Player.prototype.cooldown = 400 / NOMINAL_UPDATE_INTERVAL;
 Player.prototype.secondaryCooldown = 2000 / NOMINAL_UPDATE_INTERVAL;
 Player.prototype.level = 1;

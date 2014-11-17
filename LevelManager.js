@@ -23,10 +23,18 @@ function LevelManager(descr) {
 LevelManager.prototype.level = 1;
 LevelManager.prototype.timer = 1;
 LevelManager.prototype.atimers = [];
-LevelManager.prototype.mainBoss = new Boss({
-    										cx : 250,
-    										cy : 100,
+LevelManager.prototype.spiderBoss = new Boss({
+    										cx 	  : 250,
+    										cy 	  : 100,
+    										type  : "Spider",
 											});
+
+LevelManager.prototype.flappyBoss = new Boss({
+    										cx 	  : 250,
+    										cy 	  : 100,
+    										type  : "Flappy",
+											});
+
 
 LevelManager.prototype.blackKnights = {
     array 		: [],
@@ -49,12 +57,26 @@ LevelManager.prototype.christmasCarols = {
     spawnTimer  : 0, 
 };
 
+LevelManager.prototype.spinningHell = {
+    array 		: [],
+    spawnNumber : 1,
+    spawnTime   : 5,
+    spawnTimer  : 0, 
+};
+
+LevelManager.prototype.bomberMan = {
+    array 		: [],
+    spawnNumber : 3,
+    spawnTime   : 3,
+    spawnTimer  : 0, 
+};
 
 LevelManager.prototype.init = function()
 {
 	if(this.level === 1) this.initlevel1();
 	if(this.level === 2) this.initlevel2();
 	if(this.level === 3) this.initlevel3();
+	if(this.level === 4) this.initlevel4();
 
 
 	this.setTimers();
@@ -75,6 +97,8 @@ LevelManager.prototype.setTimers = function()
 	this.atimers[0] = this.blackKnights;
 	this.atimers[1] = this.grayKnights;
 	this.atimers[2] = this.christmasCarols;
+	this.atimers[3] = this.bomberMan;
+	this.atimers[4] = this.spinningHell;
 }
 
 
@@ -116,7 +140,11 @@ LevelManager.prototype.update = function(du)
 	
 	if(this.level === 1 && this.timer > 60) this.finishLevel();
 	
-	if(this.level === 2 && this.timer > 65) entityManager.setBoss(this.mainBoss);
+	if(this.level === 2 && this.timer > 65) entityManager.setBoss(this.spiderBoss);
+
+	if(this.level === 3 && this.timer > 60) this.finishLevel();
+	
+	if(this.level === 4 && this.timer > 60) entityManager.setBoss(this.flappyBoss);
 
 };
 
@@ -264,7 +292,7 @@ LevelManager.prototype.initlevel3 = function()
 	/*--------------------------
 		Creating Black Knights
 	---------------------------*/
-	var xCord = 20;
+	xCord = 20;
 	for(var i = 0; i < 100; i++)
 	{
     	var en = new Enemy({
@@ -280,4 +308,129 @@ LevelManager.prototype.initlevel3 = function()
  
     	this.blackKnights.array.push(en);
 	}
+
+	/*--------------------------
+		Creating Bombermen
+	---------------------------*/
+	var xCords = [50, 100, 150];
+	var z = 0;
+	for(var i = 0; i < 60; i++)
+	{
+    	var en = new Enemy({
+    	cx 		: 	xCords[z],
+    	cy 		: 	-5,
+    	vx 		: 	3,
+    	vy		:   1, 
+    	type 	: 	"BomberMan"
+    	});
+
+    	z++
+    	if(z > 2) z = 0;
+ 
+    	this.bomberMan.array.push(en);
+	}
+
+};
+
+LevelManager.prototype.initlevel4 = function()
+{
+	
+	/*--------------------------
+		Creating Spinninghells
+	---------------------------*/
+	for(var i = 0; i < 10; i++)
+	{
+    	var en = new Enemy({
+    	cx 		: 	Enemy.originalCX ,
+    	cy 		: 	-5, 
+    	type 	: 	"SpinningHell"
+    	});
+ 
+    	this.spinningHell.array.push(en);
+	}
+
+
+	/*-----------------------------
+		Creating Christmas Carols
+	------------------------------*/
+	this.christmasCarols.spawnNumber = 3;
+	this.christmasCarols.spawnTime = 3;
+	var xCords = [50, 150, 250];
+	var z = 0;
+	for(var i = 0; i < 60; i++)
+	{
+    	var en = new Enemy({
+    	cx 		: 	xCords[z],
+    	cy 		: 	-5,
+    	vx 		: 	0,
+    	vy 		: 	1,
+    	type	: 	"ChristmasCarol",
+
+    	});
+    	z++;
+    	if(z > 2) z = 0;
+    	this.christmasCarols.array.push(en);
+	}
+
+	/*--------------------------
+		Creating Black Knights
+	---------------------------*/
+	this.blackKnights.spawnNumber = 5;
+	xCord = 20; 
+	for(var i = 0; i < 50; i++)
+	{
+    	var en = new Enemy({
+    	cx 		: 	xCord,
+    	cy 		: 	-5,
+    	vx 		: 	3,
+    	vy		:   1, 
+    	type 	: 	"BlackKnight"
+    	});
+
+    	xCord += 45;
+    	if(xCord > (20+(45*10))) xCord = 20;
+ 
+    	this.blackKnights.array.push(en);
+	}
+
+	/*--------------------------
+		Creating Bombermen
+	---------------------------*/
+	this.bomberMan.spawnNumber = 2;
+    xCords = [50, 150, 100, 200];
+	z = 0;
+	for(var i = 0; i < 60; i++)
+	{
+    	var en = new Enemy({
+    	cx 		: 	xCords[z],
+    	cy 		: 	-5,
+    	vx 		: 	3,
+    	vy		:   1, 
+    	type 	: 	"BomberMan"
+    	});
+
+    	z++;
+    	if(z > 3) z = 0;
+ 
+    	this.bomberMan.array.push(en);
+	}
+
+	this.grayKnights.spawnNumber = 4;
+	var xCord = 20;
+	for(var i = 0; i < 100; i++)
+	{
+    	var en = new Enemy({
+    	cx 		: 	xCord,
+    	cy 		: 	-5,
+    	vx 		: 	3,
+    	vy		:   1, 
+    	type 	: 	"GrayKnight"
+    	});
+
+    	xCord += 45;
+    	if(xCord > (20+(45*10))) xCord = 20;
+ 
+    	this.grayKnights.array.push(en);
+	}
+
 };
