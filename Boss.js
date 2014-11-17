@@ -50,7 +50,7 @@ Boss.prototype.getPresets = function()
 {
     if(this.type=="Spider")
     {
-        this.hitPoints=400;
+        this.hitPoints=5000;
     }
 }
 
@@ -122,7 +122,7 @@ Boss.prototype.updateSpider = function (du)
     if(this.timer1 > 1.5)
     {
         var BT = "blue";
-        if(this.hitPoints>140)
+        if(this.hitPoints>1250)
             BT = "red";
 
 
@@ -161,7 +161,7 @@ Boss.prototype.updateSpider = function (du)
 
 
 
-    if( this.hitPoints < 200 && this.timer3 > 1.2)
+    if( this.hitPoints < 2500 && this.timer3 > 1.2)
     {
         var turnrad = 0.1 *440/(-this.cy+entityManager.player.cy);
 
@@ -190,11 +190,11 @@ Boss.prototype.updateSpider = function (du)
         }));
     }
     
-    /*this.cx += this.vx * du;
+    this.cx += this.vx * du;
     if(this.cx>this.ximit2)
         this.vx = -2;
     if(this.cx<this.ximit1)
-        this.vx = 2;*/
+        this.vx = 2;
 
 }
 
