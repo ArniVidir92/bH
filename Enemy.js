@@ -275,9 +275,9 @@ Enemy.prototype.render = function (ctx) {
     if(this.type=="ChristmasCarol")
     g_cCarol.drawCenteredAt(ctx,this.cx,this.cy,0);
     if(this.type === "SpinningHell")
-    g_cCarol.drawCenteredAt(ctx,this.cx,this.cy,this.rotation);
+    g_spinner.drawCenteredAt(ctx,this.cx,this.cy,this.rotation);
     if(this.type === "BomberMan")
-    g_cCarol.drawCenteredAtScaled(ctx,this.cx,this.cy,0,this.scale);
+    g_redEnemy.drawCenteredAtScaled(ctx,this.cx,this.cy,0,this.scale);
 
 
     ctx.restore();
