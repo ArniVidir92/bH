@@ -40,8 +40,6 @@ Boss.prototype.timer3 = 0;
 Boss.prototype.radius = 20;
 
 
-
-
 //Possible types are: Spider ...
 
 Boss.prototype.type = "Spider";
@@ -206,8 +204,13 @@ Boss.prototype.render = function (ctx) {
     // (cx, cy) is the centre; must offset it for drawing
     ctx.save();
 
-    if(this.type=="Spider")
-    g_spider.drawCenteredAt(ctx,this.cx,this.cy,0);
+    if(this.type=="Spider") {
+        g_spider.drawCenteredAt(ctx,this.cx,this.cy,0);
+
+        var bossLifeWidth = sideBar.startX-20 * this.hitPoints / 400
+        fillBox(ctx, 10, 10, bossLifeWidth, 10, "red");
+
+    }
 
 
     ctx.restore();

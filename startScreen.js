@@ -6,6 +6,25 @@ var startScreen = {
 	buttonWidth  : 440,
 	buttonHeight : 100,
 
+	offsetY : 0,
+
+	visible : true,
+
+	isVisible : function() {
+		return this.visible;
+	},
+
+	update : function(du) {
+		if(g_isGameStarted) {
+			if(this.offsetY <= g_canvas.height) {
+				this.offsetY += 100 / NOMINAL_UPDATE_INTERVAL * du;
+			}
+			else {
+				this.visible = false;
+			}
+		}
+	},
+
 	isOnStartButton : function() {
 		return (g_mouseX < this.buttonX + this.buttonWidth/2 && 
 				 g_mouseX > this.buttonX - this.buttonWidth/2 &&
