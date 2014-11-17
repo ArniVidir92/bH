@@ -204,7 +204,7 @@ function preloadStuff_thenCall(completionCallback) {
     var g_pbbImage = new Image();
 
     g_pbbImage.onload = function() {
-        g_pbb = new Sprite(g_spinnerImage);
+        g_pbb = new Sprite(g_pbbImage);
         isReady(++cnt,completionCallback);
     };
 
@@ -214,7 +214,7 @@ function preloadStuff_thenCall(completionCallback) {
     var g_rbbImage = new Image();
 
     g_rbbImage.onload = function() {
-        g_rbb = new Sprite(g_spinnerImage);
+        g_rbb = new Sprite(g_rbbImage);
         isReady(++cnt,completionCallback);
     };
 

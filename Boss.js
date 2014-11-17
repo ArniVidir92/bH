@@ -243,7 +243,7 @@ Boss.prototype.updateSpider = function (du)
 
 Boss.prototype.updateFlappy = function (du)
 {
-    if(this.timer1 > 3.5)
+    if(this.hitPoints > 7500 && this.timer1 > 3.5)
     {
         this.timer1 = 0;
         for(var i=0; i<17; i++)
@@ -257,7 +257,7 @@ Boss.prototype.updateFlappy = function (du)
                 vy   : 3+(i%2==0)*2,
                 xAcc : -((i>8)-0.5)/10,
                 friendly : false,
-                bulletType : "blue"
+                bulletType : "bigpurple"
             }));
         }
     }
@@ -275,6 +275,21 @@ Boss.prototype.updateFlappy = function (du)
             
             vx   : bvx*1,
             vy   : bvy*1,
+            friendly : false,
+            bulletType : "bigpurple"
+        }));
+    }
+
+    if(this.hitPoints < 1500 && this.timer4 > 0.3)
+    {
+        this.timer4 = 0;
+        
+        entityManager.addBullet(new Bullet({
+            cx : this.cx,
+            cy : this.cy,
+            
+            vx   : bvx*6,
+            vy   : bvy*6,
             friendly : false,
             bulletType : "bigpurple"
         }));
@@ -309,7 +324,7 @@ Boss.prototype.updateFlappy = function (du)
             vx   : 4,
             vy   : 40*turnrad,
             friendly : false,
-            bulletType : "blue"
+            bulletType : "bigred"
         }));
 
         this.timer3 = 0;
@@ -321,8 +336,28 @@ Boss.prototype.updateFlappy = function (du)
             vx   : -4,
             vy   : 40*turnrad,
             friendly : false,
-            bulletType : "blue"
+            bulletType : "bigred"
         }));
+    }
+
+
+    if(this.hitPoints < 7500 && this.timer1 > 3.5)
+    {
+        this.timer1 = 0;
+        for(var i=0; i<17; i++)
+        {
+            if(i!==8)
+            entityManager.addBullet(new Bullet({
+                cx : this.cx,
+                cy : this.cy,
+                
+                vx   : -4+0.5*i,
+                vy   : 3+(i%2==0)*2,
+                followSpeed : 0.1,
+                friendly : false,
+                bulletType : "bigred"
+            }));
+        }
     }
 
 
