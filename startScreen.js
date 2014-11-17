@@ -4,7 +4,7 @@ var startScreen = {
 	buttonX : 400,
 	buttonY : 400,
 	buttonWidth  : 440,
-	buttonHeight : 200,
+	buttonHeight : 100,
 
 	isOnStartButton : function() {
 		return (g_mouseX < this.buttonX + this.buttonWidth/2 && 
