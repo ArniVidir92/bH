@@ -350,10 +350,18 @@ Boss.prototype.render = function (ctx) {
     // (cx, cy) is the centre; must offset it for drawing
     ctx.save();
 
-    if(this.type=="Spider")
-    g_spider.drawCenteredAt(ctx,this.cx,this.cy,0);
-    if(this.type=="Flappy")
-    g_flappy.drawCenteredAt(ctx,this.cx,this.cy,0);
+    if(this.type=="Spider") {
+        g_spider.drawCenteredAt(ctx,this.cx,this.cy,0);
+        var bossLifeWidth = (sideBar.startX-20) * this.hitPoints / Boss.prototype.types.Spider.hitPoints;
+        fillBox(ctx, 10, 10, bossLifeWidth, 10, "red");        
+    }
+
+    if(this.type=="Flappy") {
+        g_flappy.drawCenteredAt(ctx,this.cx,this.cy,0);
+        var bossLifeWidth = (sideBar.startX-20) * this.hitPoints / Boss.prototype.types.Flappy.hitPoints;
+        fillBox(ctx, 10, 10, bossLifeWidth, 10, "red");        
+    }
+
 
 
     ctx.restore();

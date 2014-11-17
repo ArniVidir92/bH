@@ -258,4 +258,10 @@ Player.prototype.render = function (ctx) {
     if(this.goingSlow)
     fillCircle(ctx, this.cx, this.cy, this.radius,"red");
     ctx.fillStyle="white";
+
+    for(var i = 0; i < 3; i++) {
+        var color = getRandomInt(0, 1) === 0 ? "red" : "orange";
+        particleManager.addParticle(this.cx-i, this.cy + this.halfHeight, 0, 1, "circle", 2, color, 1, 1);
+        particleManager.addParticle(this.cx+i, this.cy + this.halfHeight, 0, 1, "circle", 2, color, 1, 1);
+    }
 };

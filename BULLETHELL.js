@@ -66,6 +66,26 @@ var mainBoss = new Boss({
 entityManager.setBoss(mainBoss);
 
 
+
+
+
+
+
+//--------------------------
+
+//Spawn an enemy
+
+//--------------------------
+/*
+var enemy = new Enemy({
+    
+    type:"BomberMan",
+});
+
+entityManager.addEnemy(enemy);
+*/
+
+
 // Player 2
 
 var KEY_I = 'I'.charCodeAt(0);
