@@ -50,8 +50,6 @@ LevelManager.prototype.christmasCarols = {
 };
 
 
-
-
 LevelManager.prototype.init = function()
 {
 	if(this.level === 1) this.initlevel1();
