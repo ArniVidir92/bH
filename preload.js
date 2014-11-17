@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 20;
+var numberOfPreloadedImages = 22;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt = 0;
@@ -199,6 +199,26 @@ function preloadStuff_thenCall(completionCallback) {
     };
 
     g_spinnerImage.src = "sprites/spinninghell.png";
+
+//21. preload the flappy boss
+    var g_purpleBulletImage = new Image();
+
+    g_purpleBulletImage.onload = function() {
+        g_purpleBullet = new Sprite(g_purpleBulletImage);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_purpleBulletImage.src = "sprites/purplebulletbig.png";
+
+//22. preload spinner enemy
+    var g_redBulletImage = new Image();
+
+    g_redBulletImage.onload = function() {
+        g_redBullet = new Sprite(g_redBulletImage);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_redBulletImage.src = "sprites/redbulletbig.png";
 
 }
 
