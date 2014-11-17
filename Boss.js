@@ -32,17 +32,20 @@ Boss.prototype.score = 5000;
 Boss.prototype.rotation = 0;
 Boss.prototype.ximit1 = 100;
 Boss.prototype.ximit2 = 400;
+Boss.prototype.hitPointsMax = 10000;
 
 Boss.prototype.timer1 = 0;
 Boss.prototype.timer2 = 0;
 Boss.prototype.timer3 = 0;
+Boss.prototype.timer4 = 0;
+Boss.prototype.timer5 = 0;
 
 Boss.prototype.radius = 20;
 
 
 
 
-//Possible types are: Spider ...
+//Possible types are: Spider, Flappy ...
 
 Boss.prototype.type = "Spider";
 
@@ -52,6 +55,11 @@ Boss.prototype.getPresets = function()
     {
         this.hitPoints=5000;
     }
+    if(this.type=="Flappy")
+    {
+        this.hitPoints=15000;
+    }
+    this.hitPointsMax = this.hitPoints;
 }
 
 Boss.prototype.rememberResets = function () {
@@ -88,8 +96,11 @@ Boss.prototype.update = function (du) {
     this.timer1 += 0.016 * du;
     this.timer2 += 0.016 * du;
     this.timer3 += 0.016 * du;
+    this.timer4 += 0.016 * du;
+    this.timer5 += 0.016 * du;
 
     if(this.type === "Spider") this.updateSpider(du);
+    if(this.type === "Flappy") this.updateFlappy(du);
 };
 
 Boss.prototype.getDead = function()
@@ -116,6 +127,12 @@ Boss.prototype.collidesWith = function (object) {
     }
     return false;
 }
+
+//======================================
+//
+//      Update Spider boss begins
+//
+//======================================
 
 Boss.prototype.updateSpider = function (du)
 {
@@ -199,6 +216,116 @@ Boss.prototype.updateSpider = function (du)
 }
 
 
+//======================================
+//
+//      Update Spider boss ends
+//
+//======================================
+
+
+
+
+
+//======================================
+//
+//      Update Flappy boss begins
+//
+//======================================
+
+Boss.prototype.updateFlappy = function (du)
+{
+    if(this.timer1 > 3.5)
+    {
+        this.timer1 = 0;
+        for(var i=0; i<17; i++)
+        {
+            if(i!==8)
+            entityManager.addBullet(new Bullet({
+                cx : this.cx,
+                cy : this.cy,
+                
+                vx   : -4+0.5*i,
+                vy   : 3+(i%2==0)*2,
+                xAcc : -((i>8)-0.5)/10,
+                friendly : false,
+                bulletType : "blue"
+            }));
+        }
+    }
+
+    var length = Math.sqrt(Math.pow(this.cx-entityManager.player.cx,2)+Math.pow(this.cy-entityManager.player.cy,2));
+    var bvx = (-this.cx+entityManager.player.cx)/length;
+    var bvy = (-this.cy+entityManager.player.cy)/length;
+    if(this.timer2 > 1.2)
+    {
+        this.timer2 = 0;
+        
+        entityManager.addBullet(new Bullet({
+            cx : this.cx,
+            cy : this.cy,
+            
+            vx   : bvx*1,
+            vy   : bvy*1,
+            friendly : false,
+            bulletType : "blue"
+        }));
+    }
+
+
+
+    if( this.hitPoints < 2500 && this.timer3 > 1.2)
+    {
+        var turnrad = 0.1 *440/(-this.cy+entityManager.player.cy);
+
+        this.timer3 = 0;
+        
+        entityManager.addBullet(new Bullet({
+            cx : this.cx,
+            cy : this.cy,
+            xAcc : -turnrad,
+            vx   : 4,
+            vy   : 40*turnrad,
+            friendly : false,
+            bulletType : "blue"
+        }));
+
+        this.timer3 = 0;
+        
+        entityManager.addBullet(new Bullet({
+            cx : this.cx,
+            cy : this.cy,
+            xAcc : turnrad,
+            vx   : -4,
+            vy   : 40*turnrad,
+            friendly : false,
+            bulletType : "blue"
+        }));
+    }
+    
+    this.cx += this.vx * du;
+    if(this.cx>this.ximit2)
+        this.vx = -1;
+    if(this.cx<this.ximit1)
+        this.vx = 1;
+
+}
+
+
+//======================================
+//
+//      Update Flappy boss ends
+//
+//======================================
+
+
+
+
+
+
+
+
+
+
 /*----------------------
         Render
 ------------------------*/
@@ -209,6 +336,8 @@ Boss.prototype.render = function (ctx) {
 
     if(this.type=="Spider")
     g_spider.drawCenteredAt(ctx,this.cx,this.cy,0);
+    if(this.type=="Flappy")
+    g_flappy.drawCenteredAt(ctx,this.cx,this.cy,0);
 
 
     ctx.restore();
