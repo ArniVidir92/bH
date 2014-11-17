@@ -57,7 +57,7 @@ sideBar.render = function (ctx) {
 
 sideBar.renderXp = function(ctx){
     var coef = entityManager.player.xp / entityManager.player.xpMax;
-    var w = 48, startX = 700, startY = 400;
+    var w = 48, startX = 720, startY = 400;
 
     //fillBox(ctx,startX ,startY , w, this.xpHeight, "blue")
     g_xpbarbg.drawCenteredAt(ctx,startX,startY,0);
@@ -66,24 +66,35 @@ sideBar.renderXp = function(ctx){
 }
 
 sideBar.renderScore = function(ctx){
-    var oldStyle = ctx.fillStyle;
-    ctx.fillStyle
-    ctx.font="bold 28px Arial";        
+    ctx.save()
+    ctx.shadowColor = "white";
+    ctx.shadowOffsetX = 4;
+    ctx.shadowOffsetY = 4;
+    ctx.shadowBlur = 15;
+    ctx.fillStyle = "black";
+    ctx.font="bold 28px Arial";  
     ctx.fillText("Score "+ score, 570, 50);
+    ctx.restore();
 }
 
 sideBar.renderLevelText = function(ctx) {
-    //var oldStyle = ctx.fillStyle;
-    //ctx.fill 
+    ctx.save()
+    ctx.shadowColor = "white";
+    ctx.shadowOffsetX = 4;
+    ctx.shadowOffsetY = 4;
+    ctx.shadowBlur = 15;
+    var oldStyle = ctx.fillStyle;
+    ctx.fillStyle = "black";
     ctx.font = "bold 28px Arial";
     ctx.fillText("Level " + levelManager.getLevel(), 570, 90);
+    ctx.fillStyle = oldStyle;
+    ctx.restore();
 }
 
 sideBar.renderPlayerHealth = function(ctx)
 {
-   
     var health = entityManager.player.health;
-    var xCord = 550;
+    var xCord = 553;
     var yCord = ctx.canvas.height - 50;
 
     for(var i = 0; i < health; i++)
@@ -92,7 +103,7 @@ sideBar.renderPlayerHealth = function(ctx)
         ctx.scale(0.75, 0.75);
         ctx.translate(-xCord, -yCord);
         g_ship.drawCenteredAt(ctx,xCord,yCord,0);
-        xCord += 20;
+        xCord += 23;
         ctx.restore();
     }
 }
