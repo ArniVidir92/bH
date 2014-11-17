@@ -20,7 +20,7 @@ function LevelManager(descr) {
 /*----------------------
 	Instance Variables
 ------------------------*/
-LevelManager.prototype.level = 1;
+LevelManager.prototype.level = 4;
 LevelManager.prototype.timer = 1;
 LevelManager.prototype.atimers = [];
 LevelManager.prototype.spiderBoss = new Boss({
@@ -144,7 +144,7 @@ LevelManager.prototype.update = function(du)
 
 	if(this.level === 3 && this.timer > 60) this.finishLevel();
 	
-	if(this.level === 4 && this.timer > 60) entityManager.setBoss(this.flappyBoss);
+	if(this.level === 4 && this.timer > 80) entityManager.setBoss(this.flappyBoss);
 
 };
 
@@ -277,7 +277,7 @@ LevelManager.prototype.initlevel3 = function()
 	
 	for(var i = 0; i < 30; i++)
 	{
-		xCord = Math.floor((Math.random() * 300) + 100);
+		xCord = Math.floor((Math.random() * 380) + 100);
     	var en = new Enemy({
     	cx 		: 	xCord,
     	cy 		: 	-5,
@@ -312,7 +312,7 @@ LevelManager.prototype.initlevel3 = function()
 	/*--------------------------
 		Creating Bombermen
 	---------------------------*/
-	var xCords = [50, 100, 150];
+	var xCords = [50, 200, 350];
 	var z = 0;
 	for(var i = 0; i < 60; i++)
 	{
@@ -354,8 +354,8 @@ LevelManager.prototype.initlevel4 = function()
 		Creating Christmas Carols
 	------------------------------*/
 	this.christmasCarols.spawnNumber = 3;
-	this.christmasCarols.spawnTime = 3;
-	var xCords = [50, 150, 250];
+	this.christmasCarols.spawnTime = 4;
+	var xCords = [50, 200, 300];
 	var z = 0;
 	for(var i = 0; i < 60; i++)
 	{
@@ -397,9 +397,9 @@ LevelManager.prototype.initlevel4 = function()
 		Creating Bombermen
 	---------------------------*/
 	this.bomberMan.spawnNumber = 2;
-    xCords = [50, 150, 100, 200];
+    xCords = [50, 350, 150, 250];
 	z = 0;
-	for(var i = 0; i < 60; i++)
+	for(var i = 0; i < 40; i++)
 	{
     	var en = new Enemy({
     	cx 		: 	xCords[z],
