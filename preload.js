@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 19;
+var numberOfPreloadedImages = 20;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt = 0;
@@ -170,7 +170,7 @@ function preloadStuff_thenCall(completionCallback) {
 
     g_startScreenButtonDownImage.src = "sprites/buttondown.png";
 
-//18. preload startscreen button down
+//18. preload the red enemy
     var g_redEnemyImage = new Image();
 
     g_redEnemyImage.onload = function() {
@@ -180,7 +180,7 @@ function preloadStuff_thenCall(completionCallback) {
 
     g_redEnemyImage.src = "sprites/redenemy.png";
 
-//19. preload startscreen button down
+//19. preload the flappy boss
     var g_flappyImage = new Image();
 
     g_flappyImage.onload = function() {
@@ -189,6 +189,17 @@ function preloadStuff_thenCall(completionCallback) {
     };
 
     g_flappyImage.src = "sprites/flappyBird.png";
+
+//20. preload spinner enemy
+    var g_spinnerImage = new Image();
+
+    g_spinnerImage.onload = function() {
+        g_spinner = new Sprite(g_spinnerImage);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_spinnerImage.src = "sprites/spinninghell.png";
+
 }
 
 function isReady(x,completionCallback)

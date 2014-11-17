@@ -256,7 +256,7 @@ Boss.prototype.updateFlappy = function (du)
     var length = Math.sqrt(Math.pow(this.cx-entityManager.player.cx,2)+Math.pow(this.cy-entityManager.player.cy,2));
     var bvx = (-this.cx+entityManager.player.cx)/length;
     var bvy = (-this.cy+entityManager.player.cy)/length;
-    if(this.timer2 > 1.2)
+    if(this.hitPoints > 7500 && this.timer2 > 1.2)
     {
         this.timer2 = 0;
         
@@ -271,9 +271,23 @@ Boss.prototype.updateFlappy = function (du)
         }));
     }
 
+    if(this.hitPoints < 7500 && this.timer2 > 0.2)
+    {
+        this.timer2 = 0;
+        
+        entityManager.addBullet(new Bullet({
+            cx : this.cx,
+            cy : this.cy,
+            
+            vx   : bvx*4,
+            vy   : bvy*4,
+            friendly : false,
+            bulletType : "red"
+        }));
+    }
 
 
-    if( this.hitPoints < 2500 && this.timer3 > 1.2)
+    if( this.hitPoints < 7500 && this.timer3 > 1.2)
     {
         var turnrad = 0.1 *440/(-this.cy+entityManager.player.cy);
 
