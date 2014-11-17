@@ -99,6 +99,10 @@ Bullet.prototype.render = function (ctx) {
     g_bullet3.drawCenteredAt(ctx,this.cx,this.cy,0);
     if(this.bulletType=="red")
     g_bullet.drawCenteredAt(ctx,this.cx,this.cy,0);
+    if(this.bulletType=="bigred")
+    g_bullet.drawCenteredAt(ctx,this.cx,this.cy,0);
+    if(this.bulletType=="bigpurple")
+    g_bullet.drawCenteredAt(ctx,this.cx,this.cy,0);
     if(this.bulletType=="blue")
     g_bullet2.drawCenteredAt(ctx,this.cx,this.cy,0);
     //fillCircle(ctx, this.cx, this.cy, this.radius);
