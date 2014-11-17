@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 20;
+var numberOfPreloadedImages = 22;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt = 0;
@@ -199,6 +199,26 @@ function preloadStuff_thenCall(completionCallback) {
     };
 
     g_spinnerImage.src = "sprites/spinninghell.png";
+
+//21. preload goomba
+    var g_pbbImage = new Image();
+
+    g_pbbImage.onload = function() {
+        g_pbb = new Sprite(g_spinnerImage);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_pbbImage.src = "sprites/goomba.png";
+
+//20. preload goomba2
+    var g_rbbImage = new Image();
+
+    g_rbbImage.onload = function() {
+        g_rbb = new Sprite(g_spinnerImage);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_rbbImage.src = "sprites/goomba2.png";
 
 }
 

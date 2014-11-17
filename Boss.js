@@ -44,6 +44,15 @@ Boss.prototype.radius = 20;
 
 
 
+Boss.prototype.types = {
+    "Spider" : {
+        "hitPoints" : 5000,
+    },
+
+    "Flappy" : {
+        "hitPoints" : 15000,
+    }
+}
 
 //Possible types are: Spider, Flappy ...
 
@@ -53,11 +62,11 @@ Boss.prototype.getPresets = function()
 {
     if(this.type=="Spider")
     {
-        this.hitPoints=5000;
+        this.hitPoints=Boss.prototype.types.Spider.hitPoints;
     }
     if(this.type=="Flappy")
     {
-        this.hitPoints=15000;
+        this.hitPoints=Boss.prototype.types.Flappy.hitPoints;
     }
     this.hitPointsMax = this.hitPoints;
 }
@@ -361,8 +370,6 @@ Boss.prototype.render = function (ctx) {
         var bossLifeWidth = (sideBar.startX-20) * this.hitPoints / Boss.prototype.types.Flappy.hitPoints;
         fillBox(ctx, 10, 10, bossLifeWidth, 10, "red");        
     }
-
-
 
     ctx.restore();
 };
