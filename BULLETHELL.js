@@ -134,6 +134,11 @@ function updateSimulation(du) {
         if(!g_isGameStarted) return;
     }
 
+    if(g_gameOver) {
+        gameOverScreen.update(du);
+        return;
+    }
+
     entityManager.update(du);
     particleManager.update(du);
     levelManager.update(du);
@@ -161,6 +166,10 @@ function renderSimulation(ctx) {
         entityManager.render(ctx);
         particleManager.render(ctx);
         sideBar.render(ctx);
+    }
+
+    if(g_gameOver) {
+        gameOverScreen.render(ctx);
     }
 
     if(startScreen.isVisible()) {
