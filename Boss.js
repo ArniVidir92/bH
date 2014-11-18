@@ -178,8 +178,8 @@ Boss.prototype.updateSpider = function (du)
             cx : this.cx,
             cy : this.cy,
             
-            vx   : bvx*7,
-            vy   : bvy*7,
+            vx   : bvx*5,
+            vy   : bvy*5,
             friendly : false,
             bulletType : "red"
         }));
