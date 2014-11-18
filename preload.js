@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 27;
+var numberOfPreloadedImages = 30;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt = 0;
@@ -275,11 +275,30 @@ function preloadStuff_thenCall(completionCallback) {
     var g_audio1 = new Audio("audio/BloodyTears.ogg");
         //g_audio1.play();
     //g_audio1.src = "audio/BloodyTears.ogg"
-    /*g_audio1.oncanplaythrough = function() {
+    g_audio1.oncanplaythrough = function() {
         isReady(++cnt, completionCallback);
-    };*/
+    };
 
-    
+//29. preload for bullet 4
+    var g_bullet4Image = new Image();
+
+    g_bullet4Image.onload = function() {
+        g_bullet4 = new Sprite(g_bullet4Image);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_bullet4Image.src = "sprites/bullet4.png";
+ 
+ //29. preload for bullet 5
+    var g_bullet5Image = new Image();
+
+    g_bullet5Image.onload = function() {
+        g_bullet5 = new Sprite(g_bullet5Image);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_bullet5Image.src = "sprites/bullet5.png";
+
 }
 
 function isReady(x,completionCallback)
