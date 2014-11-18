@@ -66,7 +66,7 @@ LevelManager.prototype.spinningHell = {
 
 LevelManager.prototype.bomberMan = {
     array 		: [],
-    spawnNumber : 3,
+    spawnNumber : 2,
     spawnTime   : 3,
     spawnTimer  : 0, 
 };
@@ -201,7 +201,7 @@ LevelManager.prototype.initlevel1 = function()
 
     var xCords = [50, 470, 200, 300];
     var z = 0;
-    for(var i = 0; i < 100; i++)
+    for(var i = 0; i < 40; i++)
     {
         var en = new Enemy({
         cx      :   xCords[z],
@@ -346,6 +346,7 @@ LevelManager.prototype.initlevel3 = function()
     	this.blackKnights.array.push(en);
 	}
 
+    this.bomberMan.spawnNumber = 3;
 	/*--------------------------
 		Creating Bombermen
 	---------------------------*/
