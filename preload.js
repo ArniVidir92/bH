@@ -1,4 +1,6 @@
 var numberOfPreloadedImages = 30;
+var g_audio1 = new Audio();
+var g_audio1OldCurrentTime;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt = 0;
@@ -272,7 +274,7 @@ function preloadStuff_thenCall(completionCallback) {
 
 //NOT PRELOADING:
 //28. gpreload sound for level 1
-    var g_audio1 = new Audio("audio/BloodyTears.ogg");
+    g_audio1 = new Audio("audio/BloodyTears.ogg");
         //g_audio1.play();
     //g_audio1.src = "audio/BloodyTears.ogg"
     g_audio1.oncanplaythrough = function() {
@@ -306,6 +308,5 @@ function isReady(x,completionCallback)
     console.log(x);
     if(x>=numberOfPreloadedImages)
     {completionCallback();
-        //g_audio1.play();
     }
 }

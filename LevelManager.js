@@ -127,6 +127,24 @@ LevelManager.prototype.getLevel = function() {
 -----------------------*/
 LevelManager.prototype.update = function(du)
 {
+    if(g_audio1){
+       /* if(g_audio1.currentTime === 0){
+            g_audio1.play();
+            g_audio1.loop = true;
+        }*/
+        var tmp;
+        tmp = g_audio1OldCurrentTime;
+        if(!g_audioOn){
+            g_audio1OldCurrentTime = g_audio1.currentTime;
+            g_audio1.pause();
+        }
+        else if(g_audioOn){
+            g_audio1.play();
+            /*if(g_audio1.currentTime != 0){
+                g_audio1.play();
+            }*/
+        }
+    }
 	
 	this.updateTimers(du);
 	for(var i = 0; i < this.atimers.length; i++)
@@ -163,7 +181,7 @@ LevelManager.prototype.updateTimers = function (du)
 							Level Designer
 -----------------------------------------------------------------------*/
 LevelManager.prototype.initlevel1 = function()
-{   g_audio1.play();
+{   
 	var xCord = 20;
 	for(var i = 0; i < 100; i++)
 	{

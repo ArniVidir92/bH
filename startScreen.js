@@ -20,6 +20,12 @@ var startScreen = {
 				this.offsetY += 100 / NOMINAL_UPDATE_INTERVAL * du;
 			}
 			else {
+				if(g_audio1){
+					g_audio1OldCurrentTime = 0;
+					g_audio1.play();
+					g_audio1.loop = true;
+				}
+				
 				this.visible = false;
 			}
 		}
