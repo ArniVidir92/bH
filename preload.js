@@ -228,7 +228,7 @@ function preloadStuff_thenCall(completionCallback) {
         isReady(++cnt,completionCallback);
     };
 
-    g_gameOverImage.src = "sprites/gameover.png";
+    g_gameOverImage.src = "sprites/gameoverv20.png";
 
 //24. gpreload background for level 2
     var g_bg2Image = new Image();
