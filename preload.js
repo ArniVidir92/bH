@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 22;
+var numberOfPreloadedImages = 27;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt = 0;
@@ -210,7 +210,7 @@ function preloadStuff_thenCall(completionCallback) {
 
     g_pbbImage.src = "sprites/goomba.png";
 
-//20. preload goomba2
+//22. preload goomba2
     var g_rbbImage = new Image();
 
     g_rbbImage.onload = function() {
@@ -220,11 +220,72 @@ function preloadStuff_thenCall(completionCallback) {
 
     g_rbbImage.src = "sprites/goomba2.png";
 
+//23. gameover screen
+    var g_gameOverImage = new Image();
+
+    g_gameOverImage.onload = function() {
+        g_sGameOver = new Sprite(g_gameOverImage);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_gameOverImage.src = "sprites/gameoverv20.png";
+
+//24. gpreload background for level 2
+    var g_bg2Image = new Image();
+
+    g_bg2Image.onload = function() {
+        g_bg2 = new Sprite(g_bg2Image);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_bg2Image.src = "sprites/bg2.png";
+
+//25. gpreload background for level 3
+    var g_bg3Image = new Image();
+
+    g_bg3Image.onload = function() {
+        g_bg3 = new Sprite(g_bg3Image);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_bg3Image.src = "sprites/backgroundlevel3.png";
+
+//26. gpreload background for level 3
+    var g_bg4Image = new Image();
+
+    g_bg4Image.onload = function() {
+        g_bg4 = new Sprite(g_bg4Image);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_bg4Image.src = "sprites/backgroundlevel4.png";
+
+//27. gpreload background for level 3
+    var g_bg5Image = new Image();
+
+    g_bg5Image.onload = function() {
+        g_bg5 = new Sprite(g_bg5Image);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_bg5Image.src = "sprites/backgroundlevel5.png";
+
+//28. gpreload sound for level 1
+    var g_audio1 = new Audio("audio/BloodyTears.ogg");
+        g_audio1.play();
+    //g_audio1.src = "audio/BloodyTears.ogg"
+    /*g_audio1.oncanplaythrough = function() {
+        isReady(++cnt, completionCallback);
+    };*/
+
+    
 }
 
 function isReady(x,completionCallback)
 {
     console.log(x);
     if(x>=numberOfPreloadedImages)
-    {completionCallback();}
+    {completionCallback();
+        //g_audio1.play();
+    }
 }

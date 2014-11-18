@@ -21,6 +21,9 @@ var g_isUpdateOdd = false;
 //
 var g_isGameStarted = false;
 
+// True if game over
+//
+var g_gameOver = false;
 
 function update(dt) {
 

@@ -102,7 +102,16 @@ var g_player2 = new Player({
 });
 
 
-
+// =============
+// RESTART
+// =============
+function restart() {
+    location.reload();
+/*    score = 0;
+    levelManager = new LevelManager();
+    entityManager = new EntityManager();
+    g_gameOver = false;*/
+}
 
 
 // =============
@@ -134,6 +143,12 @@ function updateSimulation(du) {
         if(!g_isGameStarted) return;
     }
 
+    if(g_gameOver) {
+        gameOverScreen.update(du);
+        sideBar.update(du);
+        return;
+    }
+
     entityManager.update(du);
     particleManager.update(du);
     levelManager.update(du);
@@ -161,6 +176,10 @@ function renderSimulation(ctx) {
         entityManager.render(ctx);
         particleManager.render(ctx);
         sideBar.render(ctx);
+    }
+
+    if(g_gameOver) {
+        gameOverScreen.render(ctx);
     }
 
     if(startScreen.isVisible()) {
