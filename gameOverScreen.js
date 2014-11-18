@@ -6,8 +6,6 @@
  	width : 400,
  	height : 120,
 
- 	shadowRadius : 20,
-
 	isOnGameOver : function() {
 		return (g_mouseX < this.cx + this.width/2 && 
 				g_mouseX > this.cx - this.width/2 &&
@@ -16,15 +14,17 @@
 	},
 
  	update : function(du) {
- 		this.shadowRadius -= 1;
+ 		this.shadowBlur -= 1;
  	},
 
  	render : function(ctx) {
  		ctx.save();
-// 		ctx.shadowColor = "white";
-//  	 	ctx.shadowOffsetX = 8;
-//  		ctx.shadowOffsetY = 8;
-//   		ctx.shadowBlur = this.shadowRadius;
+ 		if(this.isOnGameOver()) {
+	 		ctx.shadowColor = "black";
+	  	 	ctx.shadowOffsetX = 16;
+	  		ctx.shadowOffsetY = 16;
+	   		ctx.shadowBlur = 10;
+ 		}
  		g_sGameOver.drawCenteredAt(ctx, this.cx, this.cy, 0);
  		ctx.restore();
  	}

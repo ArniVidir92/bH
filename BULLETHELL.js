@@ -136,6 +136,7 @@ function updateSimulation(du) {
 
     if(g_gameOver) {
         gameOverScreen.update(du);
+        sideBar.update(du);
         return;
     }
 
