@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 24;
+var numberOfPreloadedImages = 27;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt = 0;
@@ -230,7 +230,7 @@ function preloadStuff_thenCall(completionCallback) {
 
     g_gameOverImage.src = "sprites/gameover.png";
 
-//23. gpreload background for level 2
+//24. gpreload background for level 2
     var g_bg2Image = new Image();
 
     g_bg2Image.onload = function() {
@@ -239,6 +239,36 @@ function preloadStuff_thenCall(completionCallback) {
     };
 
     g_bg2Image.src = "sprites/bg2.png";
+
+//25. gpreload background for level 3
+    var g_bg3Image = new Image();
+
+    g_bg3Image.onload = function() {
+        g_bg3 = new Sprite(g_bg3Image);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_bg3Image.src = "sprites/backgroundlevel3.png";
+
+//26. gpreload background for level 3
+    var g_bg4Image = new Image();
+
+    g_bg4Image.onload = function() {
+        g_bg4 = new Sprite(g_bg4Image);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_bg4Image.src = "sprites/backgroundlevel4.png";
+
+//27. gpreload background for level 3
+    var g_bg5Image = new Image();
+
+    g_bg5Image.onload = function() {
+        g_bg5 = new Sprite(g_bg5Image);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_bg5Image.src = "sprites/backgroundlevel5.png";
 }
 
 function isReady(x,completionCallback)
