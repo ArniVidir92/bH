@@ -181,7 +181,7 @@ LevelManager.prototype.initlevel1 = function()
     	this.blackKnights.array.push(en);
 	}
 
-    var xCords = [50, 350, 150, 250];
+    var xCords = [50, 470, 200, 300];
     var z = 0;
     for(var i = 0; i < 100; i++)
     {
@@ -189,10 +189,11 @@ LevelManager.prototype.initlevel1 = function()
         cx      :   xCords[z],
         cy      :   -5,
         vx      :   3,
-        vy      :   5, 
+        vy      :   3, 
         type    :   "BomberMan"
         });
 
+        z++;
         if(z > 3) z = 0;
         this.bomberMan.array.push(en);
     }
