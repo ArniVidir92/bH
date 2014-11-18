@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 23;
+var numberOfPreloadedImages = 24;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt = 0;
@@ -229,6 +229,16 @@ function preloadStuff_thenCall(completionCallback) {
     };
 
     g_gameOverImage.src = "sprites/gameover.png";
+
+//23. gpreload background for level 2
+    var g_bg2Image = new Image();
+
+    g_gameOverImage.onload = function() {
+        g_bg2 = new Sprite(g_bg2Image);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_bg2Image.src = "sprites/bg2.png";
 }
 
 function isReady(x,completionCallback)

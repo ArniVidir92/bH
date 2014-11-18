@@ -5,7 +5,8 @@
 function clearCanvas(ctx) 
 { 
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    g_bg.drawCenteredAt(ctx,ctx.canvas.width/2,ctx.canvas.height/2,0);
+    if(levelManager.level===1)
+        g_bg.drawCenteredAt(ctx,ctx.canvas.width/2,ctx.canvas.height/2,0);
 }
 
 function fillCircle(ctx, x, y, r,fillStyle) 
