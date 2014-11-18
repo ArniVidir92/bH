@@ -20,7 +20,7 @@
  	render : function(ctx) {
  		ctx.save();
  		if(this.isOnGameOver()) {
-	 		ctx.shadowColor = "black";
+	 		ctx.shadowColor = "white";
 	  	 	ctx.shadowOffsetX = 16;
 	  		ctx.shadowOffsetY = 16;
 	   		ctx.shadowBlur = 10;

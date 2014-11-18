@@ -26,6 +26,10 @@ function handleMouse(evt) {
     if(startScreen.isOnStartButton()) {
     	g_isGameStarted = true;
     }
+
+    if(g_gameOver && gameOverScreen.isOnGameOver()){
+    	restart();
+    }
 //    entityManager.yoinkNearestShip(g_mouseX, g_mouseY);
 }
 

@@ -102,7 +102,15 @@ var g_player2 = new Player({
 });
 
 
-
+// =============
+// RESTART
+// =============
+function restart() {
+    score = 0;
+    levelManager = new LevelManager();
+    entityManager = new EntityManager();
+    g_gameOver = false;
+}
 
 
 // =============

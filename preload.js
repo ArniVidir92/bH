@@ -233,7 +233,7 @@ function preloadStuff_thenCall(completionCallback) {
 //23. gpreload background for level 2
     var g_bg2Image = new Image();
 
-    g_gameOverImage.onload = function() {
+    g_bg2Image.onload = function() {
         g_bg2 = new Sprite(g_bg2Image);
         isReady(++cnt,completionCallback);
     };
