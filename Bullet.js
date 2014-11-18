@@ -99,6 +99,10 @@ Bullet.prototype.render = function (ctx) {
     g_bullet3.drawCenteredAt(ctx,this.cx,this.cy,0);
     if(this.bulletType=="red")
     g_bullet.drawCenteredAt(ctx,this.cx,this.cy,0);
+    if(this.bulletType=="red2")
+    g_bullet4.drawCenteredAt(ctx,this.cx,this.cy,0);
+    if(this.bulletType=="green")
+    g_bullet5.drawCenteredAt(ctx,this.cx,this.cy,0);
     if(this.bulletType=="bigred")
     g_rbb.drawCenteredAt(ctx,this.cx,this.cy,0);
     if(this.bulletType=="bigpurple")

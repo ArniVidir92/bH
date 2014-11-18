@@ -195,6 +195,7 @@ Enemy.prototype.updateChristmasCarol = function (du)
             vx   : bvx*4,
             vy   : bvy*4,
             friendly : false,
+            bulletType : "green"
             
         }));
     }
@@ -221,6 +222,7 @@ Enemy.prototype.updateSpinningHell = function(du){
                 vx   : 5 * Math.cos(this.rotation + i * c_fullCircle/iMax),
                 vy   : 5 * Math.sin(this.rotation + i * c_fullCircle/iMax),
                 friendly : false,
+                bulletType : "red2"
             }));
         }
     }
@@ -253,6 +255,7 @@ Enemy.prototype.generateBomberManBullets = function(){
                 vx   : 5 * Math.cos(this.rotation + i * c_fullCircle/iMax),
                 vy   : 5 * Math.sin(this.rotation + i * c_fullCircle/iMax),
                 friendly : false,
+                bulletType : "red2"
             }));
         }
         
