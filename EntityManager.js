@@ -107,7 +107,9 @@ EntityManager.prototype.checkCollisions = function(du){
 					}
 			}else{
 				if( this.player.collidesWith(bullet) ){
-					if(this.player.immuneCooldown > 0){
+					if(this.player.immuneCooldown > 0 
+					   && this.player.immuneCooldown !== Player.prototype.immuneCooldown)
+					{
 						this.bullets[i].vy = -this.bullets[i].vy;
 						this.bullets[i].friendly = true;
 					}
