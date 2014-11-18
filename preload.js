@@ -270,9 +270,10 @@ function preloadStuff_thenCall(completionCallback) {
 
     g_bg5Image.src = "sprites/backgroundlevel5.png";
 
+//NOT PRELOADING:
 //28. gpreload sound for level 1
     var g_audio1 = new Audio("audio/BloodyTears.ogg");
-        g_audio1.play();
+        //g_audio1.play();
     //g_audio1.src = "audio/BloodyTears.ogg"
     /*g_audio1.oncanplaythrough = function() {
         isReady(++cnt, completionCallback);

@@ -163,7 +163,7 @@ LevelManager.prototype.updateTimers = function (du)
 							Level Designer
 -----------------------------------------------------------------------*/
 LevelManager.prototype.initlevel1 = function()
-{   //g_audio1.play();
+{   g_audio1.play();
 	var xCord = 20;
 	for(var i = 0; i < 100; i++)
 	{
