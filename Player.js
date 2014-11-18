@@ -224,6 +224,10 @@ Player.prototype.collidesWith = function (object) {
             console.log("Daudur!!!");
             this.health -= 1;
             sideBar.shake(this.health); //FIXME kannski
+
+            if(this.health <= 0) {
+                g_gameOver = true;
+            }
         }
         return true;
     }

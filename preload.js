@@ -1,4 +1,4 @@
-var numberOfPreloadedImages = 22;
+var numberOfPreloadedImages = 23;
 
 function preloadStuff_thenCall(completionCallback) {
 	var cnt = 0;
@@ -210,7 +210,7 @@ function preloadStuff_thenCall(completionCallback) {
 
     g_pbbImage.src = "sprites/goomba.png";
 
-//20. preload goomba2
+//22. preload goomba2
     var g_rbbImage = new Image();
 
     g_rbbImage.onload = function() {
@@ -220,6 +220,15 @@ function preloadStuff_thenCall(completionCallback) {
 
     g_rbbImage.src = "sprites/goomba2.png";
 
+//23. gameover screen
+    var g_gameOverImage = new Image();
+
+    g_gameOverImage.onload = function() {
+        g_sGameOver = new Sprite(g_gameOverImage);
+        isReady(++cnt,completionCallback);
+    };
+
+    g_gameOverImage.src = "sprites/gameover.png";
 }
 
 function isReady(x,completionCallback)
