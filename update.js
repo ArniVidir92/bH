@@ -49,11 +49,12 @@ function update(dt) {
     //
     var du = (dt / NOMINAL_UPDATE_INTERVAL);
     allowScore=false;
+    
     updateSimulation(du);
     
     g_prevUpdateDt = original_dt;
     g_prevUpdateDu = du;
-    
+    allocateMem();
     g_isUpdateOdd = !g_isUpdateOdd;
 }
 

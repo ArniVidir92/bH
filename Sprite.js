@@ -1,3 +1,5 @@
+akamai=0;
+
 function Sprite(image) {
 
     this.image=image;

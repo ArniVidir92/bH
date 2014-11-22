@@ -112,7 +112,8 @@ Enemy.prototype.update = function (du) {
 Enemy.prototype.getDead = function()
 {
     if(this.hitPoints>0) return;
-        score += this.score;
+        allowScore=true;
+        updateScore(this.score);
         this.isDead = true;
         if(this.type === "BomberMan") this.generateBomberManBullets();
         entityManager.addPowerup(new Powerup({
