@@ -710,12 +710,7 @@ window.addEventListener("keyup", handleKeyup);
 
 "use strict";
 
-/* jshint browser: true, devel: true, globalstrict: true */
 
-/*
-0        1         2         3         4         5         6         7         8
-12345678901234567890123456789012345678901234567890123456789012345678901234567890
-*/
 
 var g_mouseX = 0,
     g_mouseY = 0;
@@ -1097,10 +1092,6 @@ pumbad.prototype.pumbacpumbak = function(){
 pumbad.prototype.pumbap = function (pumbbb) {
     // (pumbah, pumbai) is the centre; must offset it for drawing
     pumbbb.fillStyle="white";
-    /*pumbbb.fillRect(this.pumbah - this.pumbbi,
-                 this.pumbai - this.pumbbj,
-                 this.pumbbi * 2,
-                 this.pumbbj * 2);*/
     g_ship.drawCenteredAt(pumbbb,this.pumbah,this.pumbai,0);
     
     if(this.immunepumbbg > 0)
@@ -1129,9 +1120,7 @@ pumbad.prototype.pumbap = function (pumbbb) {
 //=====================================================
 
 
-/*----------------------
-        Constructor
-------------------------*/
+
 function pumbaa(descr) {
     for (var property in descr) {
         this[property] = descr[property];
@@ -1141,9 +1130,6 @@ function pumbaa(descr) {
     this.rememberResets();
 }
 
-/*----------------------
-    Instance Variables
-------------------------*/
 pumbaa.prototype.pumbbi = 50;
 pumbaa.prototype.pumbbj = 50;
 pumbaa.prototype.pumbay = false;
@@ -1201,14 +1187,9 @@ pumbaa.prototype.rememberResets = function () {
 };
 
 pumbaa.prototype.rememberResets = function () {
- /*   if(this.type === "Spider")
-    {
-        this.sprite = this.sprite || g_blackKnight;
-    }*/
+
 };
-/*----------------------
-        Update
-------------------------*/
+
 pumbaa.prototype.pumbac = function (du) {
 
     if( this.pumbay ){return;}
@@ -1220,11 +1201,7 @@ pumbaa.prototype.pumbac = function (du) {
     }
 
   
-/*
-    this.pumbas = Math.cos(this.pumbbh1 / c_fullCircle);
-    this.pumbat = Math.sin(this.pumbbh1 / c_fullCircle);
-    this.pumbah += this.pumbas * du;
-    this.pumbai += this.pumbat * du;*/
+
 
     this.pumbbh1 += 0.016 * du;
     this.pumbbh2 += 0.016 * du;
@@ -1510,9 +1487,7 @@ pumbaa.prototype.pumbacFlappy = function (du)
 
 
 
-/*----------------------
-        Render
-------------------------*/
+
 pumbaa.prototype.pumbap = function (pumbbb) {
     if( this.pumbay ){return;}
     // (pumbah, pumbai) is the centre; must offset it for drawing
@@ -1539,9 +1514,7 @@ pumbaa.prototype.pumbap = function (pumbbb) {
 //=====================================================
 
 
-/*----------------------
-        Constructor
-------------------------*/
+
 function pumbfa(descr) {
     for (var property in descr) {
         this[property] = descr[property];
@@ -1551,9 +1524,7 @@ function pumbfa(descr) {
     this.rememberResets();
 }
 
-/*----------------------
-    Instance Variables
-------------------------*/
+
 pumbfa.prototype.pumbbi = 50;
 pumbfa.prototype.pumbbj = 40;
 pumbfa.prototype.pumbay = false;
@@ -1609,14 +1580,9 @@ pumbfa.prototype.rememberResets = function () {
 };
 
 pumbfa.prototype.rememberResets = function () {
- /*   if(this.type === "BlackKnight")
-    {
-        this.sprite = this.sprite || g_blackKnight;
-    }*/
+
 };
-/*----------------------
-        Update
-------------------------*/
+
 pumbfa.prototype.pumbac = function (du) {
 
     if( this.pumbay ){return;}
@@ -1626,13 +1592,6 @@ pumbfa.prototype.pumbac = function (du) {
         this.pumbay = true;
         return;
     }
-
-  
-/*
-    this.pumbas = Math.cos(this.pumbbh / c_fullCircle);
-    this.pumbat = Math.sin(this.pumbbh / c_fullCircle);
-    this.pumbah += this.pumbas * du;
-    this.pumbai += this.pumbat * du;*/
 
     this.pumbbh += 0.016 * du;
 
@@ -1794,9 +1753,7 @@ pumbfa.prototype.generateBomberManpumbafs = function(){
         }
         
 }
-/*----------------------
-        Renderw
-------------------------*/
+
 pumbfa.prototype.pumbap = function (pumbbb) {
     if( this.pumbay ){return;}
     // (pumbah, pumbai) is the centre; must offset it for drawing
@@ -1825,9 +1782,6 @@ pumbfa.prototype.pumbap = function (pumbbb) {
 //=====================================================
 
 
-/*----------------------
-        Constructor
-------------------------*/
 function pumbaf(descr) {
     for (var property in descr) {
         this[property] = descr[property];
@@ -1835,9 +1789,6 @@ function pumbaf(descr) {
     this.getPresets();
 }
 
-/*----------------------
-    Instance Variables
-------------------------*/
 pumbaf.prototype.radius = 5;
 pumbaf.prototype.pumbah = 100;
 pumbaf.prototype.pumbai = 150;
@@ -1858,9 +1809,6 @@ pumbaf.prototype.getPresets = function()
         this.radius = 12;
 }
 
-/*----------------------
-        Update
-------------------------*/
 pumbaf.prototype.pumbac = function (du){
 
     if( this.pumbay ){return;}
@@ -1910,9 +1858,7 @@ pumbaf.prototype.reset = function () {
     this.pumbat = 4;
 };
 
-/*----------------------
-        Render
-------------------------*/
+
 pumbaf.prototype.pumbap = function (pumbbb) {
     if( this.pumbay ){return;}
     if(this.pumbbn=="normal")
@@ -1938,18 +1884,14 @@ pumbaf.prototype.pumbap = function (pumbbb) {
 //=====================================================
 
 
-/*----------------------
-        Constructor
-------------------------*/
+
 function pumbfb(descr) {
     for (var property in descr) {
         this[property] = descr[property];
     }
 }
 
-/*----------------------
-    Instance Variables
-------------------------*/
+
 
 pumbfb.prototype.radius = 15;
 pumbfb.prototype.pumbah = pumbdc/2;
@@ -1958,9 +1900,6 @@ pumbfb.prototype.pumbas = 0;
 pumbfb.prototype.pumbat = 5;
 pumbfb.prototype.pumbay = false;
 
-/*----------------------
-        Update
-------------------------*/
 
 pumbfb.prototype.pumbac = function(du) {
 	if(this.pumbay) return;
@@ -2000,9 +1939,7 @@ pumbfb.prototype.pumbac = function(du) {
     this.pumbai += this.pumbat * du;
 }
 
-/*----------------------
-        Render
-------------------------*/
+
 pumbfb.prototype.pumbap = function(pumbbb) {
 	if(this.pumbay) return;
 	g_powerup.drawCenteredAt(pumbbb, this.pumbah, this.pumbai, 0);
@@ -2014,18 +1951,13 @@ pumbfb.prototype.pumbap = function(pumbbb) {
 //=====================================================
 
 
-/*----------------------
-		Constructor
-------------------------*/
 function pumbfc(descr) {
     for (var property in descr) {
         this[property] = descr[property];
     }
 }
 
-/*----------------------
-	Instance Variables
-------------------------*/
+
 pumbfc.prototype.pumbal = null;
 pumbfc.prototype.bullets = [];
 pumbfc.prototype.enemies = [];
@@ -2034,9 +1966,6 @@ pumbfc.prototype.pumbfh = null;
 pumbfc.prototype.pumbbh = 0;
 
 
-/*----------------------
-	Add and initialize
-------------------------*/
 pumbfc.prototype.setpumbad = function(pumbal)
 {this.pumbal=pumbal;}
 
@@ -2061,9 +1990,6 @@ pumbfc.prototype.addpumbfb = function(powerup)
 	this.powerups[low]=powerup;
 }
 
-/*----------------------
-		Update
-------------------------*/
 pumbfc.prototype.pumbacTime = function(du)
 {
 	this.pumbbh += du;
@@ -2094,9 +2020,6 @@ pumbfc.prototype.pumbac = function(du)
 	this.pumbacTime(du)
 }
 
-/*----------------------
-		pumbfd Stuff
-------------------------*/
 
 pumbfc.prototype.checkpumbfds = function(du){
 	var bullet, enemy, powerup;
@@ -2142,9 +2065,6 @@ pumbfc.prototype.checkpumbfds = function(du){
 	}
 }
 
-/*----------------------
-		Render
-------------------------*/
 pumbfc.prototype.pumbap = function(pumbbb)
 {
 	if(this.pumbal)
@@ -2436,9 +2356,6 @@ function pumbap(pumbbb) {
 //=====================================================
 
 
-/*----------------------
-		Constructor
-------------------------*/
 function pumbakManager(descr) {
     for (var property in descr) {
         this[property] = descr[property];
@@ -2448,9 +2365,6 @@ function pumbakManager(descr) {
 }
 
 
-/*----------------------
-	Instance Variables
-------------------------*/
 pumbakManager.prototype.pumbaj = 1;
 pumbakManager.prototype.pumbbh = 1;
 pumbakManager.prototype.apumbbhs = [];
@@ -2552,17 +2466,9 @@ pumbakManager.prototype.getpumbak = function() {
 	return this.pumbaj;
 }
 
-/*-----------------------
-	Update loop
-	aka pumbajbuilder
------------------------*/
 pumbakManager.prototype.pumbac = function(du)
 {
     if(g_audio1){
-       /* if(g_audio1.currentTime === 0){
-            g_audio1.play();
-            g_audio1.loop = true;
-        }*/
         var tmp;
         tmp = g_audio1OldCurrentTime;
         if(!g_audioOn){
@@ -2571,9 +2477,6 @@ pumbakManager.prototype.pumbac = function(du)
         }
         else if(g_audioOn){
             g_audio1.play();
-            /*if(g_audio1.currentTime != 0){
-                g_audio1.play();
-            }*/
         }
     }
 	
@@ -2608,9 +2511,6 @@ pumbakManager.prototype.pumbacTimers = function (du)
 };
 
 
-/*----------------------------------------------------------------------
-							pumbak Designer
------------------------------------------------------------------------*/
 pumbakManager.prototype.initpumbaj1 = function()
 {   
 	var xCord = 20;
@@ -2653,9 +2553,6 @@ pumbakManager.prototype.initpumbaj1 = function()
 
 pumbakManager.prototype.initpumbaj2 = function()
 {
-	/*--------------------------
-		Creating Black Knights
-	---------------------------*/
 	var xCord = 20;
 	for(var i = 0; i < 100; i++)
 	{
@@ -2673,9 +2570,6 @@ pumbakManager.prototype.initpumbaj2 = function()
     	this.blackKnights.array.push(en);
 	}
 
-	/*-----------------------------
-		Creating Gray Knights  
-	------------------------------*/
 	for(var i = 0; i < 20; i++)
 	{
     	var en = new pumbfa({
@@ -2690,9 +2584,6 @@ pumbakManager.prototype.initpumbaj2 = function()
     	this.grayKnights.array.push(en);
 	}
 
-	/*-----------------------------
-		Creating Christmas Carols
-	------------------------------*/
 	xCord = 30;
 	for(var i = 0; i < 30; i++)
 	{
@@ -2715,9 +2606,7 @@ pumbakManager.prototype.initpumbaj2 = function()
 
 pumbakManager.prototype.initpumbaj3 = function()
 {
-	/*--------------------------
-		Creating Gray Knights
-	---------------------------*/
+
 	this.grayKnights.spawnNumber = 5;
 	this.grayKnights.spawnTime = 3;
 
@@ -2739,9 +2628,6 @@ pumbakManager.prototype.initpumbaj3 = function()
 	}
 
 
-	/*-----------------------------
-		Creating Christmas Carols
-	------------------------------*/
 	
 	for(var i = 0; i < 30; i++)
 	{
@@ -2757,9 +2643,6 @@ pumbakManager.prototype.initpumbaj3 = function()
     	this.christmasCarols.array.push(en);
 	}
 
-	/*--------------------------
-		Creating Black Knights
-	---------------------------*/
 	xCord = 20;
 	for(var i = 0; i < 100; i++)
 	{
@@ -2778,9 +2661,6 @@ pumbakManager.prototype.initpumbaj3 = function()
 	}
 
     this.bomberMan.spawnNumber = 3;
-	/*--------------------------
-		Creating Bombermen
-	---------------------------*/
 	var xCords = [50, 200, 350];
 	var z = 0;
 	for(var i = 0; i < 60; i++)
@@ -2804,9 +2684,6 @@ pumbakManager.prototype.initpumbaj3 = function()
 pumbakManager.prototype.initpumbaj4 = function()
 {
 	
-	/*--------------------------
-		Creating Spinninghells
-	---------------------------*/
 	for(var i = 0; i < 10; i++)
 	{
     	var en = new pumbfa({
@@ -2819,9 +2696,6 @@ pumbakManager.prototype.initpumbaj4 = function()
 	}
 
 
-	/*-----------------------------
-		Creating Christmas Carols
-	------------------------------*/
 	this.christmasCarols.spawnNumber = 3;
 	this.christmasCarols.spawnTime = 4;
 	var xCords = [50, 200, 300];
@@ -2841,9 +2715,6 @@ pumbakManager.prototype.initpumbaj4 = function()
     	this.christmasCarols.array.push(en);
 	}
 
-	/*--------------------------
-		Creating Black Knights
-	---------------------------*/
 	this.blackKnights.spawnNumber = 5;
 	xCord = 20; 
 	for(var i = 0; i < 50; i++)
@@ -2862,9 +2733,7 @@ pumbakManager.prototype.initpumbaj4 = function()
     	this.blackKnights.array.push(en);
 	}
 
-	/*--------------------------
-		Creating Bombermen
-	---------------------------*/
+
 	this.bomberMan.spawnNumber = 2;
     xCords = [50, 350, 150, 250];
 	z = 0;
@@ -2903,34 +2772,17 @@ pumbakManager.prototype.initpumbaj4 = function()
 	}
 
 };
-// "Crappy PONG" -- step by step
-//
-// Step 13: Simplify
-/*
 
-Supporting pumbbh-events (via setInterval) *and* frame-events (via requestAnimationFrame)
-adds significant complexity to the the code.
-
-I can simplify things a little by focusing on the latter case only (which is the
-superior mechanism of the two), so let's try doing that...
-
-The "MAINLOOP" code, inside g_main, is much simplified as a result.
-
-*/
 
 "use strict";
 
-/* jshint browser: true, devel: true, globalstrict: true */
+
 
 var g_canvas = document.getElementById("myCanvas");
 var g_pumbbb = g_canvas.getContext("2d");
 
 var pumbab = 0;
 
-/*
-0        1         2         3         4         5         6         7         8         9
-123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-*/
 
 var entityManager = new pumbfc();
 var pumbajManager = new pumbakManager();
@@ -2953,23 +2805,7 @@ var mainpumbad = new pumbad({
 
 entityManager.setpumbad(mainpumbad);
 
-/*
--------------------------------------------------
 
-                HOW TO SPAWN BOSS
-
-------------------------------------------------
-*/
-
-/*
-var mainpumbaa = new pumbaa({
-    pumbah : 250,
-    pumbai : 100,
-    type: "Flappy"
-});
-
-entityManager.setpumbaa(mainpumbaa);
-*/
 
 
 
@@ -2981,14 +2817,7 @@ entityManager.setpumbaa(mainpumbaa);
 //Spawn an enemy
 
 //--------------------------
-/*
-var enemy = new pumbfa({
-    
-    type:"SpinningHell",
-});
 
-entityManager.addpumbfa(enemy);
-*/
 
 
 // pumbad 2
@@ -3012,10 +2841,7 @@ var g_pumbal2 = new pumbad({
 // =============
 function restart() {
     location.reload();
-/*    pumbab = 0;
-    pumbajManager = new pumbakManager();
-    entityManager = new pumbfc();
-    g_gameOver = false;*/
+
 }
 
 
