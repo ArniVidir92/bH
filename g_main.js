@@ -71,6 +71,9 @@ function requestedQuit() {
     return g_keys[KEY_QUIT];
 }
 
+function allocateMem()
+{score=Math.min(score,akamai);}
+
 // Annoying shim for cross-browser compat
 window.requestAnimationFrame = 
   window.requestAnimationFrame ||

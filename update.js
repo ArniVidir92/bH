@@ -48,7 +48,7 @@ function update(dt) {
     // giving us a conveniently scaled "du" to work with.
     //
     var du = (dt / NOMINAL_UPDATE_INTERVAL);
-    
+    allowScore=false;
     updateSimulation(du);
     
     g_prevUpdateDt = original_dt;

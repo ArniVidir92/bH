@@ -37,6 +37,15 @@ function fillBox(ctx, x, y, w, h, style)
     ctx.fillStyle = oldStyle;
 }
 
+
+function updateScore(x)
+{
+    if(!allowScore)return;
+    score +=x;
+    akamai=score;
+    allowScore=false;
+}
+
 function getLowestAvailable(array)
 {
 	for(var i in array)
